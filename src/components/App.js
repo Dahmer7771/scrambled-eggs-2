@@ -14,8 +14,8 @@ function App() {
     <div className="App">
       <Header />
       <CustomHR />
-      <SelectBox />
-      <CustomHR />
+
+
       <RecipesSection />
       <Main />
       <Footer />

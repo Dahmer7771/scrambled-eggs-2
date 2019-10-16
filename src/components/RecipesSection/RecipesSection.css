@@ -1,0 +1,16 @@
+.recipes-section {
+    position: relative;
+}
+
+.recipes-section h3 {
+    text-align: center;
+    color: #5b5b5b;
+}
+
+.recommended, .new-recipes, .popular  {
+    text-align: center;
+    background-color: #f1f1f1;
+    border-radius: 15px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
