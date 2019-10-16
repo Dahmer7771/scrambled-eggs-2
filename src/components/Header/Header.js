@@ -11,9 +11,24 @@ class Header extends React.Component {
 
   render() {
     return (
-      <div>
-        <h1>Header</h1>
-      </div>
+      <header className="container">
+        <div className="row">
+          <form className="header__search col-xl-4">
+            <label for="headerSearch">
+              <img src="#" />
+            </label>
+            <input type="search" name="headerSearch" />
+            <input type="submit" value="search" />
+          </form>
+          <div className="header__login col-xl-4 offset-xl-4">
+            <a href="#">
+              <img src="#" />
+            </a>
+          </div>
+          <hr className="col-xl-12" />
+          <img src="#" />
+        </div>
+      </header>
     )
   }
 }
