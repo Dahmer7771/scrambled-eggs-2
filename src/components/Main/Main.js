@@ -11,7 +11,7 @@ class Main extends React.Component{
 
   render() {
     return (
-      <main>
+      <main className="container">
         <p>Main content</p>
       </main>
     )

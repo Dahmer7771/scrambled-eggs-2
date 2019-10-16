@@ -14,11 +14,11 @@ class Header extends React.Component {
       <header className="container">
         <div className="row">
           <form className="header__search col-xl-4">
-            <label for="headerSearch">
+            <button className="headerSearch">
               <img src="#" />
-            </label>
+            </button>
             <input type="search" name="headerSearch" />
-            <input type="submit" value="search" />
+            {/* <input type="submit" value="search" /> */}
           </form>
           <div className="header__login col-xl-4 offset-xl-4">
             <a href="#">

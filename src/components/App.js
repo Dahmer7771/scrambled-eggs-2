@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import Header from "./Header/Header";
 import SelectBox from './SelectBox/SelectBox';
+import RecipesSection from './RecipesSection/RecipesSection';
 import Main from "./Main/Main";
 import Footer from "./Footer/Footer";
 
@@ -15,6 +16,7 @@ function App() {
       <CustomHR />
       <SelectBox />
       <CustomHR />
+      <RecipesSection />
       <Main />
       <Footer />
     </div>

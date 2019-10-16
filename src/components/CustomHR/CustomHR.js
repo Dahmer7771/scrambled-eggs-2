@@ -11,7 +11,7 @@ class CustomHR extends Component {
         return (
             <div className="container">
                 <hr className="col-xl-12" />
-                <img src="#" />
+                <img src="#" alt="qwe" />
             </div>
         );
     }
