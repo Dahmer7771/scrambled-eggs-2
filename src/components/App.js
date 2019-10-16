@@ -6,12 +6,15 @@ import Main from "./Main/Main";
 import Footer from "./Footer/Footer";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import CustomHR from './CustomHR/CustomHR';
 
 function App() {
   return (
     <div className="App">
       <Header />
+      <CustomHR />
       <SelectBox />
+      <CustomHR />
       <Main />
       <Footer />
     </div>

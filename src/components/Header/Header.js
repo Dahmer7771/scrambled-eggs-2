@@ -25,8 +25,6 @@ class Header extends React.Component {
               <img src="#" />
             </a>
           </div>
-          <hr className="col-xl-12" />
-          <img src="#" />
         </div>
       </header>
     )
