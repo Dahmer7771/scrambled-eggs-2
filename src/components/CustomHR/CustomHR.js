@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Spica from '../../img/spica.jpg';
 
 class CustomHR extends Component {
     constructor(props) {
@@ -11,7 +12,7 @@ class CustomHR extends Component {
         return (
             <div className="container">
                 <hr className="col-xl-12" />
-                <img src="#" alt="qwe" />
+                <img src={Spica} alt="qwe" />
             </div>
         );
     }
