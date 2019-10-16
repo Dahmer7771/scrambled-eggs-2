@@ -1,0 +1,11 @@
+hr {
+    background: #cdcdcd;
+    height: 1px;
+}
+.line img {
+    position: relative;
+    top: -45px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
