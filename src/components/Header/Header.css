@@ -1,3 +1,23 @@
 .header__login {
     text-align: end;
 }
+
+.header-search {
+    border: none;
+    background: none;
+}
+
+.header-search img {
+    width: 15px;
+}
+
+.search {
+    border-radius: 5px;
+    margin: 10px;
+}
+
+.header__login img {
+    width: 15px;
+    margin: 10px;
+}
+
