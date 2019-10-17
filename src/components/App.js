@@ -14,9 +14,8 @@ function App() {
     <div className="App">
       <Header />
       <CustomHR />
-
-
       <RecipesSection />
+      <CustomHR />
       <Main />
       <Footer />
     </div>

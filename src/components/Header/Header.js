@@ -1,5 +1,6 @@
 import React from 'react';
 import './Header.css';
+
 import Search from '../../img/search.png';
 import UserProfile from '../../img/UserProfile.png';
 

@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import './RecipesSectionItem.css';
+import Dish from '../../img/dish.png'
+import Like from '../../img/like.png'
 
 class RecipesSectionItem extends Component {
     constructor(props) {
@@ -9,19 +12,17 @@ class RecipesSectionItem extends Component {
     }
     render() { 
         return (
-            <section className="recipes-section-item col-xl-6">
-                <img className="recipe-image" alt="qwe" />
-                <figcaption>
-                    <div className="recipe-title">Recipe Title</div>
-                    <div className="recipe-labels">
-                        <div className="recipe-labels-item">label 1</div>
-                        <div className="recipe-labels-item">label 2</div>
-                        <div className="recipe-labels-item">label 3</div>
-                    </div>
+            <section className="recipes-section-item col-xl-5">
+                <img className="recipe-image" src={Dish} alt="qwe" />
+                <figcaption >
+                    <div className="recipe-title">Классический крабовый салат с огурцом и мидиями</div>
                     <div className="recipe-description">
-                        Здесь описывается рецепт... Оценки блюда не будет, ну ее нафиг
+                        Здесь описывается рецепт...Здесь описывается рецепт...Здесь описывается рецепт...
                     </div>
                 </figcaption>
+                <div className="like">
+                    <img src={Like} alt=""/>
+                </div>
             </section>
         );
     }

@@ -19,7 +19,9 @@ class RecipesSection extends Component {
                         <div className="new-recipes col-2">Новые рецепты</div>
                         <div className="popular col-2">Популярные</div>
                 </div>
-                <div className="row">
+                <div className="row justify-content-around no-gutters">
+                    <RecipesSectionItem />
+                    <RecipesSectionItem />
                     <RecipesSectionItem />
                     <RecipesSectionItem />
                     <RecipesSectionItem />
