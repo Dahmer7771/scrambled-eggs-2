@@ -1,6 +1,5 @@
 header {
     position: fixed;
-    margin:auto;
     left:0;
     right:0;
     top: 0;
@@ -10,6 +9,10 @@ header {
     margin-bottom: 40px;
     z-index: 2;
 
+}
+
+header .row {
+    max-width: 1440px;
 }
 .header__login {
     text-align: end;

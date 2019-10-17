@@ -15,7 +15,7 @@ class Header extends React.Component {
 
   render() {
     return (
-      <header className="container">
+      <header className="container-fluid">
         <div className="row">
           <img className="logo" src={Logo} alt=""/>
           <form className="header__search col-xl-3">

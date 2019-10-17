@@ -5,10 +5,12 @@ hr {
     top:100px;
 }
 .line img {
-    top:60px;
-    margin-bottom: 100px;
     position: relative;
+    top: 60px;
     display: block;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0 auto;
+}
+.no-gutters {
+    margin-left: 0;
+    margin-right: 0;
 }

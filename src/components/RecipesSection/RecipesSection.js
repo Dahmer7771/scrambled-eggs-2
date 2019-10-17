@@ -26,6 +26,10 @@ class RecipesSection extends Component {
                     <RecipesSectionItem />
                     <RecipesSectionItem />
                     <RecipesSectionItem />
+                    <RecipesSectionItem />
+                    <RecipesSectionItem />
+                    <RecipesSectionItem />
+                    <RecipesSectionItem />
                 </div>
             </section>
         );
