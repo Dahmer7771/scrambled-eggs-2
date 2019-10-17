@@ -1,23 +1,27 @@
 import React from 'react';
+import {
+    Route,
+    Router,
+    Switch,
+} from 'react-router-dom';
+import history from "../helpers/history";
+import HomePage from "./HomePage/HomePage";
+import Login from "./Login/Login";
+import Registration from "./Registration/Registration";
 import './App.css';
-import Header from "./Header/Header";
-import SelectBox from './SelectBox/SelectBox';
-import RecipesSection from './RecipesSection/RecipesSection';
-import Main from "./Main/Main";
-import Footer from "./Footer/Footer";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import CustomHR from './CustomHR/CustomHR';
 
 function App() {
   return (
     <div className="App">
-      <Header />
-      <CustomHR />
-      <RecipesSection />
-      <CustomHR />
-      <Main />
-      <Footer />
+      <Router history={history}>
+          <Switch>
+              <Route exact path="/" component={HomePage}/>
+              <Route exact path="/login" component={Login}/>
+              <Route exact path="/registration" component={Registration}/>
+          </Switch>
+      </Router>
     </div>
   );
 }
