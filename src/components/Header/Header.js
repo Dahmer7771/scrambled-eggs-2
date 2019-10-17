@@ -3,6 +3,7 @@ import './Header.css';
 
 import Search from '../../img/search.png';
 import UserProfile from '../../img/UserProfile.png';
+import Logo from '../../img/logo.png'
 
 class Header extends React.Component {
   constructor(props) {
@@ -16,12 +17,13 @@ class Header extends React.Component {
     return (
       <header className="container">
         <div className="row">
-          <form className="header__search col-xl-4">
+          <img className="logo" src={Logo} alt=""/>
+          <form className="header__search col-xl-3">
+            <input className="search" type="search" name="headerSearch" />
+            {/* <input type="submit" value="search" /> */}
             <button className="header-search">
               <img src={Search}/>
             </button>
-            <input className="search" type="search" name="headerSearch" />
-            {/* <input type="submit" value="search" /> */}
           </form>
           <div className="header__login col-xl-4 offset-xl-4">
             <a href="#">

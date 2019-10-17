@@ -13,7 +13,7 @@ class CustomHR extends Component {
     render() { 
         return (
             <div className="line container">
-                <hr className="col-xl-12" />
+                <hr className="col-xl-10" />
                 <img src={Spica} alt="qwe" />
             </div>
         );
