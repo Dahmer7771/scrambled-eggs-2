@@ -9,6 +9,7 @@ hr {
     top: 60px;
     display: block;
     margin: 0 auto;
+    pointer-events: none;
 }
 .no-gutters {
     margin-left: 0;

@@ -11,13 +11,22 @@
 .recommended, .new-recipes, .popular  {
     color: #5b5b5b;
     text-align: center;
-    background-color: #f1f1f1;
-    border-radius: 15px;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    padding: 10px 20px 10px 20px;
 }
 
 .recommended:hover, .new-recipes:hover, .popular:hover {
     color: white;
     background-color: #5b5b5b;
+    border-radius: 25px;
+}
+
+.category {
+    display: flex;
+    justify-content: space-between;
+    background-color: #f1f1f1;
+    margin-right: 25%;
+    margin-left: 25%;
+    border-radius: 15px;
+    margin-bottom: 25px;
+    margin-top: 25px;
 }
