@@ -1,4 +1,5 @@
 hr {
+    width: 100%;
     position: relative;
     background: #cdcdcd;
     height: 1px;
@@ -11,7 +12,9 @@ hr {
     margin: 0 auto;
     pointer-events: none;
 }
-.no-gutters {
+.no-gutter {
     margin-left: 0;
     margin-right: 0;
+    padding: 0;
 }
+

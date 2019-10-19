@@ -12,9 +12,9 @@ class CustomHR extends Component {
     }
     render() { 
         return (
-            <div className="line container-fluid no-gutters">
+            <div className="line container-fluid no-gutter">
                 <div className="row">
-                    <hr className="col-xl-12" />
+                    <hr className="hr-logo no-gutter" />
                     <img src={Spica} alt="qwe" />
                 </div>
             </div>

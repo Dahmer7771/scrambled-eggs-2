@@ -14,7 +14,7 @@ class Header extends React.Component {
 
   render() {
     return (
-      <header className="container-fluid">
+      <header className="container-fluid no-gutters">
         <div className="row">
           <img className="logo" src={Logo} alt=""/>
           <form className="header__search col-xl-4 col-lg-4 col-md-5 col-sm-6 col-7">
@@ -25,7 +25,7 @@ class Header extends React.Component {
             </button>
           </form>
           <div className="header__login">
-            <a href="#">
+            <a href="/login">
               {/*//////////////////////  просто картинка входа ///////////////////////////////////*/}
               <div className="lock">
                 <div className="key-hole"></div>

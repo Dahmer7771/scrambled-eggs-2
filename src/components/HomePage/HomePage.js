@@ -19,7 +19,6 @@ class HomePage extends Component {
                 <CustomHR />
                 <RecipesSection />
                 <CustomHR />
-                <Main />
                 <Footer />
             </React.Fragment>
         );
