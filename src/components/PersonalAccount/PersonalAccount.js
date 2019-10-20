@@ -1,20 +1,31 @@
 import React from 'react';
 import './PersonalAccount.css';
 import Editor from 'draft-js-editor';
+import { EditorState, convertFromRaw } from 'draft-js';
+import TextEditor from '../TextEditor/TextEditor';
 
-class PersonalAccount extends React.Component{
+class PersonalAccount extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-
+            editorState: EditorState.createEmpty(),
         }
+    }
+
+    componentDidMount() {
+        // eslint-disable-next-line no-undef
+        var editor = new wysihtml5.Editor("wysihtml5-textarea", {
+            toolbar: 'wysihtml5-toolbar',
+            // eslint-disable-next-line no-undef
+            parserRules: wysihtml5ParserRules,
+        });
     }
 
     render() {
         return (
             <React.Fragment>
                 <header>
-                    <a href="#">header</a>
+                    {/*{content}*/}
                 </header>
                 <main className="main-container">
                     <div className="container">
@@ -39,18 +50,13 @@ class PersonalAccount extends React.Component{
                                 <input type="text" id="title" style={{width: "100%"}}/>
                                 <br/><br/>
                                 <label htmlFor="content">Текст</label>
-                                <Editor
-                                    id="content"
-                                    onChange={(editorState) => this.setState({ editorState })}
-                                    editorState={this.state.editorState}
-                                    style={{backgroundColor: 'white'}}
-                                />
+                                <TextEditor/>
                             </div>
                         </div>
                     </div>
                 </main>
                 <footer>
-                    <a href="#">footer</a>
+                    {/*{content}*/}
                 </footer>
             </React.Fragment>
         )
