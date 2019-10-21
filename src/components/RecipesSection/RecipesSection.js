@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './RecipesSection.css';
 
 import RecipesSectionItem from '../RecipesSectionItem/RecipesSectionItem';
+import RecipePage from "../RecipePage/RecipePage";
 
 class RecipesSection extends Component {
     constructor(props) {
@@ -20,16 +21,16 @@ class RecipesSection extends Component {
                         <div className="popular">Популярные</div>
                 </div>
                 <div className="row justify-content-around no-gutters">
-                    <RecipesSectionItem />
-                    <RecipesSectionItem />
-                    <RecipesSectionItem />
-                    <RecipesSectionItem />
-                    <RecipesSectionItem />
-                    <RecipesSectionItem />
-                    <RecipesSectionItem />
-                    <RecipesSectionItem />
-                    <RecipesSectionItem />
-                    <RecipesSectionItem />
+                    {[1, 2, 3, 4, 5, 6, 7, 8].map(recipe => {
+                        return (
+                            <RecipesSectionItem
+                                id={recipe}
+                                title={`recipe ${recipe}`}
+                                description={`description ${recipe}`}
+                                image={`image`}
+                            />
+                        )
+                    })}
                 </div>
             </section>
         );
