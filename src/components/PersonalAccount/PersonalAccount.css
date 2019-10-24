@@ -1,13 +1,22 @@
+
+
 .menu {
     height: 200px;
     background-color: azure;
+
+
 }
 
 .content {
     height: 600px;
     background-color: #AAAAAA;
+
+
 }
+
 
 .main-container {
     margin-top: 80px;
+    flex: 1 0 auto;
+
 }

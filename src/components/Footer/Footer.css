@@ -1,7 +1,9 @@
 footer {
+    margin: 0 auto;
     position: relative;
     background-color: #373737;
-    height: 200px;
     border-radius: 20px 20px 0 0;
-    top: 80px;
+    top: 180px;
+    height: 100px;
+
 }

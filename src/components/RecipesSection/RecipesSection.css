@@ -1,6 +1,7 @@
 .recipes-section {
     position: relative;
     top:100px;
+    flex: 1 0 auto;
 }
 
 .recipes-section h3 {

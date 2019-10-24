@@ -276,6 +276,7 @@ iframe {
     background: -o-linear-gradient(top, #767676, #262626);
     background: -moz-linear-gradient(top, #767676, #262626);
     background: linear-gradient(top, #767676, #262626);
+    box-shadow: 0 0 10px;
 }
 
 
