@@ -231,17 +231,14 @@ iframe {
     margin: 0 auto;
 }
 
+
+
 .container-login100 {
     width: 100%;
     min-height: 100vh;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+
     align-items: center;
+    text-align: center;
     padding: 15px;
 
     background-image: url("../../img/bg-01.jpg");
@@ -266,10 +263,12 @@ iframe {
 }
 
 .wrap-login100 {
+    position: relative;
     width: 500px;
     border-radius: 10px;
     overflow: hidden;
     padding: 55px 55px 37px 55px;
+    margin: 0 auto;
 
     background: #262626;
     background: -webkit-linear-gradient(top, #767676, #373737);
@@ -277,6 +276,76 @@ iframe {
     background: -moz-linear-gradient(top, #767676, #262626);
     background: linear-gradient(top, #767676, #262626);
     box-shadow: 0 0 10px;
+}
+
+.wrap-category {
+    position: relative;
+    width: 500px;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 0 auto;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+
+
+}
+
+.category-login {
+    user-select: none;
+    font-size: 23px;
+    width: 245px;
+    border-radius: 10px;
+    overflow: hidden;
+    height: 40px;
+    padding: 2px;
+
+    background: #262626;
+    background: -webkit-linear-gradient(top, #767676, #373737);
+    background: -o-linear-gradient(top, #767676, #262626);
+    background: -moz-linear-gradient(top, #767676, #262626);
+    background: linear-gradient(top, #767676, #262626);
+    box-shadow: 0 0 10px;
+}
+
+.category-login:hover {
+    color: #262626;
+    transition: all 0.5s ease;
+
+    background: #767676;
+    background: -webkit-linear-gradient(top, #767676, #373737);
+    background: -o-linear-gradient(top, #767676, #262626);
+    background: -moz-linear-gradient(top, #767676, #262626);
+    background: linear-gradient(top, #767676, #262626);
+}
+
+.category-register {
+    user-select: none;
+    font-size: 23px;
+    width: 245px;
+    border-radius: 10px;
+    overflow: hidden;
+    height: 40px;
+    padding: 2px;
+
+
+    background: #262626;
+    background: -webkit-linear-gradient(top, #767676, #373737);
+    background: -o-linear-gradient(top, #767676, #262626);
+    background: -moz-linear-gradient(top, #767676, #262626);
+    background: linear-gradient(top, #767676, #262626);
+    box-shadow: 0 0 10px;
+}
+
+.category-register:hover {
+    transition: all 0.5s ease;
+    color: #262626;
+    background: #767676;
+    background: -webkit-linear-gradient(top, #767676, #373737);
+    background: -o-linear-gradient(top, #767676, #262626);
+    background: -moz-linear-gradient(top, #767676, #262626);
+    background: linear-gradient(top, #767676, #262626);
 }
 
 
@@ -433,9 +502,11 @@ iframe {
     color: #fff;
     line-height: 1.2;
 
+
     display: block;
     position: relative;
-    padding-left: 26px;
+    text-align: left;
+    left: 30px;
     cursor: pointer;
 }
 
@@ -457,7 +528,7 @@ iframe {
     height: 16px;
     border-radius: 2px;
     background: #fff;
-    left: 0;
+    left: -25px;
     top: 50%;
     -webkit-transform: translateY(-50%);
     -moz-transform: translateY(-50%);
@@ -465,6 +536,7 @@ iframe {
     -o-transform: translateY(-50%);
     transform: translateY(-50%);
 }
+
 
 .input-checkbox100:checked + .label-checkbox100::before {
     color: #555555;
@@ -541,4 +613,26 @@ iframe {
 
 .login100-form-btn:hover:before {
     opacity: 0;
+}
+
+
+.wrap-register100 {
+    position: relative;
+    width: 500px;
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 55px 55px 37px 55px;
+    margin: 0 auto;
+
+    background: #262626;
+    background: -webkit-linear-gradient(top, #767676, #373737);
+    background: -o-linear-gradient(top, #767676, #262626);
+    background: -moz-linear-gradient(top, #767676, #262626);
+    background: linear-gradient(top, #767676, #262626);
+    box-shadow: 0 0 10px;
+
+}
+
+.styleHidden {
+    display: none;
 }

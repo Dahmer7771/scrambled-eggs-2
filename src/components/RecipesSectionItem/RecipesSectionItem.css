@@ -1,11 +1,12 @@
 .recipes-section-item {
     position: relative;
+    height: inherit;
     text-align: center;
     border: 1px solid #cdcdcd;
-    border-radius: 3px;
+    border-radius: 10px;
     margin-bottom: 10px;
-    max-height: 251px;
-    box-shadow: 8px 8px 15px;
+    max-height: 250px;
+    box-shadow: 8px 8px 15px rgba(55, 55, 55, 0.64);
 }
 .no-gutters {
     padding: 0px;
@@ -16,14 +17,17 @@
     position: relative;
     float: left;
     width: 250px;
-    height: 250px;
+    height: calc(100% + 1px);
     z-index: 1;
+    border-radius: 10px 0px 0px 10px;
+    left: -1px;
 }
 
 .recipes-section-item figcaption {
     display: inline-block;
     width: 40%;
     margin: 10px;
+
 }
 
 .recipe-title {

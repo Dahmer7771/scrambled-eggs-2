@@ -16,7 +16,7 @@ class Header extends React.Component {
     return (
       <header>
         <div className="row">
-          <img className="logo" src={Logo} alt=""/>
+          <img className="logo" src={Logo} alt="#"/>
           <form className="header__search col-xl-4 col-lg-4 col-md-5 col-sm-6 col-7">
             <input className="search" type="search" name="headerSearch" />
             {/* <input type="submit" value="search" /> */}
