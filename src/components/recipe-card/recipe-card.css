@@ -1,0 +1,15 @@
+.recipe-image {
+    width: 100%;
+    height: 180px;
+    background: #777;
+}
+
+.recipe-card {
+    margin: 20px auto;
+    overflow: hidden;
+}
+
+.recipe-card button a {
+    color: white;
+    text-decoration: none;
+}

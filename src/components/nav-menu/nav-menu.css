@@ -1,0 +1,10 @@
+.nav-link a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.nav-link a:hover {
+    color: #fff;
+    opacity: 0.8;
+    text-decoration: none;
+}

@@ -1,0 +1,18 @@
+.recipe-image {
+    display: table;
+}
+
+.image-text {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.ingredients-title {
+    font-size: 18px;
+    padding-left: 20px;
+}
+
+.cooking-instruction__title {
+    font-size: 18px;
+}

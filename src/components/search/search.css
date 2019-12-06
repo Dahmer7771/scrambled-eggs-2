@@ -1,0 +1,20 @@
+.header .btn-outline-success {
+    color: white;
+    border-color: white;
+}
+
+.header .btn-outline-success:hover {
+    color: white;
+    border-color: #28a745;
+}
+
+@media all and (max-width: 991px) {
+    .search {
+        flex-grow: 1;
+    }
+
+    .form-control {
+        width: auto;
+        margin-right: 5px;
+    }
+}

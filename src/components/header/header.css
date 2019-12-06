@@ -1,0 +1,14 @@
+.header {
+    color: white;
+}
+
+.header .navbar {
+    padding-left: 0!important;
+    padding-right: 0!important;
+}
+
+@media all and (max-width: 991px) {
+    .navbar {
+        justify-content: flex-start;
+    }
+}
