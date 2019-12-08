@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./recipes-item-section.css";
 import recipesAPI from "../../recipesAPI/recipesAPI";
 import Spinner from "../spinner/spinner";
-import RecipeItem from "../recipe-item/recipe-item";
+import RecipeInfo from "../recipe-info/recipe-info";
 
 class RecipesItemSection extends Component {
     constructor(props) {
@@ -35,7 +35,7 @@ class RecipesItemSection extends Component {
         const { recipe } = this.state;
 
         const spinner = recipe ? null : <Spinner />;
-        const resipeItem = spinner ? null : <RecipeItem recipe={recipe} />;
+        const resipeItem = spinner ? null : <RecipeInfo recipe={recipe} />;
 
         return (
             <div className="container">

@@ -6,6 +6,7 @@ import RecipesSection from "../recipes-section/recipes-section";
 import Footer from "../footer/footer";
 import RecipesItemSection from "../recipes-item-section/recipes-item-section";
 import Autorization from "../autorization/autorization";
+import SearchSection from "../search-section/search-section";
 
 class App extends Component {
     constructor(props) {
@@ -24,6 +25,7 @@ class App extends Component {
                     <Route exact path="/recipes" component={RecipesSection} />
                     <Route path="/recipes/:id" component={RecipesItemSection} />
                     <Route path="/autorization" component={Autorization} />
+                    <Route path="/search" component={SearchSection} />
                 </Switch>
                 <Footer />
             </div>

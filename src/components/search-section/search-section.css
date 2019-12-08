@@ -1,0 +1,11 @@
+.search-section {
+    margin: 20px 0;
+}
+
+.search-section ul li {
+    display: flex;
+}
+
+.search-section ul .list-item__label {
+    flex-grow: 1;
+}

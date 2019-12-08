@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import "./recipe-item.css";
+import "./recipe-info.css";
 
-class RecipeItem extends Component {
+class RecipeInfo extends Component {
     constructor(props) {
         super(props);
         this.state = {};
@@ -79,4 +79,4 @@ class RecipeItem extends Component {
     }
 }
 
-export default RecipeItem;
+export default RecipeInfo;
