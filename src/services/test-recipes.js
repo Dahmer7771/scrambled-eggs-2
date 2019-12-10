@@ -1,5 +1,5 @@
-const testRecipes = {
-    recipes: [
+export default class TestRecipes {
+    recipes = [
         {
             id: 1,
             picture: "http://placehold.it/32x32",
@@ -343,14 +343,12 @@ const testRecipes = {
             description: "Aute laborum adipisicing magna deserunt enim nostrud.",
             about: "Ullamco consequat sit nisi aliquip labore velit dolore duis consectetur Lorem sunt eu ipsum cupidatat. Eiusmod sint reprehenderit pariatur et et aliqua anim ipsum mollit nisi ea veniam. Laboris eu ipsum exercitation ea sunt fugiat duis sint laboris cupidatat ad aute laborum.\r\n",
         },
-    ],
-    all() {
-        return this.recipes;
-    },
-    get(id) {
+    ];
+
+    getAll = () => this.recipes;
+
+    getById = (id) => {
         const isRecipe = (recipe) => recipe.id === id;
         return this.recipes.find(isRecipe);
-    },
-};
-
-export default testRecipes;
+    }
+}

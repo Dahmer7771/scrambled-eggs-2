@@ -3,6 +3,7 @@ import "./recipes-item-section.css";
 import testRecipes from "../../services/test-recipes";
 import Spinner from "../spinner/spinner";
 import RecipeInfo from "../recipe-info/recipe-info";
+import withContext from "../hoc-helpers/withContext";
 
 class RecipesItemSection extends Component {
     constructor(props) {
@@ -17,12 +18,13 @@ class RecipesItemSection extends Component {
             match: {
                 params,
             },
+            getById,
         } = this.props;
 
         setTimeout(
             () => {
                 this.setState({
-                    recipe: testRecipes.get(
+                    recipe: getById(
                         parseInt(params.id, 10),
                     ),
                 });
@@ -46,4 +48,8 @@ class RecipesItemSection extends Component {
     }
 }
 
-export default RecipesItemSection;
+const mapMethodsToProps = (recipesAPI) => ({
+    getById: recipesAPI.getById,
+});
+
+export default withContext(mapMethodsToProps)(RecipesItemSection);

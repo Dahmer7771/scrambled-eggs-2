@@ -9,7 +9,12 @@ class RecipeInfo extends Component {
 
     render() {
         const {
-            recipe,
+            recipe: {
+                id,
+                name,
+                description,
+                about,
+            },
         } = this.props;
 
         return (
@@ -19,7 +24,7 @@ class RecipeInfo extends Component {
                         {/* Здесь будет картинка */}
                         <div className="recipe-image">
                             <div className="image-text">
-                                {recipe.image}
+                                {id}
                             </div>
                         </div>
                     </div>
@@ -27,19 +32,18 @@ class RecipeInfo extends Component {
                     <div className="col-md-8 col-12">
                         <div className="card-body">
                             <h4 className="card-title">
-                                {recipe.title}
+                                {name}
                             </h4>
-                            <p className="card-text">
-                                This is a wider card with supporting text
-                                below as a natural
-                                lead-in to additional content. This content is
-                                a little bit longer.
-                                {recipe.description}
+                            <p className="card-text card-description">
+                                {description}
+                            </p>
+                            <p className="card-text card-about">
+                                {about}
                             </p>
                             <p className="card-text">
                                 <small className="text-muted">
                                     Recipe ID:
-                                    {recipe.id}
+                                    {id}
                                 </small>
                             </p>
                         </div>

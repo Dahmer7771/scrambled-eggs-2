@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import "./recipes-section.css";
 import RecipeCard from "../recipe-card/recipe-card";
-import testRecipes from "../../services/test-recipes";
 import Spinner from "../spinner/spinner";
+import withContext from "../hoc-helpers/withContext";
 
 class RecipesSection extends Component {
     constructor(props) {
@@ -13,8 +13,12 @@ class RecipesSection extends Component {
     }
 
     componentDidMount() {
+        const {
+            getAll,
+        } = this.props;
+
         this.setState({
-            recipes: testRecipes.all(),
+            recipes: getAll(),
         });
     }
 
@@ -31,8 +35,14 @@ class RecipesSection extends Component {
                     <h2 className="recipes-section__title">Рецепты</h2>
                     <div className="row">
                         {recipes.map((item) => {
+                            const { id, name, description } = item;
                             return (
-                                <RecipeCard key={item.id} {...item} />
+                                <RecipeCard
+                                    key={id}
+                                    id={id}
+                                    name={name}
+                                    description={description}
+                                />
                             );
                         })}
                     </div>
@@ -42,4 +52,8 @@ class RecipesSection extends Component {
     }
 }
 
-export default RecipesSection;
+const mapMethodsToProps = (recipesAPI) => ({
+    getAll: recipesAPI.getAll,
+});
+
+export default withContext(mapMethodsToProps)(RecipesSection);
