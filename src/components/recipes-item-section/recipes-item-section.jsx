@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./recipes-item-section.css";
-import recipesAPI from "../../recipesAPI/recipesAPI";
+import testRecipes from "../../services/test-recipes";
 import Spinner from "../spinner/spinner";
 import RecipeInfo from "../recipe-info/recipe-info";
 
@@ -22,7 +22,7 @@ class RecipesItemSection extends Component {
         setTimeout(
             () => {
                 this.setState({
-                    recipe: recipesAPI.get(
+                    recipe: testRecipes.get(
                         parseInt(params.id, 10),
                     ),
                 });

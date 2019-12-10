@@ -10,21 +10,26 @@ class RecipeCard extends Component {
 
     render() {
         const {
-            itemId,
+            id,
+            name,
+            description,
         } = this.props;
 
         return (
             <div className="col-xl-3 col-lg-4 col-sm-6 col-12">
                 <div className="card recipe-card">
-                    <div className="recipe-image" />
+                    <div className="recipe-image">
+                        100x100
+                    </div>
                     <div className="card-body">
-                        <h5 className="card-title">Card title</h5>
-                        <p className="card-text">
-                            {`Some quick example text to build on the card title
-                        and make up the bulk of the card's content.`}
-                        </p>
-                        <button type="button" className="btn btn-primary">
-                            <Link to={`/recipes/${itemId}`}>Go somewhere</Link>
+                        <h5 className="card-title">{name}</h5>
+                        <div className="module">
+                            <p className="card-text line-clamp">
+                                {description}
+                            </p>
+                        </div>
+                        <button type="button" className="btn btn-primary card-btn">
+                            <Link to={`/recipes/${id}`}>Go somewhere</Link>
                         </button>
                     </div>
                 </div>

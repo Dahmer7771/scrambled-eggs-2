@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./recipes-section.css";
 import RecipeCard from "../recipe-card/recipe-card";
-import recipesAPI from "../../recipesAPI/recipesAPI";
+import testRecipes from "../../services/test-recipes";
 import Spinner from "../spinner/spinner";
 
 class RecipesSection extends Component {
@@ -14,7 +14,7 @@ class RecipesSection extends Component {
 
     componentDidMount() {
         this.setState({
-            recipes: recipesAPI.all(),
+            recipes: testRecipes.all(),
         });
     }
 
@@ -30,9 +30,11 @@ class RecipesSection extends Component {
                 <div className="container">
                     <h2 className="recipes-section__title">Рецепты</h2>
                     <div className="row">
-                        {recipes.map((item) => (
-                            <RecipeCard key={item.id} itemId={item.id} />
-                        ))}
+                        {recipes.map((item) => {
+                            return (
+                                <RecipeCard key={item.id} {...item} />
+                            );
+                        })}
                     </div>
                 </div>
             </div>
