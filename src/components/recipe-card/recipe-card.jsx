@@ -29,7 +29,7 @@ class RecipeCard extends Component {
                             </p>
                         </div>
                         <button type="button" className="btn btn-primary card-btn">
-                            <Link to={`/recipes/${id}`}>Go somewhere</Link>
+                            <Link to={`/recipes/${id}`}>Read more</Link>
                         </button>
                     </div>
                 </div>
