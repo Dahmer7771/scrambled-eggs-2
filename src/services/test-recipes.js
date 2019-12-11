@@ -350,5 +350,7 @@ export default class TestRecipes {
     getById = (id) => {
         const isRecipe = (recipe) => recipe.id === id;
         return this.recipes.find(isRecipe);
-    }
+    };
+
+    getRecipesCount = () => this.recipes.length;
 }

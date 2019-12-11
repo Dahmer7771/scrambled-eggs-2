@@ -33,6 +33,7 @@ class App extends Component {
                         <Route exact path="/" component={RecipesSection} />
                         <Route exact path="/recipes" component={RecipesSection} />
                         <Route path="/recipes/:id" component={RecipesItemSection} />
+                        <Route path="/recipes/pages/:page" component={RecipesSection} />
                         <Route path="/autorization" component={Autorization} />
                         <Route path="/search" component={SearchSection} />
                     </Switch>

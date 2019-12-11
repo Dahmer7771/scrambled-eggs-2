@@ -3,6 +3,7 @@ import "./recipes-section.css";
 import RecipeCard from "../recipe-card/recipe-card";
 import Spinner from "../spinner/spinner";
 import withContext from "../hoc-helpers/withContext";
+import Pagination from "../pagination/pagination";
 
 class RecipesSection extends Component {
     constructor(props) {
@@ -46,6 +47,7 @@ class RecipesSection extends Component {
                             );
                         })}
                     </div>
+                    <Pagination />
                 </div>
             </div>
         );
