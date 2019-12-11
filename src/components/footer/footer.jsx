@@ -22,19 +22,19 @@ class Footer extends Component {
 
                             <div className="col-md-6 col-lg-7 text-center text-md-right">
 
-                                <a href="#" className="fb-ic">
+                                <a href="/" className="fb-ic">
                                     <i className="fab fa-facebook-f white-text mr-4"> </i>
                                 </a>
-                                <a href="#" className="tw-ic">
+                                <a href="/" className="tw-ic">
                                     <i className="fab fa-twitter white-text mr-4"> </i>
                                 </a>
-                                <a href="#" className="gplus-ic">
+                                <a href="/" className="gplus-ic">
                                     <i className="fab fa-google-plus-g white-text mr-4"> </i>
                                 </a>
-                                <a href="#" className="li-ic">
+                                <a href="/" className="li-ic">
                                     <i className="fab fa-linkedin-in white-text mr-4"> </i>
                                 </a>
-                                <a href="#" className="ins-ic">
+                                <a href="/" className="ins-ic">
                                     <i className="fab fa-instagram white-text"> </i>
                                 </a>
 
@@ -68,16 +68,16 @@ class Footer extends Component {
                             <h6 className="text-uppercase font-weight-bold">Products</h6>
                             <hr className="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style={{ width: "60px" }} />
                             <p>
-                                <a href="#">MDBootstrap</a>
+                                <a href="/">MDBootstrap</a>
                             </p>
                             <p>
-                                <a href="#">MDWordPress</a>
+                                <a href="/">MDWordPress</a>
                             </p>
                             <p>
-                                <a href="#">BrandFlow</a>
+                                <a href="/">BrandFlow</a>
                             </p>
                             <p>
-                                <a href="#">Bootstrap Angular</a>
+                                <a href="/">Bootstrap Angular</a>
                             </p>
 
                         </div>
@@ -87,16 +87,16 @@ class Footer extends Component {
                             <h6 className="text-uppercase font-weight-bold">Useful links</h6>
                             <hr className="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style={{ width: "60px" }} />
                             <p>
-                                <a href="#">Your Account</a>
+                                <a href="/">Your Account</a>
                             </p>
                             <p>
-                                <a href="#">Become an Affiliate</a>
+                                <a href="/">Become an Affiliate</a>
                             </p>
                             <p>
-                                <a href="#">Shipping Rates</a>
+                                <a href="/">Shipping Rates</a>
                             </p>
                             <p>
-                                <a href="#">Help</a>
+                                <a href="/">Help</a>
                             </p>
 
                         </div>

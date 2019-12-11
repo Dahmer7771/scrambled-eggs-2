@@ -28,6 +28,10 @@ class RecipesSection extends Component {
             recipes,
         } = this.state;
 
+        const {
+            onPageChange,
+        } = this.props;
+
         if (recipes === null) return <Spinner />;
 
         return (
@@ -47,7 +51,9 @@ class RecipesSection extends Component {
                             );
                         })}
                     </div>
-                    <Pagination />
+                    <Pagination
+                        onPageChange={(page) => onPageChange(page)}
+                    />
                 </div>
             </div>
         );

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
+import "./pagination.css";
+import { Link } from "react-router-dom";
 import withContext from "../hoc-helpers/withContext";
-import {Link} from "react-router-dom";
 
 class Pagination extends Component {
     constructor(props) {
@@ -25,6 +26,10 @@ class Pagination extends Component {
             recipes,
         } = this.state;
 
+        const {
+            onPageChange,
+        } = this.props;
+
         const pagesCount = Math.ceil(recipes / 12);
         const paginationRender = () => {
             const rendered = [];
@@ -42,7 +47,7 @@ class Pagination extends Component {
                     <nav aria-label="Page navigation example">
                         <ul className="pagination justify-content-center">
                             <li className="page-item disabled">
-                                <a className="page-link" href="#" tabIndex="-1">Previous</a>
+                                <a className="page-link" href="/" tabIndex="-1">Previous</a>
                             </li>
                             {
                                 renderedPagination.map((page) => {
@@ -50,21 +55,22 @@ class Pagination extends Component {
                                     const itemLabel = page + 1;
 
                                     return (
-                                        <li key={itemKey} className="page-item">
-                                            <div className="page-link">
-                                                <Link to={`/recipes/pages/${itemLabel}`}>
+                                        <li
+                                            onClick={() => onPageChange(itemLabel)}
+                                            key={itemKey}
+                                            className="page-item custom-page-item"
+                                        >
+                                            <Link to={`/recipes/pages/${itemLabel}`}>
+                                                <div className="page-link ">
                                                     {itemLabel}
-                                                </Link>
-                                            </div>
+                                                </div>
+                                            </Link>
                                         </li>
                                     );
                                 })
                             }
-                            <li className="page-item"><a className="page-link" href="#">1</a></li>
-                            <li className="page-item"><a className="page-link" href="#">2</a></li>
-                            <li className="page-item"><a className="page-link" href="#">3</a></li>
                             <li className="page-item">
-                                <a className="page-link" href="#">Next</a>
+                                <a className="page-link" href="/">Next</a>
                             </li>
                         </ul>
                     </nav>
