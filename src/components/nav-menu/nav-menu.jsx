@@ -31,7 +31,7 @@ class NavMenu extends Component {
                         </li>
                         <li className="nav-item">
                             <span className="nav-link">
-                                <Link to="/recipes">Рецепты</Link>
+                                <Link to="/recipes/pages/1">Рецепты</Link>
                             </span>
                         </li>
                         <li className="nav-item">

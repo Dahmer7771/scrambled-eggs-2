@@ -66,7 +66,6 @@ class RecipesSection extends Component {
                     <h2 className="recipes-section__title">Рецепты</h2>
                     <div className="row">
                         {recipes.map((item) => {
-                            console.log(item);
                             const { id, name, description } = item;
                             return (
                                 <RecipeCard
