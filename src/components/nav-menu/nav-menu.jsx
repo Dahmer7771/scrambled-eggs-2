@@ -26,6 +26,11 @@ class NavMenu extends Component {
                     <ul className="navbar-nav ml-auto">
                         <li className="nav-item">
                             <span className="nav-link">
+                                <Link to="/users">Users</Link>
+                            </span>
+                        </li>
+                        <li className="nav-item">
+                            <span className="nav-link">
                                 <Link to="/recipes">Рецепты</Link>
                             </span>
                         </li>
