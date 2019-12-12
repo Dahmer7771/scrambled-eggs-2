@@ -26,16 +26,19 @@ class App extends Component {
     componentDidMount() {}
 
     onPageChange = (page) => {
-        console.log(page);
+        this.setState({
+            selectedPage: page,
+        });
     };
 
     render() {
         const {
             recipesAPI,
+            selectedPage,
         } = this.state;
 
         const WrappedRecipeSection = (props) => (
-            <RecipesSection {...props} onPageChange={this.onPageChange} />
+            <RecipesSection {...props} page={selectedPage} onPageChange={this.onPageChange} />
         );
 
         return (
@@ -43,7 +46,7 @@ class App extends Component {
                 <div>
                     <Header />
                     <Switch>
-                        <Route exact path="/" component={RecipesSection} />
+                        <Route exact path="/" component={WrappedRecipeSection} />
                         <Route exact path="/recipes" component={RecipesSection} />
                         <Route exact path="/recipes/:id" component={RecipesItemSection} />
                         <Route path="/recipes/pages/:page" component={WrappedRecipeSection} />
