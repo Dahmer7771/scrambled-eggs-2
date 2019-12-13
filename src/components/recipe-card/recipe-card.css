@@ -5,10 +5,11 @@
     background: #777;
 }
 
-.recipe-card {
+.card.recipe-card {
     margin: 20px auto;
     overflow: hidden;
-    height: 450px;
+    height: 410px;
+    display: flex;
 }
 
 .recipe-card button a {
@@ -40,8 +41,16 @@
 .card-body {
     display: flex;
     flex-direction: column;
+    align-self: stretch;
 }
 
 .card-btn {
     align-self: stretch;
+}
+
+.card-title {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
