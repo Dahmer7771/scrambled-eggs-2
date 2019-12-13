@@ -14,8 +14,6 @@ import { RecipesProvider } from "../recipes-context/recipes-context";
 import TestRecipes from "../../services/test-recipes";
 import Users from "../users/users";
 
-
-
 class App extends Component {
     constructor(props) {
         super(props);
@@ -54,7 +52,7 @@ class App extends Component {
                         <Route path="/recipes/pages/:page" component={WrappedRecipeSection} />
                         <Route path="/autorization" component={Autorization} />
                         <Route path="/search" component={SearchSection} />
-                        <Route path="/users" component={Users}/>
+                        <Route path="/users" component={Users} />
                     </Switch>
                     <Footer />
                 </div>
