@@ -20,17 +20,12 @@ class RecipesItemSection extends Component {
             getRecipeById,
         } = this.props;
 
-        setTimeout(
-            () => {
-                getRecipeById(params.id)
-                    .then((recipe) => {
-                        this.setState({
-                            recipe,
-                        });
-                    });
-            },
-            1000,
-        );
+        getRecipeById(params.id)
+            .then((recipe) => {
+                this.setState({
+                    recipe,
+                });
+            });
     }
 
     render() {
