@@ -1,13 +1,13 @@
 .autorization-container {
     margin: 30px 0 20px;
 }
+
 .styleHidden {
     display: none;
 }
 
 .autorization-buttons {
-    margin: 0 auto;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 .autorization-buttons button{
@@ -16,4 +16,11 @@
 
 .form-field {
     width: 100%;
+}
+
+.error-message {
+    margin-top: 5px;
+    margin-left: 5px;
+    color: red;
+    height: 15px;
 }
