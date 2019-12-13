@@ -47,7 +47,7 @@ class RecipesSection extends Component {
                             );
                         })}
                     </div>
-                    <Pagination/>
+                    <Pagination />
                 </div>
             </div>
         );
