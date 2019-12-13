@@ -13,3 +13,7 @@
 .autorization-buttons button{
    font-size: 18px;
 }
+
+.form-field {
+    width: 100%;
+}
