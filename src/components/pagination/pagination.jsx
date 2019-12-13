@@ -12,12 +12,12 @@ class Pagination extends Component {
     }
 
     componentDidMount() {
-        const {
-            getRecipesCount,
-        } = this.props;
+        // const {
+        //     getRecipesCount,
+        // } = this.props;
 
         this.setState({
-            recipes: getRecipesCount(),
+            recipes: 2,
         });
     }
 
@@ -81,7 +81,7 @@ class Pagination extends Component {
 }
 
 const mapMethodsToProps = (recipesAPI) => ({
-    getRecipesCount: recipesAPI.getRecipesCount,
+
 });
 
 export default withContext(mapMethodsToProps)(Pagination);
