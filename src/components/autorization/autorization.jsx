@@ -47,7 +47,7 @@ class Autorization extends Component {
         return (
             <div className="container">
                 <div className="autorization-container row">
-                    <div className="col-sm-10 col-md-10 col-lg-10 col-xl-10">
+                    <div className="col-sm-12 col-md-12 col-lg-12 col-xl-12">
                         <div className="btn-group autorization-buttons" role="group" aria-label="Basic example">
                             <button type="button" className="btn btn-light" onClick={this.showLoginForm}>Вход</button>
                             <button type="button" className="btn btn-light" onClick={this.showRegistrationForm}>Регистрация</button>
@@ -55,13 +55,13 @@ class Autorization extends Component {
                         <form className={`login col-sm-12 col-md-12 col-lg-12 col-xl-12 ${loginVisibility}`}>
                             <div className="form-group row">
                                 <label htmlFor="inputlogin3" className="col-sm-2 col-form-label">Login</label>
-                                <div className="col-sm-9 col-md-9 col-lg-9 col-xl-9">
+                                <div className="col-sm-10 col-md-10 col-lg-10 col-xl-10">
                                     <input type="login" className="form-field form-control" id="inputLogin" />
                                 </div>
                             </div>
                             <div className="form-group row">
                                 <label htmlFor="inputPassword3" className="col-sm-2 col-form-label">Password</label>
-                                <div className="col-sm-9 col-md-9 col-lg-9 col-xl-9">
+                                <div className="col-sm-10 col-md-10 col-lg-10 col-xl-10">
                                     <input type="password" className="form-field form-control" id="inputPasswordLogin" />
                                 </div>
                             </div>
@@ -75,19 +75,19 @@ class Autorization extends Component {
                         <form className={`registration col-sm-12 col-md-12 col-lg-12 col-xl-12 ${registrationVisibility}`}>
                             <div className="form-group row">
                                 <label htmlFor="inputlogin3" className="col-sm-2 col-form-label">Login</label>
-                                <div className="col-sm-9 col-md-9 col-lg-9 col-xl-9">
+                                <div className="col-sm-10 col-md-10 col-lg-10 col-xl-10">
                                     <input type="login" className="form-field form-control" id="inputRegistration" />
                                 </div>
                             </div>
                             <div className="form-group row">
                                 <label htmlFor="inputEmail3" className="col-sm-2 col-form-label">Email</label>
-                                <div className="col-sm-9 col-md-9 col-lg-9 col-xl-9">
+                                <div className="col-sm-10 col-md-10 0col-lg-10 col-xl-10">
                                     <input type="email" className="form-field form-control" id="inputEmail" />
                                 </div>
                             </div>
                             <div className="form-group row">
                                 <label htmlFor="inputPassword3" className="col-sm-2 col-form-label">Password</label>
-                                <div className="col-sm-9 col-md-9 col-lg-9 col-xl-9">
+                                <div className="col-sm-10 col-md-10 col-lg-10 col-xl-10">
                                     <input type="password" className="form-field form-control" id="inputPasswordRegistration" />
                                 </div>
                             </div>
