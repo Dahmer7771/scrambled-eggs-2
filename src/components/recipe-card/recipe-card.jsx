@@ -25,7 +25,7 @@ class RecipeCard extends Component {
                         <h5 className="card-title">{name}</h5>
                         <div className="module">
                             <p className="card-text line-clamp">
-                                {description}
+                                descr
                             </p>
                         </div>
                         <Link to={`/recipes/${_id}`}>
