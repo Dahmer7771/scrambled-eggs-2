@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./recipe-card.css";
 import { Link } from "react-router-dom";
+import Lol from "./lol.jpg";
 
 class RecipeCard extends Component {
     constructor(props) {
@@ -20,7 +21,9 @@ class RecipeCard extends Component {
         return (
             <div className="col-xl-3 col-lg-4 col-sm-6 col-12">
                 <div className="card recipe-card">
-                    <div className="recipe-image">
+                    <div className="recipe-image" style={{
+                        background: `url(${Lol})`
+                    }}>
                         100x100
                     </div>
                     <div className="card-body">
