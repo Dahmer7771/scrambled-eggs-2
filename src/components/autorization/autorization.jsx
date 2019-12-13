@@ -4,17 +4,82 @@ import "./autorization.css";
 class Autorization extends Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            loginVisibility: "",
+            registrationVisibility: "styleHidden",
+        };
+
+        this.showLoginForm = this.showLoginForm.bind(this);
+        this.showRegistrationForm = this.showRegistrationForm.bind(this);
     }
 
+    showLoginForm = () => {
+        const {
+            registrationVisibility,
+        } = this.state;
+
+        if (registrationVisibility === "") {
+            this.setState({
+                registrationVisibility: "styleHidden",
+                loginVisibility: "",
+            });
+        }
+    };
+
+    showRegistrationForm = () => {
+        const {
+            loginVisibility,
+        } = this.state;
+
+        if (loginVisibility === "") {
+            this.setState({
+                loginVisibility: "styleHidden",
+                registrationVisibility: "",
+            });
+        }
+    };
+
     render() {
+        const {
+            loginVisibility,
+            registrationVisibility,
+        } = this.state;
         return (
             <div className="container">
                 <div className="autorization-container row">
-                    <form className="col-md-10 offset-md-1">
-                        <h5 className="autorization__title">
+                    <h5 className="autorization__title" onClick={this.showLoginForm}>
                             Вход
-                        </h5>
+                    </h5>
+                    <h5 className="autorization__title" onClick={this.showRegistrationForm}>
+                            Регистрация
+                    </h5>
+                    <form className={`login col-md-10 offset-md-1 ${loginVisibility}`}>
+                        <div className="form-group row">
+                            <label htmlFor="inputlogin3" className="col-sm-2 col-form-label">Login</label>
+                            <div className="col-sm-10">
+                                <input type="login" className="form-control" id="inputEmail3" />
+                            </div>
+                        </div>
+                        <div className="form-group row">
+                            <label htmlFor="inputPassword3" className="col-sm-2 col-form-label">Password</label>
+                            <div className="col-sm-10">
+                                <input type="password" className="form-control" id="inputPassword3" />
+                            </div>
+                        </div>
+                        <div className="form-group row">
+                            <div className="col-sm-10">
+                                <button type="submit" className="btn btn-primary">Sign in</button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <form className={`registration col-md-10 offset-md-1 ${registrationVisibility}`}>
+                        <div className="form-group row">
+                            <label htmlFor="inputlogin3" className="col-sm-2 col-form-label">Login</label>
+                            <div className="col-sm-10">
+                                <input type="login" className="form-control" id="inputEmail3" />
+                            </div>
+                        </div>
                         <div className="form-group row">
                             <label htmlFor="inputEmail3" className="col-sm-2 col-form-label">Email</label>
                             <div className="col-sm-10">
@@ -27,55 +92,13 @@ class Autorization extends Component {
                                 <input type="password" className="form-control" id="inputPassword3" />
                             </div>
                         </div>
-                        <fieldset className="form-group">
-                            <div className="row">
-                                <legend className="col-form-label col-sm-2 pt-0">Radios</legend>
-                                <div className="col-sm-10">
-                                    <div className="form-check">
-                                        <input
-                                            className="form-check-input"
-                                            type="radio"
-                                            name="gridRadios"
-                                            id="gridRadios1"
-                                            value="option1"
-                                            checked
-                                        />
-                                        <label className="form-check-label" htmlFor="gridRadios1">
-                                            First radio
-                                        </label>
-                                    </div>
-                                    <div className="form-check">
-                                        <input
-                                            className="form-check-input"
-                                            type="radio"
-                                            name="gridRadios"
-                                            id="gridRadios2"
-                                            value="option2"
-                                        />
-                                        <label className="form-check-label" htmlFor="gridRadios2">
-                                            Second radio
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </fieldset>
-                        <div className="form-group row">
-                            <div className="col-sm-2">Checkbox</div>
-                            <div className="col-sm-10">
-                                <div className="form-check">
-                                    <input className="form-check-input" type="checkbox" id="gridCheck1" />
-                                    <label className="form-check-label" htmlFor="gridCheck1">
-                                        Example checkbox
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
                         <div className="form-group row">
                             <div className="col-sm-10">
-                                <button type="submit" className="btn btn-primary">Sign in</button>
+                                <button type="submit" className="btn btn-primary">Registration</button>
                             </div>
                         </div>
                     </form>
+
                 </div>
             </div>
         );
