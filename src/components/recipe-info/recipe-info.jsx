@@ -17,10 +17,13 @@ class RecipeInfo extends Component {
             },
         } = this.props;
 
+        const mainDescription = description[0];
+        const cookingSteps = description.slice(1);
+
         return (
             <div className="card recipes-item-section">
                 <div className="row no-gutters">
-                    <div className="col-md-4 col-12">
+                    <div className="col-md-4 col-sm-12 col-12">
                         {/* Здесь будет картинка */}
                         <div className="recipe-image">
                             <div className="image-text">
@@ -28,7 +31,7 @@ class RecipeInfo extends Component {
                             </div>
                         </div>
                         <h6 className="ingredients-title">
-                            Ingredients:
+                            Ингредиенты:
                         </h6>
                         <ul className="list-group list-group-flush">
                             <li className="list-group-item">Cras justo odio</li>
@@ -39,16 +42,13 @@ class RecipeInfo extends Component {
                         </ul>
                     </div>
 
-                    <div className="col-md-8 col-12">
+                    <div className="col-md-8 col-sm-12 col-12">
                         <div className="card-body">
                             <h4 className="card-title">
                                 {name}
                             </h4>
                             <p className="card-text card-description">
                                 {description[0]}
-                            </p>
-                            <p className="card-text card-about">
-                                About
                             </p>
                             <p className="card-text">
                                 <small className="text-muted">
@@ -58,15 +58,13 @@ class RecipeInfo extends Component {
                         </div>
                         <div className="card-body">
                             <h6 className="cooking-instruction__title">
-                                Cooking instruction:
+                                Инструкция приготовления:
                             </h6>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                Accusamus ad deserunt doloremque ea eum
-                                expedita explicabo incidunt itaque labore,
-                                laudantium non nostrum pariatur praesentium
-                                qui quibusdam, rem unde vel voluptates?
-                            </p>
+                            {cookingSteps.map((step) => (
+                                <p className="cooking-step">
+                                    {step}
+                                </p>
+                            ))}
                         </div>
                     </div>
                 </div>

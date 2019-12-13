@@ -10,10 +10,12 @@ class RecipeCard extends Component {
 
     render() {
         const {
-            _id,
             name,
             description,
+            id,
         } = this.props;
+
+        const descriptionLabel = description[0];
 
         return (
             <div className="col-xl-3 col-lg-4 col-sm-6 col-12">
@@ -25,10 +27,10 @@ class RecipeCard extends Component {
                         <h5 className="card-title">{name}</h5>
                         <div className="module">
                             <p className="card-text line-clamp">
-                                descr
+                                {descriptionLabel}
                             </p>
                         </div>
-                        <Link to={`/recipes/${_id}`}>
+                        <Link to={`/recipes/${id}`}>
                             <button type="button" className="btn btn-primary card-btn">
                                 Read more
                             </button>
