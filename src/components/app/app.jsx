@@ -12,13 +12,14 @@ import Autorization from "../autorization/autorization";
 import SearchSection from "../search-section/search-section";
 import { RecipesProvider } from "../recipes-context/recipes-context";
 import TestRecipes from "../../services/test-recipes";
+import RecipesAPI from "../../services/recipes-api";
 import Users from "../users/users";
 
 class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            recipesAPI: new TestRecipes(),
+            recipesAPI: new RecipesAPI(),
             selectedPage: 1,
         };
     }

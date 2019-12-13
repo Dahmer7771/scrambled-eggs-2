@@ -29,24 +29,25 @@ class RecipesSection extends Component {
 
     renderRecipes = () => {
         const {
-            getAll,
+            getAllRecipes,
             page,
         } = this.props;
 
-        const allRecipes = getAll();
-        const necessaryRecipesIndexes = page * 12;
-        const necessaryRecipesStartIndex = necessaryRecipesIndexes - 12;
-        const necessaryRecipesArray = [];
+        getAllRecipes()
+            .then((recipes) => {
+                this.setState({
+                    recipes,
+                });
+            });
 
-        for (let i = 0; i < 12; i++) {
-            const currentIndex = necessaryRecipesStartIndex + i;
-            if (!allRecipes[currentIndex]) break;
-            necessaryRecipesArray.push(allRecipes[currentIndex]);
-        }
-
-        this.setState({
-            recipes: necessaryRecipesArray,
-        });
+        // const necessaryRecipesIndexes = page * 12;
+        // const necessaryRecipesStartIndex = necessaryRecipesIndexes - 12;
+        // const necessaryRecipesArray = [];
+        // for (let i = 0; i < 12; i++) {
+        //     const currentIndex = necessaryRecipesStartIndex + i;
+        //     if (!recipes[currentIndex]) break;
+        //     necessaryRecipesArray.push(recipes[currentIndex]);
+        // }
     };
 
     render() {
@@ -66,11 +67,11 @@ class RecipesSection extends Component {
                     <h2 className="recipes-section__title">Рецепты</h2>
                     <div className="row">
                         {recipes.map((item) => {
-                            const { id, name, description } = item;
+                            const { _id, name, description } = item;
                             return (
                                 <RecipeCard
-                                    key={id}
-                                    id={id}
+                                    key={_id}
+                                    id={_id}
                                     name={name}
                                     description={description}
                                 />
@@ -86,8 +87,8 @@ class RecipesSection extends Component {
     }
 }
 
-const mapMethodsToProps = (recipesAPI) => ({
-    getAll: recipesAPI.getAll,
+const mapMethodsToProps = (RecipesAPI) => ({
+    getAllRecipes: RecipesAPI.getAllRecipes,
 });
 
 export default withContext(mapMethodsToProps)(RecipesSection);
