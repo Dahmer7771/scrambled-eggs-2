@@ -47,12 +47,10 @@ class Autorization extends Component {
         return (
             <div className="container">
                 <div className="autorization-container row">
-                    <h5 className="autorization__title" onClick={this.showLoginForm}>
-                            Вход
-                    </h5>
-                    <h5 className="autorization__title" onClick={this.showRegistrationForm}>
-                            Регистрация
-                    </h5>
+                    <div className="btn-group autorization-buttons" role="group" aria-label="Basic example">
+                        <button type="button" className="btn btn-light" onClick={this.showLoginForm}>Вход</button>
+                        <button type="button" className="btn btn-light" onClick={this.showRegistrationForm}>Регистрация</button>
+                    </div>
                     <form className={`login col-md-10 offset-md-1 ${loginVisibility}`}>
                         <div className="form-group row">
                             <label htmlFor="inputlogin3" className="col-sm-2 col-form-label">Login</label>
