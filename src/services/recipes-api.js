@@ -14,7 +14,12 @@ export default class RecipesAPI {
     };
 
     getAllRecipes = async () => {
-        const res = await this.getResource("/recipes/articles");
+        const res = await this.getResource(`/recipes/articles`);
+        return res;
+    };
+
+    getRecipeById = async (id) => {
+        const res = await this.getResource(`/recipes/article_by_id?id=${id}`);
         return res;
     }
 }

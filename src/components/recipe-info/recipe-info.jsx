@@ -10,10 +10,10 @@ class RecipeInfo extends Component {
     render() {
         const {
             recipe: {
-                id,
+                _id,
                 name,
                 description,
-                about,
+                category,
             },
         } = this.props;
 
@@ -24,34 +24,9 @@ class RecipeInfo extends Component {
                         {/* Здесь будет картинка */}
                         <div className="recipe-image">
                             <div className="image-text">
-                                {id}
+                                {_id}
                             </div>
                         </div>
-                    </div>
-
-                    <div className="col-md-8 col-12">
-                        <div className="card-body">
-                            <h4 className="card-title">
-                                {name}
-                            </h4>
-                            <p className="card-text card-description">
-                                {description}
-                            </p>
-                            <p className="card-text card-about">
-                                {about}
-                            </p>
-                            <p className="card-text">
-                                <small className="text-muted">
-                                    Recipe ID:
-                                    {id}
-                                </small>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="row no-gutters">
-                    <div className="col-md-4 col-12 py-4">
                         <h6 className="ingredients-title">
                             Ingredients:
                         </h6>
@@ -63,7 +38,24 @@ class RecipeInfo extends Component {
                             <li className="list-group-item">Vestibulum at eros</li>
                         </ul>
                     </div>
-                    <div className="cooking-instruction col-md-8 col-12">
+
+                    <div className="col-md-8 col-12">
+                        <div className="card-body">
+                            <h4 className="card-title">
+                                {name}
+                            </h4>
+                            <p className="card-text card-description">
+                                {description}
+                            </p>
+                            <p className="card-text card-about">
+                                About
+                            </p>
+                            <p className="card-text">
+                                <small className="text-muted">
+                                    {`Категория: ${category}`}
+                                </small>
+                            </p>
+                        </div>
                         <div className="card-body">
                             <h6 className="cooking-instruction__title">
                                 Cooking instruction:
@@ -77,6 +69,32 @@ class RecipeInfo extends Component {
                             </p>
                         </div>
                     </div>
+                    {/*<div className="col-md-4 col-12 py-4">*/}
+                    {/*    <h6 className="ingredients-title">*/}
+                    {/*        Ingredients:*/}
+                    {/*    </h6>*/}
+                    {/*    <ul className="list-group list-group-flush">*/}
+                    {/*        <li className="list-group-item">Cras justo odio</li>*/}
+                    {/*        <li className="list-group-item">Dapibus ac facilisis in</li>*/}
+                    {/*        <li className="list-group-item">Morbi leo risus</li>*/}
+                    {/*        <li className="list-group-item">Porta ac consectetur ac</li>*/}
+                    {/*        <li className="list-group-item">Vestibulum at eros</li>*/}
+                    {/*    </ul>*/}
+                    {/*</div>*/}
+                    {/*<div className="cooking-instruction col-md-8 col-12">*/}
+                    {/*    <div className="card-body">*/}
+                    {/*        <h6 className="cooking-instruction__title">*/}
+                    {/*            Cooking instruction:*/}
+                    {/*        </h6>*/}
+                    {/*        <p>*/}
+                    {/*            Lorem ipsum dolor sit amet, consectetur adipisicing elit.*/}
+                    {/*            Accusamus ad deserunt doloremque ea eum*/}
+                    {/*            expedita explicabo incidunt itaque labore,*/}
+                    {/*            laudantium non nostrum pariatur praesentium*/}
+                    {/*            qui quibusdam, rem unde vel voluptates?*/}
+                    {/*        </p>*/}
+                    {/*    </div>*/}
+                    {/*</div>*/}
                 </div>
             </div>
         );

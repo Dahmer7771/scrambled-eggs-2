@@ -17,16 +17,17 @@ class RecipesItemSection extends Component {
             match: {
                 params,
             },
-            getById,
+            getRecipeById,
         } = this.props;
 
         setTimeout(
             () => {
-                this.setState({
-                    recipe: getById(
-                        parseInt(params.id, 10),
-                    ),
-                });
+                getRecipeById(params.id)
+                    .then((recipe) => {
+                        this.setState({
+                            recipe,
+                        });
+                    });
             },
             1000,
         );
@@ -56,7 +57,7 @@ class RecipesItemSection extends Component {
 }
 
 const mapMethodsToProps = (recipesAPI) => ({
-    getById: recipesAPI.getById,
+    getRecipeById: recipesAPI.getRecipeById,
 });
 
 export default withContext(mapMethodsToProps)(RecipesItemSection);

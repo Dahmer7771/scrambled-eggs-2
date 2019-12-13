@@ -10,7 +10,7 @@ class RecipeCard extends Component {
 
     render() {
         const {
-            id,
+            _id,
             name,
             description,
         } = this.props;
@@ -28,7 +28,7 @@ class RecipeCard extends Component {
                                 {description}
                             </p>
                         </div>
-                        <Link to={`/recipes/${id}`}>
+                        <Link to={`/recipes/${_id}`}>
                             <button type="button" className="btn btn-primary card-btn">
                                 Read more
                             </button>
