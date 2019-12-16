@@ -11,10 +11,8 @@ import RecipesItemSection from "../recipes-item-section/recipes-item-section";
 import Autorization from "../autorization/autorization";
 import SearchSection from "../search-section/search-section";
 import { RecipesProvider } from "../recipes-context/recipes-context";
-import TestRecipes from "../../services/test-recipes";
 import RecipesAPI from "../../services/recipes-api";
 import Users from "../users/users";
-import RecipesFilter from "../recipes-filter/recipes-filter";
 
 class App extends Component {
     constructor(props) {

@@ -210,7 +210,7 @@ class Autorization extends Component {
                             <button type="button" className={`btn ${registrationToggle}`} onClick={this.showRegistrationForm}>Регистрация</button>
                         </div>
                         <form className={`login col-sm-12 col-md-12 col-lg-12 col-xl-12 ${loginVisibility}`}>
-                            <Zoom duraction={500}>
+                            <Zoom duraction={100}>
                                 <div className="form-group row">
                                     <label htmlFor="inputLogin" className="col-sm-2 col-md-3 col-lg-2 col-form-label">Login</label>
                                     <div className="col-sm-12 col-md-9 col-lg-10 col-xl-10">
@@ -236,7 +236,7 @@ class Autorization extends Component {
                                     </div>
                                 </div>
                             </Zoom>
-                            <Zoom delay={400}>
+                            <Zoom delay={300}>
                                 <div className="form-group row">
                                     <div className="col-sm-12">
                                         <button type="submit" className="btn btn-primary">Sign in</button>
@@ -259,7 +259,7 @@ class Autorization extends Component {
                                         </div>
                                     </div>
                                 </Zoom>
-                                <Zoom delay={200}>
+                                <Zoom delay={100}>
                                     <div className="form-group row">
                                         <label htmlFor="inputEmail" className="col-sm-2 col-md-3 col-lg-2 col-form-label">Email</label>
                                         <div className="col-sm-12 col-md-9 col-lg-10 col-xl-10">
@@ -272,7 +272,7 @@ class Autorization extends Component {
                                         </div>
                                     </div>
                                 </Zoom>
-                                <Zoom delay={300}>
+                                <Zoom delay={200}>
                                     <div className="form-group row">
                                         <label htmlFor="inputPasswordRegistration" className="col-sm-2 col-md-3 col-lg-2 col-form-label">Password</label>
                                         <div className="col-sm-12 col-md-9 col-lg-10 col-xl-10">
@@ -285,7 +285,7 @@ class Autorization extends Component {
                                         </div>
                                     </div>
                                 </Zoom>
-                                <Zoom delay={400}>
+                                <Zoom delay={300}>
                                     <div className="form-group row">
                                         <label htmlFor="inputPasswordConfirmRegistration" className="col-sm-2 col-md-3 col-lg-2 col-form-label">Confirm password</label>
                                         <div className="col-sm-12 col-md-9 col-lg-10 col-xl-10">
@@ -298,7 +298,7 @@ class Autorization extends Component {
                                         </div>
                                     </div>
                                 </Zoom>
-                                <Zoom delay={500}>
+                                <Zoom delay={400}>
                                     <div className="form-group row">
                                         <div className="col-sm-12">
                                             <button type="submit" className="btn btn-primary">Sign up</button>

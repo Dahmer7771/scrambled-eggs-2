@@ -5,6 +5,7 @@ import Search from "../search/search";
 import {
     admin as ADMIN,
     simpleUser as SIMPLE_USER,
+    settings,
 } from "../../helpers/usersNavMenu";
 
 class NavMenu extends Component {
@@ -35,15 +36,25 @@ class NavMenu extends Component {
     };
 
     render() {
-        const userRole = this.renderNavItems();
+        const { userRole } = this.state;
+        const navItems = this.renderNavItems();
 
-        const renderNavItems = userRole.map(({ label, url }) => (
+        let renderNavItems = navItems.map(({ label, url }) => (
             <li className="nav-item">
                 <span className="nav-link">
                     <Link to={url}>{label}</Link>
                 </span>
             </li>
         ));
+
+        if (userRole === "admin") {
+            const settingsNavItem = settings();
+
+            renderNavItems = [
+                ...renderNavItems,
+                settingsNavItem,
+            ];
+        }
 
         return (
             <>
