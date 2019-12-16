@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./autorization.css";
+import Zoom from "react-reveal/Zoom";
 import formValidation from "../../helpers/validation";
 
 class Autorization extends Component {
@@ -209,86 +210,103 @@ class Autorization extends Component {
                             <button type="button" className={`btn ${registrationToggle}`} onClick={this.showRegistrationForm}>Регистрация</button>
                         </div>
                         <form className={`login col-sm-12 col-md-12 col-lg-12 col-xl-12 ${loginVisibility}`}>
-                            <div className="form-group row">
-                                <label htmlFor="inputLogin" className="col-sm-2 col-md-3 col-lg-2 col-form-label">Login</label>
-                                <div className="col-sm-12 col-md-9 col-lg-10 col-xl-10">
-                                    <input type="login" name="usernameLogin" className="form-field form-control" id="inputLogin" onChange={this.handleFormInput} />
-                                </div>
-                                <div className="col-sm-12 offset-lg-2 col-md-9 offset-md-3 col-lg-10 col-xl-10">
-                                    <div className="error-message" style={errorVisibility.usernameLogin}>
-                                        {errorMessage.usernameLogin}
+                            <Zoom duraction={500}>
+                                <div className="form-group row">
+                                    <label htmlFor="inputLogin" className="col-sm-2 col-md-3 col-lg-2 col-form-label">Login</label>
+                                    <div className="col-sm-12 col-md-9 col-lg-10 col-xl-10">
+                                        <input type="login" name="usernameLogin" className="form-field form-control" id="inputLogin" onChange={this.handleFormInput} />
+                                    </div>
+                                    <div className="col-sm-12 offset-lg-2 col-md-9 offset-md-3 col-lg-10 col-xl-10">
+                                        <div className="error-message" style={errorVisibility.usernameLogin}>
+                                            {errorMessage.usernameLogin}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div className="form-group row">
-                                <label htmlFor="inputPasswordLogin" className="col-sm-2 col-md-3 col-lg-2 col-form-label">Password</label>
-                                <div className="col-sm-12 col-md-9 col-lg-10 col-xl-10">
-                                    <input type="password" name="passwordLogin" className="form-field form-control" id="inputPasswordLogin" onChange={this.handleFormInput} />
-                                </div>
-                                <div className="col-sm-12 offset-lg-2 col-md-9 offset-md-3 col-lg-10 col-xl-10">
-                                    <div className="error-message" style={errorVisibility.passwordLogin}>
-                                        {errorMessage.passwordLogin}
+                            </Zoom>
+                            <Zoom delay={200}>
+                                <div className="form-group row">
+                                    <label htmlFor="inputPasswordLogin" className="col-sm-2 col-md-3 col-lg-2 col-form-label">Password</label>
+                                    <div className="col-sm-12 col-md-9 col-lg-10 col-xl-10">
+                                        <input type="password" name="passwordLogin" className="form-field form-control" id="inputPasswordLogin" onChange={this.handleFormInput} />
+                                    </div>
+                                    <div className="col-sm-12 offset-lg-2 col-md-9 offset-md-3 col-lg-10 col-xl-10">
+                                        <div className="error-message" style={errorVisibility.passwordLogin}>
+                                            {errorMessage.passwordLogin}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div className="form-group row">
-                                <div className="col-sm-12">
-                                    <button type="submit" className="btn btn-primary">Sign in</button>
+                            </Zoom>
+                            <Zoom delay={400}>
+                                <div className="form-group row">
+                                    <div className="col-sm-12">
+                                        <button type="submit" className="btn btn-primary">Sign in</button>
+                                    </div>
                                 </div>
-                            </div>
+                            </Zoom>
                         </form>
-
-                        <form className={`registration col-sm-12 col-md-12 col-lg-12 col-xl-12 ${registrationVisibility}`}>
-                            <div className="form-group row">
-                                <label htmlFor="inputRegistration" className="col-sm-2 col-md-3 col-lg-2 col-form-label">Login</label>
-                                <div className="col-sm-12 col-md-9 col-lg-10 col-xl-10">
-                                    <input type="login" name="usernameRegistration" className="form-field form-control" id="inputRegistration" onChange={this.handleFormInput} />
-                                </div>
-                                <div className="col-sm-12 offset-lg-2 col-md-9 offset-md-3 col-lg-10 col-xl-10">
-                                    <div className="error-message" style={errorVisibility.usernameRegistration}>
-                                        {errorMessage.usernameRegistration}
+                        <Zoom>
+                            <form className={`registration col-sm-12 col-md-12 col-lg-12 col-xl-12 ${registrationVisibility}`}>
+                                <Zoom>
+                                    <div className="form-group row">
+                                        <label htmlFor="inputRegistration" className="col-sm-2 col-md-3 col-lg-2 col-form-label">Login</label>
+                                        <div className="col-sm-12 col-md-9 col-lg-10 col-xl-10">
+                                            <input type="login" name="usernameRegistration" className="form-field form-control" id="inputRegistration" onChange={this.handleFormInput} />
+                                        </div>
+                                        <div className="col-sm-12 offset-lg-2 col-md-9 offset-md-3 col-lg-10 col-xl-10">
+                                            <div className="error-message" style={errorVisibility.usernameRegistration}>
+                                                {errorMessage.usernameRegistration}
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div className="form-group row">
-                                <label htmlFor="inputEmail" className="col-sm-2 col-md-3 col-lg-2 col-form-label">Email</label>
-                                <div className="col-sm-12 col-md-9 col-lg-10 col-xl-10">
-                                    <input type="email" name="emailRegistration" className="form-field form-control" id="inputEmail" onChange={this.handleFormInput} />
-                                </div>
-                                <div className="col-sm-12 offset-lg-2 col-md-9 offset-md-3 col-lg-10 col-xl-10">
-                                    <div className="error-message" style={errorVisibility.emailRegistration}>
-                                        {errorMessage.emailRegistration}
+                                </Zoom>
+                                <Zoom delay={200}>
+                                    <div className="form-group row">
+                                        <label htmlFor="inputEmail" className="col-sm-2 col-md-3 col-lg-2 col-form-label">Email</label>
+                                        <div className="col-sm-12 col-md-9 col-lg-10 col-xl-10">
+                                            <input type="email" name="emailRegistration" className="form-field form-control" id="inputEmail" onChange={this.handleFormInput} />
+                                        </div>
+                                        <div className="col-sm-12 offset-lg-2 col-md-9 offset-md-3 col-lg-10 col-xl-10">
+                                            <div className="error-message" style={errorVisibility.emailRegistration}>
+                                                {errorMessage.emailRegistration}
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div className="form-group row">
-                                <label htmlFor="inputPasswordRegistration" className="col-sm-2 col-md-3 col-lg-2 col-form-label">Password</label>
-                                <div className="col-sm-12 col-md-9 col-lg-10 col-xl-10">
-                                    <input type="password" name="passwordRegistration" className="form-field form-control" id="inputPasswordRegistration" onChange={this.handleFormInput} />
-                                </div>
-                                <div className="col-sm-12 offset-lg-2 col-md-9 offset-md-3 col-lg-10 col-xl-10">
-                                    <div className="error-message" style={errorVisibility.passwordRegistration}>
-                                        {errorMessage.passwordRegistration}
+                                </Zoom>
+                                <Zoom delay={300}>
+                                    <div className="form-group row">
+                                        <label htmlFor="inputPasswordRegistration" className="col-sm-2 col-md-3 col-lg-2 col-form-label">Password</label>
+                                        <div className="col-sm-12 col-md-9 col-lg-10 col-xl-10">
+                                            <input type="password" name="passwordRegistration" className="form-field form-control" id="inputPasswordRegistration" onChange={this.handleFormInput} />
+                                        </div>
+                                        <div className="col-sm-12 offset-lg-2 col-md-9 offset-md-3 col-lg-10 col-xl-10">
+                                            <div className="error-message" style={errorVisibility.passwordRegistration}>
+                                                {errorMessage.passwordRegistration}
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div className="form-group row">
-                                <label htmlFor="inputPasswordConfirmRegistration" className="col-sm-2 col-md-3 col-lg-2 col-form-label">Confirm password</label>
-                                <div className="col-sm-12 col-md-9 col-lg-10 col-xl-10">
-                                    <input type="password" name="passwordRegistration" className="form-field form-control" id="inputPasswordConfirmRegistration" onChange={this.handleFormInput} />
-                                </div>
-                                <div className="col-sm-12 offset-lg-2 col-md-9 offset-md-3 col-lg-10 col-xl-10">
-                                    <div className="error-message" style={errorVisibility.passwordConfirmRegistration}>
-                                        {errorMessage.passwordConfirmRegistration}
+                                </Zoom>
+                                <Zoom delay={400}>
+                                    <div className="form-group row">
+                                        <label htmlFor="inputPasswordConfirmRegistration" className="col-sm-2 col-md-3 col-lg-2 col-form-label">Confirm password</label>
+                                        <div className="col-sm-12 col-md-9 col-lg-10 col-xl-10">
+                                            <input type="password" name="passwordRegistration" className="form-field form-control" id="inputPasswordConfirmRegistration" onChange={this.handleFormInput} />
+                                        </div>
+                                        <div className="col-sm-12 offset-lg-2 col-md-9 offset-md-3 col-lg-10 col-xl-10">
+                                            <div className="error-message" style={errorVisibility.passwordConfirmRegistration}>
+                                                {errorMessage.passwordConfirmRegistration}
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div className="form-group row">
-                                <div className="col-sm-12">
-                                    <button type="submit" className="btn btn-primary">Sign up</button>
-                                </div>
-                            </div>
-                        </form>
+                                </Zoom>
+                                <Zoom delay={500}>
+                                    <div className="form-group row">
+                                        <div className="col-sm-12">
+                                            <button type="submit" className="btn btn-primary">Sign up</button>
+                                        </div>
+                                    </div>
+                                </Zoom>
+                            </form>
+                        </Zoom>
                     </div>
                 </div>
             </div>
