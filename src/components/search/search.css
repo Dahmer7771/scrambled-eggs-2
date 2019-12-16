@@ -10,7 +10,7 @@
 
 @media all and (max-width: 991px) {
     .search {
-        flex-grow: 1;
+        display: none;
     }
 
     .form-control {

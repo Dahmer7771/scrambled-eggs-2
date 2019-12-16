@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./nav-menu.css";
 import { Link } from "react-router-dom";
+import Search from "../search/search";
 import {
     admin as ADMIN,
     simpleUser as SIMPLE_USER,
@@ -61,6 +62,9 @@ class NavMenu extends Component {
                     <ul className="navbar-nav ml-auto">
                         {renderNavItems}
                     </ul>
+                    <div className="nav-search">
+                        <Search />
+                    </div>
                 </div>
             </>
         );

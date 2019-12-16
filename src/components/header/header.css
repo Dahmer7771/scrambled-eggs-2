@@ -8,6 +8,10 @@
 }
 
 @media all and (max-width: 991px) {
+    .navbar-brand {
+        flex-grow: 1;
+    }
+
     .navbar {
         justify-content: flex-start;
     }
