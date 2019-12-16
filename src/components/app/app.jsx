@@ -13,6 +13,8 @@ import SearchSection from "../search-section/search-section";
 import { RecipesProvider } from "../recipes-context/recipes-context";
 import RecipesAPI from "../../services/recipes-api";
 import Users from "../users/users";
+import Management from "../management/management";
+import CreatedRecipe from "../created-recipe/created-recipe";
 
 class App extends Component {
     constructor(props) {
@@ -53,6 +55,8 @@ class App extends Component {
                         <Route path="/autorization" component={Autorization} />
                         <Route path="/search" component={SearchSection} />
                         <Route path="/users" component={Users} />
+                        <Route path="/management" component={Management} />
+                        <Route path="/created" component={CreatedRecipe} />
                     </Switch>
                     <Footer />
                 </div>
