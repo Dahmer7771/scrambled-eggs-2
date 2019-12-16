@@ -21,5 +21,10 @@ export default class RecipesAPI {
     getRecipeById = async (id) => {
         const res = await this.getResource(`/recipes/article_by_id?id=${id}`);
         return res;
-    }
+    };
+
+    getSortedRecipes = async (field, order) => {
+        const res = await this.getResource(`/recipes/articles?sortBy=${field}&order=${order}&limit=30`);
+        return res;
+    };
 }
