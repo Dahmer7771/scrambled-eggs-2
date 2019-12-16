@@ -18,9 +18,9 @@ class RecipeInfo extends Component {
             },
         } = this.props;
 
-        const creationDateRegExp = /([0-9][0-9][0-9][0-9])-([0-1][0-9])-([0-3][0-9])/g;
         const mainDescription = description[0];
         const cookingSteps = description.slice(1);
+        const creationDateRegExp = /([0-9][0-9][0-9][0-9])-([0-1][0-9])-([0-3][0-9])/g;
         const creationDate = created.match(creationDateRegExp).toString();
 
         return (

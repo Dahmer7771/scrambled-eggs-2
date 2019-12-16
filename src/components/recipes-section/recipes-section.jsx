@@ -51,6 +51,19 @@ class RecipesSection extends Component {
         // }
     };
 
+    onFilterChange = (field, order) => {
+        const {
+            getSortedRecipes,
+        } = this.props;
+
+        getSortedRecipes(field, order)
+            .then((recipes) => {
+                this.setState({
+                    recipes,
+                });
+            });
+    };
+
     render() {
         const {
             recipes,
@@ -64,7 +77,7 @@ class RecipesSection extends Component {
 
         return (
             <div className="recipes-section">
-                <RecipesFilter />
+                <RecipesFilter onFilterChange={this.onFilterChange} />
                 <div className="container">
                     <h2 className="recipes-section__title">Рецепты</h2>
                     <div className="row">
@@ -91,6 +104,7 @@ class RecipesSection extends Component {
 
 const mapMethodsToProps = (RecipesAPI) => ({
     getAllRecipes: RecipesAPI.getAllRecipes,
+    getSortedRecipes: RecipesAPI.getSortedRecipes,
 });
 
 export default withContext(mapMethodsToProps)(RecipesSection);
