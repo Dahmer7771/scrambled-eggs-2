@@ -1,5 +1,5 @@
 export default class RecipesAPI {
-    _baseUrl = "http://192.168.1.3:3000/api";
+    _baseUrl = "http://192.168.1.4:3000/api";
 
     getResource = async (url) => {
         const res = await fetch(`${this._baseUrl}${url}`);
