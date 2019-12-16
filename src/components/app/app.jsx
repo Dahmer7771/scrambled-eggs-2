@@ -14,6 +14,7 @@ import { RecipesProvider } from "../recipes-context/recipes-context";
 import TestRecipes from "../../services/test-recipes";
 import RecipesAPI from "../../services/recipes-api";
 import Users from "../users/users";
+import RecipesFilter from "../recipes-filter/recipes-filter";
 
 class App extends Component {
     constructor(props) {

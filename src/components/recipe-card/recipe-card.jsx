@@ -21,9 +21,12 @@ class RecipeCard extends Component {
         return (
             <div className="col-xl-3 col-lg-4 col-sm-6 col-12">
                 <div className="card recipe-card">
-                    <div className="recipe-image" style={{
-                        background: `url(${Lol})`
-                    }}>
+                    <div
+                        className="recipe-image"
+                        style={{
+                            background: `url(${Lol})`,
+                        }}
+                    >
                         100x100
                     </div>
                     <div className="card-body">

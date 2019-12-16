@@ -4,6 +4,7 @@ import RecipeCard from "../recipe-card/recipe-card";
 import Spinner from "../spinner/spinner";
 import withContext from "../hoc-helpers/withContext";
 import Pagination from "../pagination/pagination";
+import RecipesFilter from "../recipes-filter/recipes-filter";
 
 class RecipesSection extends Component {
     constructor(props) {
@@ -63,6 +64,7 @@ class RecipesSection extends Component {
 
         return (
             <div className="recipes-section">
+                <RecipesFilter />
                 <div className="container">
                     <h2 className="recipes-section__title">Рецепты</h2>
                     <div className="row">

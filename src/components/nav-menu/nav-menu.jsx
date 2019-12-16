@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./nav-menu.css";
 import { Link } from "react-router-dom";
+import Search from "../search/search";
 
 class NavMenu extends Component {
     constructor(props) {
@@ -45,6 +46,9 @@ class NavMenu extends Component {
                             </span>
                         </li>
                     </ul>
+                    <div className="nav-search">
+                        <Search />
+                    </div>
                 </div>
             </>
         );
