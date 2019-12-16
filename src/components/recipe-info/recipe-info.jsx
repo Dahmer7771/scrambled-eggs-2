@@ -14,11 +14,14 @@ class RecipeInfo extends Component {
                 name,
                 description,
                 category,
+                created,
             },
         } = this.props;
 
+        const creationDateRegExp = /([0-9][0-9][0-9][0-9])-([0-1][0-9])-([0-3][0-9])/g;
         const mainDescription = description[0];
         const cookingSteps = description.slice(1);
+        const creationDate = created.match(creationDateRegExp).toString();
 
         return (
             <div className="card recipes-item-section">
@@ -48,11 +51,14 @@ class RecipeInfo extends Component {
                                 {name}
                             </h4>
                             <p className="card-text card-description">
-                                {description[0]}
+                                {mainDescription}
                             </p>
-                            <p className="card-text">
+                            <p className="card-text d-flex justify-content-between">
                                 <small className="text-muted">
                                     {`Категория: ${category}`}
+                                </small>
+                                <small className="text-muted">
+                                    {`Добавлено: ${creationDate}`}
                                 </small>
                             </p>
                         </div>
