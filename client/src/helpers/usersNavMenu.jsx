@@ -48,7 +48,7 @@ const settings = () => (
             Настройки
         </a>
         <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a className="dropdown-item" href="/management">Рецепты</a>
+            <a className="dropdown-item" href="/recipe_client">Рецепты</a>
             <a className="dropdown-item" href="/created">Добавить рецепты</a>
             <a className="dropdown-item" href="/users">Пользователи</a>
             <div className="dropdown-divider" />

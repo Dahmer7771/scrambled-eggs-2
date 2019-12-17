@@ -1,6 +1,7 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
-class Management extends Component {
+class RecipeClient extends Component {
     render() {
         return (
             <div className="container">
@@ -17,14 +18,14 @@ class Management extends Component {
                             <th scope="row">1</th>
                             <td>Mark</td>
                             <td>
-                                <div className="btn-group btn-group-lg" role="group" aria-label="Button group with nested dropdown">
+                                <Link to="/change">
                                     <button type="button" className="btn btn-secondary material-icons">
                                         settings_applications
                                     </button>
-                                    <button type="button" className="btn btn-secondary material-icons">
+                                </Link>
+                                <button type="button" className="btn btn-secondary material-icons">
                                         delete_forever
-                                    </button>
-                                </div>
+                                </button>
                             </td>
                         </tr>
                     </tbody>
@@ -34,4 +35,4 @@ class Management extends Component {
     }
 }
 
-export default Management;
+export default RecipeClient;

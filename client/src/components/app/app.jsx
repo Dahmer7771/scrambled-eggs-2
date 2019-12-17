@@ -14,7 +14,8 @@ import { RecipesProvider } from "../recipes-context/recipes-context";
 import RecipesAPI from "../../services/recipes-api";
 import Users from "../users/users";
 import CreatedRecipe from "../created-recipe/created-recipe";
-import Management from "../management/management";
+import RecipeClient from "../recipe-client/recipe-client";
+import ChangeRecipeClient from "../change-recipe-client/change-recipe-client";
 
 class App extends Component {
     constructor(props) {
@@ -71,7 +72,8 @@ class App extends Component {
                         <Route path="/search" component={SearchSection} />
                         <Route path="/users" component={Users} />
                         <Route path="/created" component={CreatedRecipe} />
-                        <Route path="/management" component={Management} />
+                        <Route path="/recipe_client" component={RecipeClient} />
+                        <Route path="/change" component={ChangeRecipeClient} />
                     </Switch>
                     <Footer />
                 </div>
