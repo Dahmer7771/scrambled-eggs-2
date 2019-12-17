@@ -5,6 +5,7 @@ import Spinner from "../spinner/spinner";
 import withContext from "../hoc-helpers/withContext";
 import Pagination from "../pagination/pagination";
 import RecipesFilter from "../recipes-filter/recipes-filter";
+import Warning from "../warning/warning";
 
 class RecipesSection extends Component {
     constructor(props) {
@@ -66,7 +67,7 @@ class RecipesSection extends Component {
             });
     };
 
-    search = (recipesList, term) => {
+    search = (recipesList, term = "") => {
         if (term.length < 1) return recipesList;
 
         return recipesList.filter((item) => item.name.toLowerCase()
@@ -87,12 +88,15 @@ class RecipesSection extends Component {
 
         const searchedRecipes = this.search(recipes, searchText);
 
+        const warning = searchedRecipes.length ? null : <Warning label="No recipes found" />;
+
         return (
             <div className="recipes-section">
                 <RecipesFilter onFilterChange={this.onFilterChange} />
                 <div className="container">
                     <h2 className="recipes-section__title">Рецепты</h2>
                     <div className="row">
+                        {warning}
                         {searchedRecipes.map((item) => {
                             const { _id, name, description } = item;
                             return (

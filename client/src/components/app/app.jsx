@@ -64,7 +64,7 @@ class App extends Component {
                     <Header onSearchInputChange={this.onSearchInputChange} />
                     <Switch>
                         <Route exact path="/" component={WrappedRecipeSection} />
-                        <Route exact path="/recipes" component={RecipesSection} />
+                        <Route exact path="/recipes" component={WrappedRecipeSection} />
                         <Route exact path="/recipes/:id" component={RecipesItemSection} />
                         <Route path="/recipes/pages/:page" component={WrappedRecipeSection} />
                         <Route path="/autorization" component={Autorization} />

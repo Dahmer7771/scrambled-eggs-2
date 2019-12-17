@@ -4,7 +4,7 @@ const simpleUser = [
     {
         id: 1,
         label: "Рецепты",
-        url: "/recipes/pages/1",
+        url: "/recipes",
     },
     {
         id: 2,
@@ -21,7 +21,7 @@ const admin = [
     {
         id: 1,
         label: "Рецепты",
-        url: "/recipes/pages/1",
+        url: "/recipes",
     },
     {
         id: 2,
