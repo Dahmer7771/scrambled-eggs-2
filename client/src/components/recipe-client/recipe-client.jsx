@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import "./recipe-client.css"
+import "./recipe-client.css";
 
 class RecipeClient extends Component {
     render() {
@@ -12,7 +12,7 @@ class RecipeClient extends Component {
                             <th scope="col">#</th>
                             <th scope="col">Название рецепта</th>
                             <th scope="col">Дата</th>
-                            <th scope="col">Изменить/Удалить</th>
+                            <th scope="col" className="button-change-delete">Изменить/Удалить</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -20,7 +20,7 @@ class RecipeClient extends Component {
                             <th scope="row">1</th>
                             <td>Mark</td>
                             <td>без 5минут</td>
-                            <td>
+                            <td className="button-change-delete">
                                 <Link to="/change">
                                     <button type="button" className="btn btn-secondary material-icons">
                                         settings_applications
