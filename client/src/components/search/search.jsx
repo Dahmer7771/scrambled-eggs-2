@@ -9,12 +9,15 @@ class Search extends Component {
         };
     }
 
-    onSearchInputChange = (e) => {
-        const inputText = e.target.value;
-
+    onInputTextChange = (e) => {
+        const {
+            onSearchInputChange,
+        } = this.props;
+        const text = e.target.value;
         this.setState({
-            searchText: inputText,
+            searchText: text,
         });
+        onSearchInputChange(text);
     };
 
     render() {
@@ -30,7 +33,7 @@ class Search extends Component {
                     placeholder="Название блюда"
                     aria-label="Search"
                     value={searchText}
-                    onChange={this.onSearchInputChange}
+                    onChange={this.onInputTextChange}
                 />
                 <button
                     className="btn btn-sm btn-outline-success my-2 my-sm-0"

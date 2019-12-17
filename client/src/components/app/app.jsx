@@ -22,6 +22,7 @@ class App extends Component {
         this.state = {
             recipesAPI: new RecipesAPI(),
             selectedPage: 1,
+            searchText: "",
         };
     }
 
@@ -30,6 +31,14 @@ class App extends Component {
     onPageChange = (page) => {
         this.setState({
             selectedPage: page,
+            searchText: "",
+        });
+    };
+
+    onSearchInputChange = (searchText) => {
+        console.log(searchText);
+        this.setState({
+            searchText,
         });
     };
 
@@ -37,16 +46,22 @@ class App extends Component {
         const {
             recipesAPI,
             selectedPage,
+            searchText,
         } = this.state;
 
         const WrappedRecipeSection = (props) => (
-            <RecipesSection {...props} page={selectedPage} onPageChange={this.onPageChange} />
+            <RecipesSection
+                {...props}
+                page={selectedPage}
+                onPageChange={this.onPageChange}
+                searchText={searchText}
+            />
         );
 
         return (
             <RecipesProvider value={recipesAPI}>
                 <div>
-                    <Header />
+                    <Header onSearchInputChange={this.onSearchInputChange} />
                     <Switch>
                         <Route exact path="/" component={WrappedRecipeSection} />
                         <Route exact path="/recipes" component={RecipesSection} />

@@ -11,6 +11,10 @@ class Header extends Component {
     }
 
     render() {
+        const {
+            onSearchInputChange,
+        } = this.props;
+
         return (
             <header className="header bg-primary">
                 <div className="container">
@@ -23,7 +27,9 @@ class Header extends Component {
                                 Scrambled Eggs
                             </span>
                         </Link>
-                        <Search />
+                        <Search
+                            onSearchInputChange={(searchText) => onSearchInputChange(searchText)}
+                        />
                         <NavMenu />
                     </nav>
                 </div>
