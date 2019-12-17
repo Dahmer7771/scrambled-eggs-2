@@ -37,7 +37,6 @@ class App extends Component {
     };
 
     onSearchInputChange = (searchText) => {
-        console.log(searchText);
         this.setState({
             searchText,
         });
@@ -50,22 +49,23 @@ class App extends Component {
             searchText,
         } = this.state;
 
-        const WrappedRecipeSection = (props) => (
-            <RecipesSection
-                {...props}
-                page={selectedPage}
-                onPageChange={this.onPageChange}
-                searchText={searchText}
-            />
-        );
-
         return (
             <RecipesProvider value={recipesAPI}>
                 <div>
                     <Header onSearchInputChange={this.onSearchInputChange} />
                     <Switch>
-                        <Route exact path="/" component={WrappedRecipeSection} />
-                        {/* <Route exact path="/recipes" component={WrappedRecipeSection} /> */}
+                        <Route
+                            exact
+                            path="/"
+                            render={(props) => (
+                                <RecipesSection
+                                    {...props}
+                                    page={selectedPage}
+                                    onPageChange={this.onPageChange}
+                                    searchText={searchText}
+                                />
+                            )}
+                        />
                         <Route
                             exact
                             path="/recipes"
@@ -79,7 +79,6 @@ class App extends Component {
                             )}
                         />
                         <Route exact path="/recipes/:id" component={RecipesItemSection} />
-                        <Route path="/recipes/pages/:page" component={WrappedRecipeSection} />
                         <Route path="/autorization" component={Autorization} />
                         <Route path="/search" component={SearchSection} />
                         <Route path="/users" component={Users} />
