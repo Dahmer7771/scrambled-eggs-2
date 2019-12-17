@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./recipe-card.css";
 import { Link } from "react-router-dom";
-import Bounce from "react-reveal/Bounce";
+import Fade from "react-reveal/Fade";
 import Lol from "./lol.jpg";
 
 class RecipeCard extends Component {
@@ -20,7 +20,7 @@ class RecipeCard extends Component {
         const descriptionLabel = description[0];
 
         return (
-
+            <Fade left cascade>
                 <div className="col-xl-3 col-lg-4 col-sm-6 col-12">
                     <div className="card recipe-card">
                         <div
@@ -44,7 +44,7 @@ class RecipeCard extends Component {
                         </div>
                     </div>
                 </div>
-
+            </Fade>
         );
     }
 }
