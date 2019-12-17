@@ -32,9 +32,9 @@ class SearchInput extends Component {
     };
 
     render() {
-        const {
-            searchText,
-        } = this.state;
+        // const {
+        //     searchText,
+        // } = this.state;
 
         const options = [{
             id: 1,

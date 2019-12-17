@@ -31,7 +31,7 @@ class RecipesSection extends Component {
     renderRecipes = () => {
         const {
             getAllRecipes,
-            page,
+            // page,
         } = this.props;
 
         getAllRecipes()

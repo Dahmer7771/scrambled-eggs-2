@@ -39,8 +39,8 @@ class NavMenu extends Component {
         const { userRole } = this.state;
         const navItems = this.renderNavItems();
 
-        let renderNavItems = navItems.map(({ label, url }) => (
-            <li className="nav-item">
+        let renderNavItems = navItems.map(({ id, label, url }) => (
+            <li key={id} className="nav-item">
                 <span className="nav-link">
                     <Link to={url}>{label}</Link>
                 </span>

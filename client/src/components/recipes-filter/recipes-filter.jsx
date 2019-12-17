@@ -16,7 +16,7 @@ class RecipesFilter extends Component {
             <div className="recipes-filter">
                 <div className="container">
                     <nav className="navbar navbar-expand-lg navbar-light bg-body">
-                        <a className="navbar-brand" href="#">Фильтр</a>
+                        <a className="navbar-brand" href="c">Фильтр</a>
                         <button
                             className="navbar-toggler"
                             type="button"
@@ -32,7 +32,7 @@ class RecipesFilter extends Component {
                         <div className="collapse navbar-collapse" id="navbarFilter">
                             <ul className="navbar-nav mr-auto">
                                 <li className="nav-item active">
-                                    <a className="nav-link" href="#">
+                                    <a className="nav-link" href="b">
                                         Home
                                         <span className="sr-only">(current)</span>
                                     </a>
@@ -40,7 +40,7 @@ class RecipesFilter extends Component {
                                 <li className="nav-item dropdown">
                                     <a
                                         className="nav-link dropdown-toggle"
-                                        href="#"
+                                        href="a"
                                         id="navbarDropdown"
                                         role="button"
                                         data-toggle="dropdown"

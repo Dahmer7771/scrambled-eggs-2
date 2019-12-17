@@ -2,10 +2,12 @@ import React from "react";
 
 const simpleUser = [
     {
+        id: 1,
         label: "Рецепты",
         url: "/recipes/pages/1",
     },
     {
+        id: 2,
         label: "Поиск по ингредиентам",
         url: "/search",
     },
@@ -17,10 +19,12 @@ const simpleUser = [
 
 const admin = [
     {
+        id: 1,
         label: "Рецепты",
         url: "/recipes/pages/1",
     },
     {
+        id: 2,
         label: "Поиск по ингредиентам",
         url: "/search",
     },
@@ -28,10 +32,10 @@ const admin = [
 ];
 
 const settings = () => (
-    <li className="nav-item dropdown">
+    <li key={500} className="nav-item dropdown">
         <a
             className="nav-link dropdown-toggle"
-            href="#"
+            href="settings"
             id="navbarDropdown"
             role="button"
             data-toggle="dropdown"
@@ -48,7 +52,7 @@ const settings = () => (
             <a className="dropdown-item" href="/created">Добавить рецепты</a>
             <a className="dropdown-item" href="/users">Пользователи</a>
             <div className="dropdown-divider" />
-            <a className="dropdown-item" href="#">Выйти</a>
+            <a className="dropdown-item" href="exit">Выйти</a>
         </div>
     </li>
 );
