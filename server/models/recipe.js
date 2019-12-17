@@ -8,10 +8,6 @@ const recipeSchema = mongoose.Schema({
     unique: 1,
     maxlength: 100
   },
-  image: {
-    data: Buffer,
-    contentType: String
-  },
   description: {
     type: Array,
     required: true
@@ -43,8 +39,7 @@ const recipeSchema = mongoose.Schema({
     default: Date.now
   },
   image: {
-    data: Buffer,
-    contentType: String
+    type: String, 
   }
 })
 

@@ -40,32 +40,56 @@ const {Ingredient} = require('./models/ingredient');
 
 //POST RECIPE
 
-app.post('/api/recipe/create', (req, res) => {
-  //ФОРМА
-  let form = new formidable.IncomingForm();
-  form.keepExtensions = true;
-  form.parse(req, (err, fields, files) => {
-    if (err) {
-      return res.status(400).json({
-        message: "Image could not be uploaded"
-      })
-    }
-    let recipe = new Recipe(fields);
-    // recipe.Creator = req.creator;
-    if(files.image){
-      recipe.image.data = fs.readFileSync(files.image.path);
-      recipe.image.contentType = files.image.type;
-    }
-    recipe.save((err, result) => {
-      if (err) {
-        return res.status(400).json({
-          // error: errorHandler.getErrorMessage(err)
-        })
-      }
-      res.json(result)
-    })
-  })
+const storage = multer.diskStorage({
+  destination: function(req, file, cb) {
+    cb(null, './uploads/');
+  },
+  filename: function(req, file, cb) {
+    cb(null, new Date().toISOString().replace(/:/g, '-') + file.originalname);
+  }
+});
 
+const fileFilter = (req, file, cb) => {
+  // reject a file
+  if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
+    cb(null, true);
+  } else {
+    cb(null, false);
+  }
+};
+
+const upload = multer({
+  storage: storage,
+  limits: {
+    fileSize: 1024 * 1024 * 5
+  },
+  fileFilter: fileFilter
+});
+
+
+app.post('/api/recipe/create', upload.single('image'), (req, res) => {
+
+//ПОПЫТКА 4
+
+const recipe = new Recipe({
+  name: req.body.name,
+  description: req.body.description,
+  ingredient: req.body.ingredient,
+  image: req.file.path, 
+});
+recipe
+  .save()
+  .then(result => {
+    res.status(201).json({
+      message: "Created product successfully"
+    });
+  })
+  .catch(err => {
+    console.log(err);
+    res.status(500).json({
+      error: err
+    });
+  });
 
   
   //ПЛОХОЙ ВАРИАНТ
@@ -113,8 +137,6 @@ app.post('/api/recipe/create', (req, res) => {
   // if (flag) {
   //   await recipe.save();
   // }
-
-  
 
 
   // let recipeData = {};
@@ -181,8 +203,6 @@ app.get('/api/recipes/article_by_id', (req,res) => {
 //========================
 //USERS
 //========================
-
-
 
 
 app.get('/', (req, res) => {
