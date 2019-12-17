@@ -1,38 +1,34 @@
 import React, { Component } from "react";
-import "./management.css";
-import EditorConvertToHTML from "../editor-convert-to-html/editor-convert-to-html";
 
 class Management extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {};
-    }
-
     render() {
         return (
             <div className="container">
-                <form className="created_recipe">
-                    <div className="form-group">
-                        <label htmlFor="exampleFormControlInput1">Название рецепта:</label>
-                        <input type="text" name="name" className="form-control" id="exampleFormControlInput1" />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="exampleFormControlSelect1">Категория</label>
-                        <select className="form-control" id="exampleFormControlSelect1" name="category">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                        </select>
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="exampleFormControlFile1">Фото</label>
-                        <input type="file" className="form-control-file" id="exampleFormControlFile1" />
-                    </div>
-                    <EditorConvertToHTML />
-                    <input className="btn btn-primary" type="submit" value="Submit"/>
-                </form>
+                <table className="table">
+                    <thead className="thead-light">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">First</th>
+                            <th scope="col">First</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Mark</td>
+                            <td>
+                                <div className="btn-group btn-group-lg" role="group" aria-label="Button group with nested dropdown">
+                                    <button type="button" className="btn btn-secondary material-icons">
+                                        settings_applications
+                                    </button>
+                                    <button type="button" className="btn btn-secondary material-icons">
+                                        delete_forever
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         );
     }
