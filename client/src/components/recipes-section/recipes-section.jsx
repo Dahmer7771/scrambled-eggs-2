@@ -9,6 +9,7 @@ import RecipesFilter from "../recipes-filter/recipes-filter";
 class RecipesSection extends Component {
     constructor(props) {
         super(props);
+        this.isMount = false;
         this.state = {
             recipes: null,
         };
@@ -28,18 +29,19 @@ class RecipesSection extends Component {
         }
     }
 
+    componentWillUnmount() {
+        this.isMount = false;
+    }
+
     renderRecipes = () => {
         const {
             getAllRecipes,
             // page,
         } = this.props;
 
+        this.isMount = true;
         getAllRecipes()
-            .then((recipes) => {
-                this.setState({
-                    recipes,
-                });
-            });
+            .then((recipes) => this.isMount && this.setState({ recipes }));
 
         // const necessaryRecipesIndexes = page * 12;
         // const necessaryRecipesStartIndex = necessaryRecipesIndexes - 12;
