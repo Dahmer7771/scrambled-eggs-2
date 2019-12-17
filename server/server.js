@@ -69,28 +69,64 @@ const upload = multer({
 
 app.post('/api/recipe/create', upload.single('image'), (req, res) => {
 
-//ПОПЫТКА 4
+  //ПОПЫТКА 4
 
-const recipe = new Recipe({
-  name: req.body.name,
-  description: req.body.description,
-  ingredient: req.body.ingredient,
-  image: req.file.path, 
-});
-recipe
-  .save()
-  .then(result => {
-    res.status(201).json({
-      message: "Created product successfully"
-    });
-  })
-  .catch(err => {
+  let recipe;
+
+  if(req.file){
+    recipe = new Recipe({
+    name: req.body.name,
+    description: req.body.description,
+    category: req.body.category,
+    ingredient: req.body.ingredient,
+    mark: req.body.mark,
+    createdBy: req.body.createdBy, 
+    image: req.file.path
+  });}
+  else {
+    recipe = new Recipe(req.body);
+  }
+
+  recipe
+    .save()
+    .then(result => {
+      res.status(201).json({
+        message: "Created product successfully"
+      });
+    })
+    .catch(err => {
     console.log(err);
     res.status(500).json({
       error: err
     });
-  });
+    });
 
+    //ПОПЫТКА 5
+    // const recipe = new Recipe({
+    //   name: req.body.name,
+    //   description: req.body.description,
+    //   category: req.body.category,
+    //   ingredient: req.body.ingredient,
+    //   mark: req.body.mark,
+    //   createdBy: req.body.createdBy, 
+    //   image: req.file.path
+    // });
+
+    // recipe
+    //   .save()
+    //   .then( () => {console.log(recipe._id)})
+    //   .catch(err => {
+    //   console.log(err);
+    //   res.status(500).json({
+    //     error: err
+    //   });
+    //   });
+    
+    // const ingredients = req.body.Ingredient;
+    
+    // for (let i = 0; i <= ingredients.length; i++){
+    //   let ingredient = new Ingredient({name: ingredients[i]}, {recipe: recipe._id})
+    // }
   
   //ПЛОХОЙ ВАРИАНТ
   // const ingredients = req.body.ingredient;
