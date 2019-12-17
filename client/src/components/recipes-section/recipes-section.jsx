@@ -5,6 +5,7 @@ import Spinner from "../spinner/spinner";
 import withContext from "../hoc-helpers/withContext";
 import Pagination from "../pagination/pagination";
 import RecipesFilter from "../recipes-filter/recipes-filter";
+import Warning from "../warning/warning";
 
 class RecipesSection extends Component {
     constructor(props) {
@@ -19,15 +20,15 @@ class RecipesSection extends Component {
         this.renderRecipes();
     }
 
-    componentDidUpdate(prevProps) {
-        const {
-            page,
-        } = this.props;
-
-        if (page !== prevProps.page) {
-            this.renderRecipes();
-        }
-    }
+    // componentDidUpdate(prevProps) {
+    //     const {
+    //         searchText,
+    //     } = this.props;
+    //
+    //     if (searchText !== prevProps.searchText) {
+    //         this.renderRecipes();
+    //     }
+    // }
 
     componentWillUnmount() {
         this.isMount = false;
@@ -66,6 +67,13 @@ class RecipesSection extends Component {
             });
     };
 
+    search = (recipesList, term = "") => {
+        if (term.length < 1) return recipesList;
+
+        return recipesList.filter((item) => item.name.toLowerCase()
+            .indexOf(term.toLowerCase()) > -1);
+    };
+
     render() {
         const {
             recipes,
@@ -73,9 +81,14 @@ class RecipesSection extends Component {
 
         const {
             onPageChange,
+            searchText,
         } = this.props;
 
         if (recipes === null) return <Spinner />;
+
+        const searchedRecipes = this.search(recipes, searchText);
+
+        const warning = searchedRecipes.length ? null : <Warning label="No recipes found" />;
 
         return (
             <div className="recipes-section">
@@ -83,7 +96,8 @@ class RecipesSection extends Component {
                 <div className="container">
                     <h2 className="recipes-section__title">Рецепты</h2>
                     <div className="row">
-                        {recipes.map((item) => {
+                        {warning}
+                        {searchedRecipes.map((item) => {
                             const { _id, name, description } = item;
                             return (
                                 <RecipeCard

@@ -1,17 +1,12 @@
 import React, { Component } from "react";
-import "./management.css";
 import EditorConvertToHTML from "../editor-convert-to-html/editor-convert-to-html";
 
-class Management extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {};
-    }
-
+class ChangeRecipeClient extends Component {
     render() {
         return (
             <div className="container">
                 <form className="created_recipe">
+                    asdfasdf
                     <div className="form-group">
                         <label htmlFor="exampleFormControlInput1">Название рецепта:</label>
                         <input type="text" name="name" className="form-control" id="exampleFormControlInput1" />
@@ -31,11 +26,11 @@ class Management extends Component {
                         <input type="file" className="form-control-file" id="exampleFormControlFile1" />
                     </div>
                     <EditorConvertToHTML />
-                    <input className="btn btn-primary" type="submit" value="Submit"/>
+                    <input className="btn btn-primary" type="submit" value="Submit" />
                 </form>
             </div>
         );
     }
 }
 
-export default Management;
+export default ChangeRecipeClient;

@@ -17,7 +17,7 @@ class Footer extends Component {
                         <div className="row py-4 d-flex align-items-center">
 
                             <div className="col-md-6 col-lg-5 text-center text-md-left mb-4 mb-md-0">
-                                <h6 className="mb-0">Get connected with us on social networks!</h6>
+                                <h6 className="mb-0">Свяжитесь с нами в социальных сетях!</h6>
                             </div>
 
                             <div className="col-md-6 col-lg-7 text-center text-md-right">
@@ -51,21 +51,18 @@ class Footer extends Component {
 
                         <div className="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
 
-                            <h6 className="text-uppercase font-weight-bold">Company name</h6>
+                            <h6 className="text-uppercase font-weight-bold">Название компании</h6>
                             <hr className="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style={{ width: "60px" }} />
                             <p>
-                                    Here you can use rows and columns to organize your
-                                    footer content.
-                                    Lorem ipsum dolor sit amet,
-                                    consectetur
-                                    adipisicing elit.
+                                   Сделаем проект за неделю в течении трёх месяцев!
+                                    Проект ІН64-8 группа 5.
                             </p>
 
                         </div>
 
                         <div className="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
 
-                            <h6 className="text-uppercase font-weight-bold">Products</h6>
+                            <h6 className="text-uppercase font-weight-bold">Продукт</h6>
                             <hr className="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style={{ width: "60px" }} />
                             <p>
                                 <a href="/">MDBootstrap</a>
@@ -84,7 +81,7 @@ class Footer extends Component {
 
                         <div className="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
 
-                            <h6 className="text-uppercase font-weight-bold">Useful links</h6>
+                            <h6 className="text-uppercase font-weight-bold">Полезные ссылки</h6>
                             <hr className="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style={{ width: "60px" }} />
                             <p>
                                 <a href="/">Your Account</a>
@@ -103,17 +100,17 @@ class Footer extends Component {
 
                         <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
 
-                            <h6 className="text-uppercase font-weight-bold">Contact</h6>
+                            <h6 className="text-uppercase font-weight-bold">Контакты</h6>
                             <hr className="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style={{ width: "60px" }} />
                             <p>
                                 <i className="fas fa-home mr-3" />
                                 {" "}
-                                New York, NY 10012, US
+                                Lublinska 10, rooom 806
                             </p>
                             <p>
                                 <i className="fas fa-envelope mr-3" />
                                 {" "}
-                                info@example.com
+                                room806@gmail.com
                             </p>
                             <p>
                                 <i className="fas fa-phone mr-3" />

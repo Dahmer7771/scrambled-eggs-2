@@ -30,7 +30,9 @@ class Header extends Component {
                         <Search
                             onSearchInputChange={(searchText) => onSearchInputChange(searchText)}
                         />
-                        <NavMenu />
+                        <NavMenu
+                            onSearchInputChange={(searchText) => onSearchInputChange(searchText)}
+                        />
                     </nav>
                 </div>
             </header>

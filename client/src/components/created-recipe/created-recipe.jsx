@@ -1,43 +1,37 @@
 import React, { Component } from "react";
+import "./created-recipe.css";
+import EditorConvertToHTML from "../editor-convert-to-html/editor-convert-to-html";
 
 class CreatedRecipe extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {};
+    }
+
     render() {
         return (
             <div className="container">
-                <form>
+                <form className="created_recipe">
                     <div className="form-group">
-                        <label htmlFor="exampleFormControlInput1">Название рецепта</label>
-                        <input type="text" className="form-control" id="exampleFormControlInput1" />
+                        <label htmlFor="exampleFormControlInput1">Название рецепта:</label>
+                        <input type="text" name="name" className="form-control" id="exampleFormControlInput1" />
                     </div>
                     <div className="form-group">
                         <label htmlFor="exampleFormControlSelect1">Категория</label>
-                        <select className="form-control" id="exampleFormControlSelect1">
+                        <select className="form-control" id="exampleFormControlSelect1" name="category">
                             <option>1</option>
                             <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
                         </select>
                     </div>
                     <div className="form-group">
                         <label htmlFor="exampleFormControlFile1">Фото</label>
                         <input type="file" className="form-control-file" id="exampleFormControlFile1" />
                     </div>
-                    <div className="form-group">
-                        <label htmlFor="exampleFormControlTextarea1">Описание</label>
-                        <textarea className="form-control" id="exampleFormControlTextarea1" rows="3" />
-                    </div>
-                    <label htmlFor="">Шаг</label>
-                    <div className="input-group mb-3">
-                        <input
-                            type="text"
-                            className="form-control"
-                            aria-describedby="button-addon2"
-                        />
-                        <div className="input-group-append">
-                            <button className="btn btn-outline-secondary" type="button" id="button-addon2">
-                               -
-                            </button>
-                        </div>
-                    </div>
-                    <button type="button" className="btn btn-secondary btn-sm">Small button</button>
+                    <EditorConvertToHTML />
+                    <input className="btn btn-primary" type="submit" value="Submit"/>
                 </form>
             </div>
         );

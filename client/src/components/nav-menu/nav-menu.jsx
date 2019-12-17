@@ -36,7 +36,13 @@ class NavMenu extends Component {
     };
 
     render() {
-        const { userRole } = this.state;
+        const {
+            userRole,
+        } = this.state;
+
+        const {
+            onSearchInputChange,
+        } = this.props;
         const navItems = this.renderNavItems();
 
         let renderNavItems = navItems.map(({ id, label, url }) => (
@@ -74,7 +80,9 @@ class NavMenu extends Component {
                         {renderNavItems}
                     </ul>
                     <div className="nav-search">
-                        <Search />
+                        <Search
+                            onSearchInputChange={(searchText) => onSearchInputChange(searchText)}
+                        />
                     </div>
                 </div>
             </>

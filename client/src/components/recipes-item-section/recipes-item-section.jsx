@@ -9,6 +9,7 @@ class RecipesItemSection extends Component {
         super(props);
         this.state = {
             recipe: null,
+            error: null,
         };
     }
 
@@ -25,13 +26,21 @@ class RecipesItemSection extends Component {
                 this.setState({
                     recipe,
                 });
+            })
+            .catch((error) => {
+                this.setState({
+                    error,
+                });
             });
     }
 
     render() {
-        const { recipe } = this.state;
+        const {
+            recipe,
+            error,
+        } = this.state;
 
-        if (recipe === undefined) {
+        if (error) {
             return (
                 <div className="container" style={{ textAlign: "center", margin: "20px auto" }}>
                     <h1>Recipe does not exist!</h1>

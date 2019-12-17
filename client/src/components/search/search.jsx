@@ -35,12 +35,6 @@ class Search extends Component {
                     value={searchText}
                     onChange={this.onInputTextChange}
                 />
-                <button
-                    className="btn btn-sm btn-outline-success my-2 my-sm-0"
-                    type="submit"
-                >
-                        Поиск
-                </button>
             </form>
         );
     }

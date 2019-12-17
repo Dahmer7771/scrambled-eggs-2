@@ -1,5 +1,8 @@
 .editor-convert-to-html {
     margin: 20px 0;
+    background-color: #d0d0d0;
+    min-height: 200px;
+    border-radius: 5px;
 }
 
 .demo-editor.rdw-editor-main {

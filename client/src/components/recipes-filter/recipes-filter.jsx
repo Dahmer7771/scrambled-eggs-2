@@ -31,12 +31,6 @@ class RecipesFilter extends Component {
 
                         <div className="collapse navbar-collapse" id="navbarFilter">
                             <ul className="navbar-nav mr-auto">
-                                <li className="nav-item active">
-                                    <a className="nav-link" href="b">
-                                        Home
-                                        <span className="sr-only">(current)</span>
-                                    </a>
-                                </li>
                                 <li className="nav-item dropdown">
                                     <a
                                         className="nav-link dropdown-toggle"

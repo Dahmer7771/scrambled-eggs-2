@@ -13,8 +13,9 @@ import SearchSection from "../search-section/search-section";
 import { RecipesProvider } from "../recipes-context/recipes-context";
 import RecipesAPI from "../../services/recipes-api";
 import Users from "../users/users";
-import Management from "../management/management";
 import CreatedRecipe from "../created-recipe/created-recipe";
+import RecipeClient from "../recipe-client/recipe-client";
+import ChangeRecipeClient from "../change-recipe-client/change-recipe-client";
 
 class App extends Component {
     constructor(props) {
@@ -64,14 +65,27 @@ class App extends Component {
                     <Header onSearchInputChange={this.onSearchInputChange} />
                     <Switch>
                         <Route exact path="/" component={WrappedRecipeSection} />
-                        <Route exact path="/recipes" component={RecipesSection} />
+                        {/* <Route exact path="/recipes" component={WrappedRecipeSection} /> */}
+                        <Route
+                            exact
+                            path="/recipes"
+                            render={(props) => (
+                                <RecipesSection
+                                    {...props}
+                                    page={selectedPage}
+                                    onPageChange={this.onPageChange}
+                                    searchText={searchText}
+                                />
+                            )}
+                        />
                         <Route exact path="/recipes/:id" component={RecipesItemSection} />
                         <Route path="/recipes/pages/:page" component={WrappedRecipeSection} />
                         <Route path="/autorization" component={Autorization} />
                         <Route path="/search" component={SearchSection} />
                         <Route path="/users" component={Users} />
-                        <Route path="/management" component={Management} />
                         <Route path="/created" component={CreatedRecipe} />
+                        <Route path="/recipe_client" component={RecipeClient} />
+                        <Route path="/change" component={ChangeRecipeClient} />
                     </Switch>
                     <Footer />
                 </div>
