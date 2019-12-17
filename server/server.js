@@ -74,6 +74,7 @@ app.post('/api/recipe/create', upload.single('image'), (req, res) => {
     recipe = new Recipe({
     name: req.body.name,
     description: req.body.description,
+    steps: req.body.steps,
     category: req.body.category,
     ingredient: req.body.ingredient,
     mark: req.body.mark,
@@ -123,7 +124,6 @@ app.post('/api/recipe/create', upload.single('image'), (req, res) => {
 })
 
 
-
 //GET RECIPES
 // /articles?sortBy=created&order=desc&limit=100
 
@@ -160,6 +160,9 @@ app.get('/api/recipes/article_by_id', (req,res) => {
   })
 
 });
+
+//GET RECIPE BY INGREDIENTS
+
 
 //========================
 //USERS
