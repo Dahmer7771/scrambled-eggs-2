@@ -66,6 +66,13 @@ class RecipesSection extends Component {
             });
     };
 
+    search = (recipesList, term) => {
+        if (term.length < 1) return recipesList;
+
+        return recipesList.filter((item) => item.name.toLowerCase()
+            .indexOf(term.toLowerCase()) > -1);
+    };
+
     render() {
         const {
             recipes,
@@ -73,9 +80,12 @@ class RecipesSection extends Component {
 
         const {
             onPageChange,
+            searchText,
         } = this.props;
 
         if (recipes === null) return <Spinner />;
+
+        const searchedRecipes = this.search(recipes, searchText);
 
         return (
             <div className="recipes-section">
@@ -83,7 +93,7 @@ class RecipesSection extends Component {
                 <div className="container">
                     <h2 className="recipes-section__title">Рецепты</h2>
                     <div className="row">
-                        {recipes.map((item) => {
+                        {searchedRecipes.map((item) => {
                             const { _id, name, description } = item;
                             return (
                                 <RecipeCard
