@@ -20,15 +20,15 @@ class RecipesSection extends Component {
         this.renderRecipes();
     }
 
-    componentDidUpdate(prevProps) {
-        const {
-            page,
-        } = this.props;
-
-        if (page !== prevProps.page) {
-            this.renderRecipes();
-        }
-    }
+    // componentDidUpdate(prevProps) {
+    //     const {
+    //         searchText,
+    //     } = this.props;
+    //
+    //     if (searchText !== prevProps.searchText) {
+    //         this.renderRecipes();
+    //     }
+    // }
 
     componentWillUnmount() {
         this.isMount = false;
