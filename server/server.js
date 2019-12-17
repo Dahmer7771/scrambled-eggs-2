@@ -71,61 +71,113 @@ app.post('/api/recipe/create', upload.single('image'), (req, res) => {
 
   //ПОПЫТКА 4
 
-  let recipe;
+  // let recipe;
 
-  if(req.file){
-    recipe = new Recipe({
-    name: req.body.name,
-    description: req.body.description,
-    category: req.body.category,
-    ingredient: req.body.ingredient,
-    mark: req.body.mark,
-    createdBy: req.body.createdBy, 
-    image: req.file.path
-  });}
-  else {
-    recipe = new Recipe(req.body);
-  }
+  // if(req.file){
+  //   recipe = new Recipe({
+  //   name: req.body.name,
+  //   description: req.body.description,
+  //   category: req.body.category,
+  //   ingredient: req.body.ingredient,
+  //   mark: req.body.mark,
+  //   createdBy: req.body.createdBy, 
+  //   image: req.file.path
+  // });}
+  // else {
+  //   recipe = new Recipe(req.body);
+  // }
 
-  recipe
-    .save()
-    .then(result => {
-      res.status(201).json({
-        message: "Created product successfully"
-      });
-    })
-    .catch(err => {
-    console.log(err);
-    res.status(500).json({
-      error: err
-    });
-    });
+  // recipe
+  //   .save()
+  //   .then(result => {
+  //     res.status(201).json({
+  //       message: "Created product successfully"
+  //     });
+  //   })
+  //   .catch(err => {
+  //   console.log(err);
+  //   res.status(500).json({
+  //     error: err
+  //   });
+  //   });
 
-    //ПОПЫТКА 5
-    // const recipe = new Recipe({
-    //   name: req.body.name,
-    //   description: req.body.description,
-    //   category: req.body.category,
-    //   ingredient: req.body.ingredient,
-    //   mark: req.body.mark,
-    //   createdBy: req.body.createdBy, 
-    //   image: req.file.path
-    // });
+    // ПОПЫТКА 5
+    let recipe;
 
-    // recipe
-    //   .save()
-    //   .then( () => {console.log(recipe._id)})
-    //   .catch(err => {
-    //   console.log(err);
-    //   res.status(500).json({
-    //     error: err
-    //   });
-    //   });
+    if(req.file){
+      recipe = new Recipe({
+      name: req.body.name,
+      description: req.body.description,
+      category: req.body.category,
+      ingredient: req.body.ingredient,
+      mark: req.body.mark,
+      createdBy: req.body.createdBy, 
+      image: req.file.path
+    });}
+    else {
+      recipe = new Recipe(req.body);
+    }
+
+    recipe
+      .save()
+      .then( () => {
+        let ingredients = req.body.ingredient;
     
-    // const ingredients = req.body.Ingredient;
+        for (let i = 0; i < ingredients.length; i++){
+          let ingredient = new Ingredient({name: ingredients[i], recipe: recipe._id})
+          // console.log(ingredient);
+
+          Ingredient.find({name: ingredients[i]}, function (err, docs) {
+            if (docs.length){
+
+              Ingredient.findOneAndUpdate({
+                name: `${ingredients[i]}`}, 
+                {$push: {recipe: recipe._id}}, 
+                {new: true, useFindAndModify: false})
+              .populate('recipe')
+              .exec((err) => {
+                if (err) {
+                  return res.status(400).json({
+                    error: errorHandler.getErrorMessage(err)
+                  })
+                }
+              })
+            }
+            else{
+              ingredient.save();
+            }
+          });
+        }
+      })
+      .catch(err => {
+      console.log(err);
+      res.status(500).json({
+        error: err
+      });
+      });
+    
+    // console.log(recipe._id)
+    
+    // let ingredients = req.body.ingredient;
     
     // for (let i = 0; i <= ingredients.length; i++){
     //   let ingredient = new Ingredient({name: ingredients[i]}, {recipe: recipe._id})
+    //   console.log(ingredient);
+    //   if (Ingredient.find({name: `${ingredient[i]}`})){
+    //     Ingredient.findOneAndUpdate({
+    //       name: `${ingredient[i]}`}, 
+    //       {$push: {recipe: recipe._id}}, 
+    //       {new: true, useFindAndModify: false})
+    //     // .populate('recipe')
+    //     .exec((err) => {
+    //       if (err) {
+    //         return res.status(400).json({
+    //           error: errorHandler.getErrorMessage(err)
+    //         })
+    //       }
+    //     })
+    //   }
+    //   else ingredient.save().populate('recipe');
     // }
   
   //ПЛОХОЙ ВАРИАНТ
