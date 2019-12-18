@@ -121,6 +121,13 @@ app.post('/api/recipe/create', upload.single('image'), (req, res) => {
       error: err
     });
     }); 
+    return res.json('created');
+})
+
+//GET NUMBER RECIPES
+
+app.get('/api/recipes/articles_number', (req, res) => {
+  Recipe.countDocuments({}, (err, c) => {return res.json(c)});
 })
 
 
@@ -162,7 +169,12 @@ app.get('/api/recipes/article_by_id', (req,res) => {
 });
 
 //GET RECIPE BY INGREDIENTS
+app.get('/api/recipes/article_by_ingredients', (req,res) => {
+  
+  let ingredients = 
 
+  Ingredient.find
+})
 
 //========================
 //USERS
