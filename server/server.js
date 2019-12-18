@@ -68,6 +68,7 @@ const upload = multer({
 
 app.post('/api/recipe/create', upload.single('image'), (req, res) => {
 
+  console.log(req.body);
   Recipe.find({name: req.body.recipe}, function (err, docs) {
     if (docs.length)
       return res.status(400).json("Recipe already exist")
@@ -75,7 +76,7 @@ app.post('/api/recipe/create', upload.single('image'), (req, res) => {
   
   let recipe;
   let ingredientReq = req.body.ingredient.split(',');
-  console.log(ingredientReq);
+  // console.log(ingredientReq);
   if(req.file){
     recipe = new Recipe({
     name: req.body.name,
@@ -129,13 +130,15 @@ app.post('/api/recipe/create', upload.single('image'), (req, res) => {
         });
       }
     })
+    .then(result => {
+      res.status(201).json('created');
+    })
     .catch(err => {
     console.log(err);
     res.status(500).json({
       error: err
     });
     }); 
-    return res.json('created');
 })
 
 //GET NUMBER RECIPES
