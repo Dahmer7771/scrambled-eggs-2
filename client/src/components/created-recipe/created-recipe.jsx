@@ -63,11 +63,14 @@ class CreatedRecipe extends Component {
 
         if (ingredients) {
             ingredientsList = (
-                <ul>
+                <ul className="recipe-list row">
                     {
                         ingredients.split(",").map((item) => (
-                            <li key={item}>
+                            <li className="recipe-list-item" key={item}>
                                 {item}
+                                <button className="button-delete-ingredient material-icons md-18 btn btn-secondary btn-sm disabled">
+                                    close
+                                </button>
                             </li>
                         ))
                     }
