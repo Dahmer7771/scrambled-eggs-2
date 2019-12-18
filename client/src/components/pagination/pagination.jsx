@@ -7,33 +7,37 @@ class Pagination extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            recipes: null,
+            pagesCount: null,
         };
     }
 
     componentDidMount() {
-        // const {
-        //     getRecipesCount,
-        // } = this.props;
+        const {
+            getRecipesCount,
+            recipesPerPage,
+        } = this.props;
 
-        this.setState({
-            recipes: 2,
-        });
+        getRecipesCount()
+            .then((response) => {
+                const pagesCount = Math.ceil(response / recipesPerPage);
+                this.setState({
+                    pagesCount,
+                });
+            });
     }
 
     render() {
         const {
-            recipes,
+            pagesCount,
         } = this.state;
 
         const {
             onPageChange,
         } = this.props;
 
-        const pagesCount = Math.ceil(recipes / 12);
         const paginationRender = () => {
             const rendered = [];
-            for (let i = 0; i < pagesCount; i++) {
+            for (let i = 1; i <= pagesCount; i++) {
                 rendered.push(i);
             }
             return rendered;
@@ -51,18 +55,15 @@ class Pagination extends Component {
                             </li>
                             {
                                 renderedPagination.map((page) => {
-                                    const itemKey = page;
-                                    const itemLabel = page + 1;
-
                                     return (
                                         <li
-                                            onClick={() => onPageChange(itemLabel)}
-                                            key={itemKey}
+                                            onClick={() => onPageChange(page)}
+                                            key={page}
                                             className="page-item custom-page-item"
                                         >
-                                            <Link to={`/recipes/pages/${itemLabel}`}>
+                                            <Link to={`/recipes/page/${page}`}>
                                                 <div className="page-link ">
-                                                    {itemLabel}
+                                                    {page}
                                                 </div>
                                             </Link>
                                         </li>
@@ -81,7 +82,7 @@ class Pagination extends Component {
 }
 
 const mapMethodsToProps = (recipesAPI) => ({
-
+    getRecipesCount: recipesAPI.getRecipesCount,
 });
 
 export default withContext(mapMethodsToProps)(Pagination);

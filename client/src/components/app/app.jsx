@@ -22,8 +22,9 @@ class App extends Component {
         super(props);
         this.state = {
             recipesAPI: new RecipesAPI(),
-            selectedPage: 1,
+            currentPage: 1,
             searchText: "",
+            recipesPerPage: 4,
         };
     }
 
@@ -31,8 +32,7 @@ class App extends Component {
 
     onPageChange = (page) => {
         this.setState({
-            selectedPage: page,
-            searchText: "",
+            currentPage: page,
         });
     };
 
@@ -45,8 +45,9 @@ class App extends Component {
     render() {
         const {
             recipesAPI,
-            selectedPage,
+            currentPage,
             searchText,
+            recipesPerPage,
         } = this.state;
 
         return (
@@ -60,7 +61,7 @@ class App extends Component {
                             render={(props) => (
                                 <RecipesSection
                                     {...props}
-                                    page={selectedPage}
+                                    currentPage={currentPage}
                                     onPageChange={this.onPageChange}
                                     searchText={searchText}
                                 />
@@ -72,9 +73,22 @@ class App extends Component {
                             render={(props) => (
                                 <RecipesSection
                                     {...props}
-                                    page={selectedPage}
+                                    currentPage={currentPage}
                                     onPageChange={this.onPageChange}
                                     searchText={searchText}
+                                />
+                            )}
+                        />
+                        <Route
+                            exact
+                            path="/recipes/page/:page"
+                            render={(props) => (
+                                <RecipesSection
+                                    {...props}
+                                    currentPage={currentPage}
+                                    onPageChange={this.onPageChange}
+                                    searchText={searchText}
+                                    recipesPerPage={recipesPerPage}
                                 />
                             )}
                         />

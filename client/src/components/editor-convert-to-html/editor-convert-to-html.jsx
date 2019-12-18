@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import "./editor-convert-to-html.css";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-import { EditorState, convertToRaw, ContentState } from "draft-js";
+import { EditorState, ContentState } from "draft-js";
 import { Editor } from "react-draft-wysiwyg";
-import draftToHtml from "draftjs-to-html";
+// import draftToHtml from "draftjs-to-html";
 import htmlToDraft from "html-to-draftjs";
 
 class EditorConvertToHTML extends Component {

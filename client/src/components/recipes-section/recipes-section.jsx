@@ -20,15 +20,15 @@ class RecipesSection extends Component {
         this.renderRecipes();
     }
 
-    // componentDidUpdate(prevProps) {
-    //     const {
-    //         searchText,
-    //     } = this.props;
-    //
-    //     if (searchText !== prevProps.searchText) {
-    //         this.renderRecipes();
-    //     }
-    // }
+    componentDidUpdate(prevProps) {
+        const {
+            currentPage,
+        } = this.props;
+
+        if (currentPage !== prevProps.currentPage) {
+            this.renderRecipes();
+        }
+    }
 
     componentWillUnmount() {
         this.isMount = false;
@@ -36,22 +36,22 @@ class RecipesSection extends Component {
 
     renderRecipes = () => {
         const {
-            getAllRecipes,
-            // page,
+            getRecipesWithSkip,
+            currentPage,
+            recipesPerPage,
+            // match
         } = this.props;
 
         this.isMount = true;
-        getAllRecipes()
-            .then((recipes) => this.isMount && this.setState({ recipes }));
 
-        // const necessaryRecipesIndexes = page * 12;
-        // const necessaryRecipesStartIndex = necessaryRecipesIndexes - 12;
-        // const necessaryRecipesArray = [];
-        // for (let i = 0; i < 12; i++) {
-        //     const currentIndex = necessaryRecipesStartIndex + i;
-        //     if (!recipes[currentIndex]) break;
-        //     necessaryRecipesArray.push(recipes[currentIndex]);
-        // }
+        const skippedRecipesCount = (currentPage - 1) * recipesPerPage;
+        const recipesLimit = currentPage * recipesPerPage;
+
+        console.log("skippedRecipesCount", skippedRecipesCount);
+        console.log("recipesLimit", recipesLimit);
+
+        getRecipesWithSkip(skippedRecipesCount, recipesLimit)
+            .then((recipes) => this.isMount && this.setState({ recipes }));
     };
 
     onFilterChange = (field, order) => {
@@ -82,6 +82,7 @@ class RecipesSection extends Component {
         const {
             onPageChange,
             searchText,
+            recipesPerPage,
         } = this.props;
 
         if (recipes === null) return <Spinner />;
@@ -110,6 +111,7 @@ class RecipesSection extends Component {
                         })}
                     </div>
                     <Pagination
+                        recipesPerPage={recipesPerPage}
                         onPageChange={(page) => onPageChange(page)}
                     />
                 </div>
@@ -121,6 +123,7 @@ class RecipesSection extends Component {
 const mapMethodsToProps = (RecipesAPI) => ({
     getAllRecipes: RecipesAPI.getAllRecipes,
     getSortedRecipes: RecipesAPI.getSortedRecipes,
+    getRecipesWithSkip: RecipesAPI.getRecipesWithSkip,
 });
 
 export default withContext(mapMethodsToProps)(RecipesSection);
