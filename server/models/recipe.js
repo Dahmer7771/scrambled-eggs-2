@@ -9,8 +9,12 @@ const recipeSchema = mongoose.Schema({
     maxlength: 100
   },
   description: {
-    type: Array,
+    type: String,
     required: true
+  },
+  steps: {
+    type: String,
+    // required: true
   },
   category: {
     type: String
@@ -18,10 +22,6 @@ const recipeSchema = mongoose.Schema({
   ingredient: {
     type: Array
   }, 
-  // ingredient: [{
-  //   type: Schema.Types.ObjectId,
-  //   ref: 'Ingredient'
-  // }],
   mark: [{
     type: Schema.Types.ObjectId,
     ref: 'Mark'

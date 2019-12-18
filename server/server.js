@@ -74,6 +74,7 @@ app.post('/api/recipe/create', upload.single('image'), (req, res) => {
     recipe = new Recipe({
     name: req.body.name,
     description: req.body.description,
+    steps: req.body.steps,
     category: req.body.category,
     ingredient: req.body.ingredient,
     mark: req.body.mark,
@@ -120,8 +121,14 @@ app.post('/api/recipe/create', upload.single('image'), (req, res) => {
       error: err
     });
     }); 
+    return res.json('created');
 })
 
+//GET NUMBER RECIPES
+
+app.get('/api/recipes/articles_number', (req, res) => {
+  Recipe.countDocuments({}, (err, c) => {return res.json(c)});
+})
 
 
 //GET RECIPES
@@ -160,6 +167,20 @@ app.get('/api/recipes/article_by_id', (req,res) => {
   })
 
 });
+
+//GET RECIPE BY INGREDIENTS
+app.get('/api/recipes/article_by_ingredients', (req,res) => {
+  
+  let ingredients = req.body.ingredients;
+  console.log(ingredients);
+  Recipe.find({"ingredient": {$all: ingredients}}).exec((err, articlesIngredients) => {
+    if (err)
+      return res.status('400').json({
+        error: "Recipes not found"
+      });
+      return res.status(200).send(articlesIngredients)
+  })
+})
 
 //========================
 //USERS

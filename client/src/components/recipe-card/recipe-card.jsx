@@ -17,8 +17,6 @@ class RecipeCard extends Component {
             id,
         } = this.props;
 
-        const descriptionLabel = description[0];
-
         return (
             <Fade left cascade>
                 <div className="col-xl-3 col-lg-4 col-sm-6 col-12">
@@ -33,7 +31,7 @@ class RecipeCard extends Component {
                             <h5 className="card-title">{name}</h5>
                             <div className="module">
                                 <p className="card-text line-clamp">
-                                    {descriptionLabel}
+                                    {description}
                                 </p>
                             </div>
                             <Link to={`/recipes/${id}`}>
