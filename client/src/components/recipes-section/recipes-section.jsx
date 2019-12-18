@@ -3,7 +3,6 @@ import "./recipes-section.css";
 import RecipeCard from "../recipe-card/recipe-card";
 import Spinner from "../spinner/spinner";
 import withContext from "../hoc-helpers/withContext";
-import Pagination from "../pagination/pagination";
 import RecipesFilter from "../recipes-filter/recipes-filter";
 import Warning from "../warning/warning";
 
@@ -37,9 +36,6 @@ class RecipesSection extends Component {
     renderRecipes = () => {
         const {
             getAllRecipes,
-            getRecipesWithSkip,
-            currentPage,
-            recipesPerPage,
             // match
         } = this.props;
 
@@ -80,9 +76,7 @@ class RecipesSection extends Component {
         } = this.state;
 
         const {
-            onPageChange,
             searchText,
-            recipesPerPage,
         } = this.props;
 
         if (recipes === null) return <Spinner />;

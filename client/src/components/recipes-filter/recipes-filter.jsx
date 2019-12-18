@@ -34,7 +34,7 @@ class RecipesFilter extends Component {
                                 <li className="nav-item dropdown">
                                     <a
                                         className="nav-link dropdown-toggle"
-                                        href="#"
+                                        href="qwe"
                                         id="navbarDropdown"
                                         role="button"
                                         data-toggle="dropdown"
