@@ -1,5 +1,6 @@
+// eslint-disable-next-line no-return-await
 export default class RecipesAPI {
-    _baseUrl = "http://192.168.1.3:3000/api";
+    _baseUrl = "http://192.168.0.101:3000/api";
 
     getResource = async (url) => {
         const res = await fetch(`${this._baseUrl}${url}`);
@@ -9,44 +10,37 @@ export default class RecipesAPI {
                 + `received ${res.status}`);
         }
 
-        const body = await res.json();
-        return body;
+        return await res.json();
     };
 
-    getAllRecipes = async () => {
-        const res = await this.getResource(`/recipes/articles`);
-        return res;
-    };
+    getAllRecipes = async () => (
+        await this.getResource(`/recipes/articles`)
+    );
 
-    getRecipeById = async (id) => {
-        const res = await this.getResource(`/recipes/article_by_id?id=${id}`);
-        return res;
-    };
+    getRecipeById = async (id) => (
+        await this.getResource(`/recipes/article_by_id?id=${id}`)
+    );
 
-    getSortedRecipes = async (field, order) => {
-        const res = await this.getResource(`/recipes/articles?sortBy=${field}&order=${order}&limit=30`);
-        return res;
-    };
+    getSortedRecipes = async (field, order) => (
+        await this.getResource(`/recipes/articles?sortBy=${field}&order=${order}&limit=30`)
+    );
 
-    getRecipesWithSkip = async (skip, limit) => {
-        const res = await this.getResource(`/recipes/articles?skip=${skip}&limit=${limit}`);
-        return res;
-    };
+    getRecipesWithSkip = async (skip, limit) => (
+        await this.getResource(`/recipes/articles?skip=${skip}&limit=${limit}`)
+    );
 
-    getRecipesCount = async () => {
-        const res = await this.getResource(`/recipes/articles_number`);
-        return res;
-    };
+    getRecipesCount = async () => (
+        await this.getResource(`/recipes/articles_number`)
+    );
 
     postForm = async (url, formSelector) => {
         const formData = new FormData(document.querySelector(formSelector));
 
-        const body = await fetch(url, {
-            method: "POST", // 'GET', 'PUT', 'DELETE', etc.
-            body: formData, // a FormData will automatically set the 'Content-Type'
+        return await fetch(url, {
+            method: "POST",
+            body: formData,
         })
             .then((response) => response.json())
             .catch((error) => console.error(error));
-        return body;
     };
 }

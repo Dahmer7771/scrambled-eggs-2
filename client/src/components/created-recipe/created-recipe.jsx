@@ -47,9 +47,6 @@ class CreatedRecipe extends Component {
         event.preventDefault();
         const { postForm } = this.props;
 
-        const form = event.target;
-        console.log(form);
-
         postForm("http://192.168.1.3:3000/api/recipe/create", "#recipe-form")
             .then((data) => console.log(data));
     };
@@ -68,7 +65,7 @@ class CreatedRecipe extends Component {
                         ingredients.split(",").map((item) => (
                             <li className="recipe-list-item" key={item}>
                                 {item}
-                                <button className="button-delete-ingredient material-icons md-18 btn btn-secondary btn-sm disabled">
+                                <button type="button" className="button-delete-ingredient material-icons md-18 btn btn-secondary btn-sm disabled">
                                     close
                                 </button>
                             </li>
