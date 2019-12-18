@@ -29,7 +29,7 @@ class EditorConvertToHTML extends Component {
     render() {
         const { editorState } = this.state;
         return (
-            <div>
+            <>
                 <div className="editor-convert-to-html">
                     <Editor
                         editorState={editorState}
@@ -38,16 +38,15 @@ class EditorConvertToHTML extends Component {
                         onEditorStateChange={this.onEditorStateChange}
                     />
                 </div>
-                <textarea
-                    name="steps"
-                    id="recipe-steps"
-                    disabled
-                    style={{
-                        width: "100%",
-                    }}
+                <input
+                    readOnly
+                    style={{ width: "100%", display: "none" }}
                     value={draftToHtml(convertToRaw(editorState.getCurrentContent()))}
+                    type="text"
+                    name="steps"
+                    className="form-control"
                 />
-            </div>
+            </>
         );
     }
 }

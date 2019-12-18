@@ -37,4 +37,16 @@ export default class RecipesAPI {
         const res = await this.getResource(`/recipes/articles_number`);
         return res;
     };
+
+    postForm = async (url, formSelector) => {
+        const formData = new FormData(document.querySelector(formSelector));
+
+        const body = await fetch(url, {
+            method: "POST", // 'GET', 'PUT', 'DELETE', etc.
+            body: formData, // a FormData will automatically set the 'Content-Type'
+        })
+            .then((response) => response.json())
+            .catch((error) => console.error(error));
+        return body;
+    };
 }

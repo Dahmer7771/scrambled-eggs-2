@@ -1,10 +1,12 @@
-import React, { Component } from "react";
+import React, { Component, createRef } from "react";
+import toHtml from "string-to-html";
 import "./recipe-info.css";
 
 class RecipeInfo extends Component {
     constructor(props) {
         super(props);
         this.state = {};
+        this.stepsRef = createRef();
     }
 
     render() {
@@ -18,6 +20,11 @@ class RecipeInfo extends Component {
                 created,
             },
         } = this.props;
+
+        if (this.stepsRef.current) {
+            this.stepsRef.current.innerHTML = steps;
+            console.log(this.stepsRef.current);
+        }
 
         const creationDateRegExp = /([0-9][0-9][0-9][0-9])-([0-1][0-9])-([0-3][0-9])/g;
         const creationDate = created.match(creationDateRegExp).toString();
@@ -65,7 +72,7 @@ class RecipeInfo extends Component {
                             <h6 className="cooking-instruction__title">
                                 Инструкция приготовления:
                             </h6>
-                            {steps}
+                            <div ref={this.stepsRef} id="recipe-steps" />
                         </div>
                     </div>
                 </div>

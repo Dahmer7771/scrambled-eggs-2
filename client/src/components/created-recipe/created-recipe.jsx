@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./created-recipe.css";
 import EditorConvertToHTML from "../editor-convert-to-html/editor-convert-to-html";
+import withContext from "../hoc-helpers/withContext";
 
 class CreatedRecipe extends Component {
     constructor(props) {
@@ -42,6 +43,17 @@ class CreatedRecipe extends Component {
         });
     };
 
+    onSubmit = (event) => {
+        event.preventDefault();
+        const { postForm } = this.props;
+
+        const form = event.target;
+        console.log(form);
+
+        postForm("http://192.168.1.3:3000/api/recipe/create", "#recipe-form")
+            .then((data) => console.log(data));
+    };
+
     render() {
         const {
             ingredients,
@@ -65,7 +77,7 @@ class CreatedRecipe extends Component {
 
         return (
             <div className="container">
-                <form className="created_recipe">
+                <form method="POST" className="created_recipe" id="recipe-form" onSubmit={this.onSubmit}>
                     <div className="form-group">
                         <label htmlFor="recipe-name">Название рецепта:</label>
                         <input type="text" name="name" className="form-control" id="recipe-name" />
@@ -117,4 +129,8 @@ class CreatedRecipe extends Component {
     }
 }
 
-export default CreatedRecipe;
+const mapMethodsToProps = (RecipesAPI) => ({
+    postForm: RecipesAPI.postForm,
+});
+
+export default withContext(mapMethodsToProps)(CreatedRecipe);
