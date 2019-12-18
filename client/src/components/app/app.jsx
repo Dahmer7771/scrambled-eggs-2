@@ -22,8 +22,9 @@ class App extends Component {
         super(props);
         this.state = {
             recipesAPI: new RecipesAPI(),
-            selectedPage: 1,
+            currentPage: 1,
             searchText: "",
+            recipesPerPage: 4,
         };
     }
 
@@ -31,13 +32,11 @@ class App extends Component {
 
     onPageChange = (page) => {
         this.setState({
-            selectedPage: page,
-            searchText: "",
+            currentPage: page,
         });
     };
 
     onSearchInputChange = (searchText) => {
-        console.log(searchText);
         this.setState({
             searchText,
         });
@@ -46,40 +45,54 @@ class App extends Component {
     render() {
         const {
             recipesAPI,
-            selectedPage,
+            currentPage,
             searchText,
+            recipesPerPage,
         } = this.state;
-
-        const WrappedRecipeSection = (props) => (
-            <RecipesSection
-                {...props}
-                page={selectedPage}
-                onPageChange={this.onPageChange}
-                searchText={searchText}
-            />
-        );
 
         return (
             <RecipesProvider value={recipesAPI}>
                 <div>
                     <Header onSearchInputChange={this.onSearchInputChange} />
                     <Switch>
-                        <Route exact path="/" component={WrappedRecipeSection} />
-                        {/* <Route exact path="/recipes" component={WrappedRecipeSection} /> */}
+                        <Route
+                            exact
+                            path="/"
+                            render={(props) => (
+                                <RecipesSection
+                                    {...props}
+                                    currentPage={currentPage}
+                                    onPageChange={this.onPageChange}
+                                    searchText={searchText}
+                                />
+                            )}
+                        />
                         <Route
                             exact
                             path="/recipes"
                             render={(props) => (
                                 <RecipesSection
                                     {...props}
-                                    page={selectedPage}
+                                    currentPage={currentPage}
                                     onPageChange={this.onPageChange}
                                     searchText={searchText}
                                 />
                             )}
                         />
+                        <Route
+                            exact
+                            path="/recipes/page/:page"
+                            render={(props) => (
+                                <RecipesSection
+                                    {...props}
+                                    currentPage={currentPage}
+                                    onPageChange={this.onPageChange}
+                                    searchText={searchText}
+                                    recipesPerPage={recipesPerPage}
+                                />
+                            )}
+                        />
                         <Route exact path="/recipes/:id" component={RecipesItemSection} />
-                        <Route path="/recipes/pages/:page" component={WrappedRecipeSection} />
                         <Route path="/autorization" component={Autorization} />
                         <Route path="/search" component={SearchSection} />
                         <Route path="/users" component={Users} />

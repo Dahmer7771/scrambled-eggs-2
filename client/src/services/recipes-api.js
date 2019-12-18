@@ -27,4 +27,14 @@ export default class RecipesAPI {
         const res = await this.getResource(`/recipes/articles?sortBy=${field}&order=${order}&limit=30`);
         return res;
     };
+
+    getRecipesWithSkip = async (skip, limit) => {
+        const res = await this.getResource(`/recipes/articles?skip=${skip}&limit=${limit}`);
+        return res;
+    };
+
+    getRecipesCount = async () => {
+        // const res = await this.getResource(`/recipes/articles`);
+        return 12;
+    };
 }
