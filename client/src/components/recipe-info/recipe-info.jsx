@@ -13,13 +13,12 @@ class RecipeInfo extends Component {
                 _id,
                 name,
                 description,
+                steps,
                 category,
                 created,
             },
         } = this.props;
 
-        const mainDescription = description[0];
-        const cookingSteps = description.slice(1);
         const creationDateRegExp = /([0-9][0-9][0-9][0-9])-([0-1][0-9])-([0-3][0-9])/g;
         const creationDate = created.match(creationDateRegExp).toString();
 
@@ -51,7 +50,7 @@ class RecipeInfo extends Component {
                                 {name}
                             </h4>
                             <p className="card-text card-description">
-                                {mainDescription}
+                                {description}
                             </p>
                             <p className="card-text d-flex justify-content-between">
                                 <small className="text-muted">
@@ -66,11 +65,7 @@ class RecipeInfo extends Component {
                             <h6 className="cooking-instruction__title">
                                 Инструкция приготовления:
                             </h6>
-                            {cookingSteps.map((step) => (
-                                <p className="cooking-step">
-                                    {step}
-                                </p>
-                            ))}
+                            {steps}
                         </div>
                     </div>
                 </div>

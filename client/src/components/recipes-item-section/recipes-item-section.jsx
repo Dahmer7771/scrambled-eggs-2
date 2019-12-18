@@ -42,7 +42,7 @@ class RecipesItemSection extends Component {
 
         if (error) {
             return (
-                <div className="container" style={{ textAlign: "center", margin: "20px auto" }}>
+                <div className="container">
                     <h1>Recipe does not exist!</h1>
                 </div>
             );

@@ -51,7 +51,8 @@ class RecipesSection extends Component {
         console.log("recipesLimit", recipesLimit);
 
         getRecipesWithSkip(skippedRecipesCount, recipesLimit)
-            .then((recipes) => this.isMount && this.setState({ recipes }));
+            .then((recipes) => this.isMount && this.setState({ recipes }))
+            .then(console.log(this.state.recipes));
     };
 
     onFilterChange = (field, order) => {
