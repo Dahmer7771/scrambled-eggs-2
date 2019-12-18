@@ -47,7 +47,7 @@ class CreatedRecipe extends Component {
         event.preventDefault();
         const { postForm } = this.props;
 
-        postForm("http://192.168.1.3:3000/api/recipe/create", "#recipe-form")
+        postForm("#recipe-form")
             .then((data) => console.log(data));
     };
 

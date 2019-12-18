@@ -33,13 +33,14 @@ export default class RecipesAPI {
         await this.getResource(`/recipes/articles_number`)
     );
 
-    postForm = async (url, formSelector) => {
+    postForm = async (formSelector) => {
         const formData = new FormData(document.querySelector(formSelector));
 
-        return await fetch(url, {
-            method: "POST",
-            body: formData,
-        })
+        return await fetch(`${this._baseUrl}/recipe/create`,
+            {
+                method: "POST",
+                body: formData,
+            })
             .then((response) => response.json())
             .catch((error) => console.error(error));
     };
