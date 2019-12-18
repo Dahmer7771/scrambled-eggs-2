@@ -1,5 +1,8 @@
-.social a{
-    text-decoration: none;
+.social-network a{
     color: #d0d0d0;
     margin-right: 10px;
+}
+
+.social-network a:hover{
+    color: #fbfbfb;
 }

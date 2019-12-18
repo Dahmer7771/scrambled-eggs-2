@@ -14,7 +14,7 @@ class Footer extends Component {
                 <div className="bg-primary">
                     <div className="container">
 
-                        <div className="row py-4 d-flex align-items-center">
+                        <div className="social-network row py-4 d-flex align-items-center">
 
                             <div className="col-md-6 col-lg-5 text-center text-md-left mb-4 mb-md-0">
                                 <h6 className="mb-0">Свяжитесь с нами в социальных сетях!</h6>
@@ -62,13 +62,17 @@ class Footer extends Component {
 
                         <div className="social col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
 
-                            <h6 className="text-uppercase font-weight-bold">Полезные ссылки</h6>
+                            <h6 className="text-uppercase font-weight-bold">Дети солнца</h6>
                             <hr className="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style={{ width: "60px" }} />
-                            <br />
-                            <a href="/" className="zmdi zmdi-vk zmdi-hc-2x" />
-                            <a href="/" className="zmdi zmdi-twitter zmdi-hc-2x" />
-                            <a href="/" className="zmdi zmdi-facebook zmdi-hc-2x" />
-                            <a href="/" className="zmdi zmdi-instagram zmdi-hc-2x" />
+                            <p>
+                                <i title="Dubstep" className="zmdi zmdi-headset-mic"> Никитка Голуб</i>
+                            </p>
+                            <p>
+                                <i title="Не чувствует запахов" className="zmdi zmdi-flower-alt"> Дениска Дяченко</i>
+                            </p>
+                            <p>
+                                <i title="Некрасивое лицо" className="zmdi zmdi-face"> Валерка Варчак</i>
+                            </p>
                         </div>
 
                         <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
