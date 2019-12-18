@@ -171,9 +171,14 @@ app.get('/api/recipes/article_by_id', (req,res) => {
 //GET RECIPE BY INGREDIENTS
 app.get('/api/recipes/article_by_ingredients', (req,res) => {
   
-  let ingredients = 
-
-  Ingredient.find
+  let ingredients = req.body.ingredients;
+  Recipe.find({"ingredient": {$all: ingredients}}).exec((err, articlesIngredients) => {
+    if (err)
+      return res.status('400').json({
+        error: "Recipes not found"
+      });
+      return res.status(200).send(articlesIngredients)
+  })
 })
 
 //========================
