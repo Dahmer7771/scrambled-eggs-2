@@ -14,7 +14,7 @@ const recipeSchema = mongoose.Schema({
   },
   steps: {
     type: String,
-    // required: true
+    required: true
   },
   category: {
     type: String
