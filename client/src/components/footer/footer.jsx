@@ -54,24 +54,34 @@ class Footer extends Component {
                             <h6 className="text-uppercase font-weight-bold">Название компании</h6>
                             <hr className="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style={{ width: "60px" }} />
                             <p>
-                                   Сделаем проект за неделю в течении трёх месяцев!
-                                    Проект ІН64-8 группа 5.
+                                Сделаем проект за неделю в течении трёх месяцев!
+                                Проект ІН64-8 группа 5.
                             </p>
 
                         </div>
 
                         <div className="social col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
 
-                            <h6 className="text-uppercase font-weight-bold">Дети солнца</h6>
+                            <h6 className="text-uppercase font-weight-bold">
+                                Дети солнца
+                                {"  "}
+                                <i
+                                    style={{
+                                        fontSize: "18px",
+                                        fontWeight: "400",
+                                    }}
+                                    className="fab fa-accessible-icon"
+                                />
+                            </h6>
                             <hr className="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style={{ width: "60px" }} />
                             <p>
-                                <i title="Dubstep" className="zmdi zmdi-headset-mic"> Никитка Голуб</i>
+                                <i title="Dubstep" className="fas fa-headphones-alt"> Никитка Голуб</i>
                             </p>
                             <p>
-                                <i title="Не чувствует запахов" className="zmdi zmdi-flower-alt"> Дениска Дяченко</i>
+                                <i title="Не чувствует запахов" className="fas fa-poo"> Дениска Дяченко</i>
                             </p>
                             <p>
-                                <i title="Некрасивое лицо" className="zmdi zmdi-face"> Валерка Варчак</i>
+                                <i title="Некрасивое лицо" className="fas fa-grimace"> Валерка Варчак</i>
                             </p>
                         </div>
 
