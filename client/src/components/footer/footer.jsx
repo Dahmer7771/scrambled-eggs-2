@@ -60,42 +60,15 @@ class Footer extends Component {
 
                         </div>
 
-                        <div className="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-
-                            <h6 className="text-uppercase font-weight-bold">Продукт</h6>
-                            <hr className="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style={{ width: "60px" }} />
-                            <p>
-                                <a href="/">MDBootstrap</a>
-                            </p>
-                            <p>
-                                <a href="/">MDWordPress</a>
-                            </p>
-                            <p>
-                                <a href="/">BrandFlow</a>
-                            </p>
-                            <p>
-                                <a href="/">Bootstrap Angular</a>
-                            </p>
-
-                        </div>
-
-                        <div className="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                        <div className="social col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
 
                             <h6 className="text-uppercase font-weight-bold">Полезные ссылки</h6>
                             <hr className="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style={{ width: "60px" }} />
-                            <p>
-                                <a href="/">Your Account</a>
-                            </p>
-                            <p>
-                                <a href="/">Become an Affiliate</a>
-                            </p>
-                            <p>
-                                <a href="/">Shipping Rates</a>
-                            </p>
-                            <p>
-                                <a href="/">Help</a>
-                            </p>
-
+                            <br />
+                            <a href="/" className="zmdi zmdi-vk zmdi-hc-2x" />
+                            <a href="/" className="zmdi zmdi-twitter zmdi-hc-2x" />
+                            <a href="/" className="zmdi zmdi-facebook zmdi-hc-2x" />
+                            <a href="/" className="zmdi zmdi-instagram zmdi-hc-2x" />
                         </div>
 
                         <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
