@@ -1,6 +1,5 @@
-// eslint-disable-next-line no-return-await
 export default class RecipesAPI {
-    _baseUrl = "http://192.168.0.101:3000/api";
+    _baseUrl = "http://192.168.1.7:3000/api";
 
     getResource = async (url) => {
         const res = await fetch(`${this._baseUrl}${url}`);
@@ -10,7 +9,8 @@ export default class RecipesAPI {
                 + `received ${res.status}`);
         }
 
-        return await res.json();
+        const body = await res.json();
+        return body;
     };
 
     getAllRecipes = async () => (
@@ -36,9 +36,9 @@ export default class RecipesAPI {
     postForm = async (url, formSelector) => {
         const formData = new FormData(document.querySelector(formSelector));
 
-        return await fetch(url, {
-            method: "POST",
-            body: formData,
+        const body = await fetch(url, {
+            method: "POST", // 'GET', 'PUT', 'DELETE', etc.
+            body: formData, // a FormData will automatically set the 'Content-Type'
         })
             .then((response) => response.json())
             .catch((error) => console.error(error));
