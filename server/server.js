@@ -68,27 +68,41 @@ const upload = multer({
 
 app.post('/api/recipe/create', upload.single('image'), (req, res) => {
 
+  Recipe.find({name: req.body.recipe}, function (err, docs) {
+    if (docs.length)
+      return res.status(400).json("Recipe already exist")
+  });
+  
   let recipe;
-
+  let ingredientReq = req.body.ingredient.split(',');
+  console.log(ingredientReq);
   if(req.file){
     recipe = new Recipe({
     name: req.body.name,
     description: req.body.description,
     steps: req.body.steps,
     category: req.body.category,
-    ingredient: req.body.ingredient,
+    ingredient: ingredientReq,
     mark: req.body.mark,
     createdBy: req.body.createdBy, 
     image: req.file.path
   });}
   else {
-    recipe = new Recipe(req.body);
+    recipe = new Recipe({
+      name: req.body.name,
+      description: req.body.description,
+      steps: req.body.steps,
+      category: req.body.category,
+      ingredient: ingredientReq,
+      mark: req.body.mark,
+      createdBy: req.body.createdBy, 
+    });
   }
 
   recipe
     .save()
     .then( () => {
-      let ingredients = req.body.ingredient;
+      let ingredients = ingredientReq;
   
       for (let i = 0; i < ingredients.length; i++){
         let ingredient = new Ingredient({name: ingredients[i], recipe: recipe._id})
@@ -139,7 +153,7 @@ app.get('/api/recipes/articles', (req, res) => {
   let order = req.query.order ? req.query.order : 'asc';
   let sortBy = req.query.sortBy ? req.query.sortBy : "_id";
   let limit = req.query.limit ? parseInt(req.query.limit) : 100;
-  let skip = parseInt(req.body.skip);
+  let skip = parseInt(req.query.skip);
 
   Recipe.
   find().
@@ -172,13 +186,23 @@ app.get('/api/recipes/article_by_id', (req,res) => {
 app.get('/api/recipes/article_by_ingredients', (req,res) => {
   
   let ingredients = req.body.ingredients;
-  console.log(ingredients);
   Recipe.find({"ingredient": {$all: ingredients}}).exec((err, articlesIngredients) => {
     if (err)
       return res.status('400').json({
         error: "Recipes not found"
       });
       return res.status(200).send(articlesIngredients)
+  })
+})
+
+//GET INGREDIENTS
+app.get('/api/recipes/ingredients', (req, res) => {
+
+  Ingredient.
+  find().
+  exec((err,ingr)=>{
+    if(err) return res.status(400).send(err);
+    res.send(ingr);
   })
 })
 
