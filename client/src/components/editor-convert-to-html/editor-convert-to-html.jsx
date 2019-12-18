@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import "./editor-convert-to-html.css";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-import { EditorState, ContentState } from "draft-js";
+import { EditorState, convertToRaw, ContentState } from "draft-js";
 import { Editor } from "react-draft-wysiwyg";
-// import draftToHtml from "draftjs-to-html";
+import draftToHtml from "draftjs-to-html";
 import htmlToDraft from "html-to-draftjs";
 
 class EditorConvertToHTML extends Component {
@@ -29,12 +29,23 @@ class EditorConvertToHTML extends Component {
     render() {
         const { editorState } = this.state;
         return (
-            <div className="editor-convert-to-html">
-                <Editor
-                    editorState={editorState}
-                    wrapperClassName="demo-wrapper"
-                    editorClassName="demo-editor"
-                    onEditorStateChange={this.onEditorStateChange}
+            <div>
+                <div className="editor-convert-to-html">
+                    <Editor
+                        editorState={editorState}
+                        wrapperClassName="demo-wrapper"
+                        editorClassName="demo-editor"
+                        onEditorStateChange={this.onEditorStateChange}
+                    />
+                </div>
+                <textarea
+                    name="steps"
+                    id="recipe-steps"
+                    disabled
+                    style={{
+                        width: "100%",
+                    }}
+                    value={draftToHtml(convertToRaw(editorState.getCurrentContent()))}
                 />
             </div>
         );

@@ -36,6 +36,7 @@ class RecipesSection extends Component {
 
     renderRecipes = () => {
         const {
+            getAllRecipes,
             getRecipesWithSkip,
             currentPage,
             recipesPerPage,
@@ -44,15 +45,13 @@ class RecipesSection extends Component {
 
         this.isMount = true;
 
-        const skippedRecipesCount = (currentPage - 1) * recipesPerPage;
-        const recipesLimit = currentPage * recipesPerPage;
+        // const skippedRecipesCount = (currentPage - 1) * recipesPerPage;
 
-        console.log("skippedRecipesCount", skippedRecipesCount);
-        console.log("recipesLimit", recipesLimit);
+        getAllRecipes()
+            .then((recipes) => this.isMount && this.setState({ recipes }));
 
-        getRecipesWithSkip(skippedRecipesCount, recipesLimit)
-            .then((recipes) => this.isMount && this.setState({ recipes }))
-            .then(console.log(this.state.recipes));
+        // getRecipesWithSkip(skippedRecipesCount, recipesPerPage)
+        //     .then((recipes) => this.isMount && this.setState({ recipes }));
     };
 
     onFilterChange = (field, order) => {
@@ -111,10 +110,10 @@ class RecipesSection extends Component {
                             );
                         })}
                     </div>
-                    <Pagination
-                        recipesPerPage={recipesPerPage}
-                        onPageChange={(page) => onPageChange(page)}
-                    />
+                    {/* <Pagination */}
+                    {/*    recipesPerPage={recipesPerPage} */}
+                    {/*    onPageChange={(page) => onPageChange(page)} */}
+                    {/* /> */}
                 </div>
             </div>
         );
