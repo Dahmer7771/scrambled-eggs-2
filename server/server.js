@@ -11,8 +11,18 @@ const fs = require('fs');
 const path = require('path');
 const mongoose = require('mongoose');
 const async = require('async');
+const csp = require('content-security-policy');
 
 const app = express();
+const cspPolicy = {
+  'report-uri': '/reporting',
+  'default-src': csp.SRC_NONE,
+  'script-src': [ csp.SRC_SELF, csp.SRC_DATA ]
+};
+const globalCSP = csp.getCSP(csp.STARTER_OPTIONS);
+const localCSP = csp.getCSP(cspPolicy);
+app.use(localCSP);
+
 require('dotenv').config();
 
 mongoose.Promise = global.Promise;
@@ -25,7 +35,6 @@ app.use(cookieParser());
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  res.header("Content-Security-Policy", "*");
   next();
 });
 
