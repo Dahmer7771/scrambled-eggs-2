@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, createRef } from "react";
 import "./created-recipe.css";
 import EditorConvertToHTML from "../editor-convert-to-html/editor-convert-to-html";
 import withContext from "../hoc-helpers/withContext";
@@ -6,6 +6,7 @@ import withContext from "../hoc-helpers/withContext";
 class CreatedRecipe extends Component {
     constructor(props) {
         super(props);
+        this.createRecipeForm = createRef();
         this.state = {
             term: "",
             ingredients: "",
@@ -47,11 +48,9 @@ class CreatedRecipe extends Component {
         event.preventDefault();
         const { postForm } = this.props;
 
-        const form = event.target;
-        console.log(form);
-
-        postForm("http://192.168.1.3:3000/api/recipe/create", "#recipe-form")
-            .then((data) => console.log(data));
+        postForm("#recipe-form")
+            .then((data) => console.log(data))
+            .then(this.createRecipeForm.current.reset());
     };
 
     render() {
@@ -64,23 +63,21 @@ class CreatedRecipe extends Component {
         if (ingredients) {
             ingredientsList = (
                 <ul className="recipe-list row">
-                    {
-                        ingredients.split(",").map((item) => (
-                            <li className="recipe-list-item" key={item}>
-                                {item}
-                                <button className="button-delete-ingredient material-icons md-18 btn btn-secondary btn-sm disabled">
+                    {ingredients.split(",").map((item) => (
+                        <li className="recipe-list-item" key={item}>
+                            {item}
+                            <button type="button" className="button-delete-ingredient material-icons md-18 btn btn-secondary btn-sm disabled">
                                     close
-                                </button>
-                            </li>
-                        ))
-                    }
+                            </button>
+                        </li>
+                    ))}
                 </ul>
             );
         }
 
         return (
             <div className="container">
-                <form method="POST" className="created_recipe" id="recipe-form" onSubmit={this.onSubmit}>
+                <form ref={this.createRecipeForm} method="POST" className="created_recipe" id="recipe-form" onSubmit={this.onSubmit}>
                     <div className="form-group">
                         <label htmlFor="recipe-name">Название рецепта:</label>
                         <input type="text" name="name" className="form-control" id="recipe-name" />

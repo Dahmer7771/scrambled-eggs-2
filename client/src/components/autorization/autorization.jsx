@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./autorization.css";
 import Zoom from "react-reveal/Zoom";
-import formValidation from "../../helpers/validation";
+import formValidation from "../../helpers/autorizationValidation";
 
 class Autorization extends Component {
     constructor(props) {
@@ -12,6 +12,8 @@ class Autorization extends Component {
 
             isLoginActive: true,
             isRegistrationActive: false,
+
+            error: false,
 
             inputValues: {
                 usernameLogin: "",
@@ -88,6 +90,7 @@ class Autorization extends Component {
             errorBorder,
             errorVisibility,
             inputValues,
+            error,
         } = this.state;
 
         const isValid = formValidation(name, value);
@@ -95,6 +98,7 @@ class Autorization extends Component {
         if (isValid.status === "success") {
             if (name === "passwordConfirmRegistration" && value !== inputValues.passwordRegistration) {
                 this.setState({
+                    error: true,
                     errorMessage: {
                         ...errorMessage,
                         [name]: "passwords does not match",
@@ -115,6 +119,7 @@ class Autorization extends Component {
                 return;
             }
             this.setState({
+                error: false,
                 inputValues: {
                     ...inputValues,
                     [name]: value,
@@ -138,6 +143,7 @@ class Autorization extends Component {
             });
         } else {
             this.setState({
+                error: true,
                 errorMessage: {
                     ...errorMessage,
                     [name]: isValid.error,

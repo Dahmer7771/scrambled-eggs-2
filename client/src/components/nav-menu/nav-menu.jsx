@@ -12,7 +12,7 @@ class NavMenu extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            userRole: "admin",
+            userRole: "simpleUser",
             simpleUser: SIMPLE_USER,
             admin: ADMIN,
         };

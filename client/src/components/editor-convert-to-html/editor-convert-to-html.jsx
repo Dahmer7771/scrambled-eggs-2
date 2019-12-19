@@ -9,7 +9,7 @@ import htmlToDraft from "html-to-draftjs";
 class EditorConvertToHTML extends Component {
     constructor(props) {
         super(props);
-        const html = "<p>Hey this <strong>editor</strong> rocks 😀</p>";
+        const html = "<p>Опишите приготовление</p>";
         const contentBlock = htmlToDraft(html);
         if (contentBlock) {
             const contentState = ContentState.createFromBlockArray(contentBlock.contentBlocks);

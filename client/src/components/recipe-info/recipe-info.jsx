@@ -9,25 +9,37 @@ class RecipeInfo extends Component {
         this.stepsRef = createRef();
     }
 
+    componentDidMount() {
+        const {
+            recipe: {
+                steps,
+            },
+        } = this.props;
+
+        if (this.stepsRef.current) {
+            this.stepsRef.current.innerHTML = steps;
+        }
+    }
+
     render() {
         const {
             recipe: {
                 _id,
                 name,
                 description,
-                steps,
                 category,
                 created,
+                ingredient,
             },
         } = this.props;
 
-        if (this.stepsRef.current) {
-            this.stepsRef.current.innerHTML = steps;
-            console.log(this.stepsRef.current);
-        }
-
         const creationDateRegExp = /([0-9][0-9][0-9][0-9])-([0-1][0-9])-([0-3][0-9])/g;
         const creationDate = created.match(creationDateRegExp).toString();
+        const ingredients = ingredient.map((item) => (
+            <li className="list-group-item">
+                {item}
+            </li>
+        ));
 
         return (
             <div className="card recipes-item-section">
@@ -43,11 +55,7 @@ class RecipeInfo extends Component {
                             Ингредиенты:
                         </h6>
                         <ul className="list-group list-group-flush">
-                            <li className="list-group-item">Cras justo odio</li>
-                            <li className="list-group-item">Dapibus ac facilisis in</li>
-                            <li className="list-group-item">Morbi leo risus</li>
-                            <li className="list-group-item">Porta ac consectetur ac</li>
-                            <li className="list-group-item">Vestibulum at eros</li>
+                            {ingredients}
                         </ul>
                     </div>
 
