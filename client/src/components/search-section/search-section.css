@@ -9,3 +9,11 @@
 .search-section ul .list-item__label {
     flex-grow: 1;
 }
+
+.react-dropdown-select {
+    height: auto;
+}
+
+.search-input > div {
+    flex-wrap: nowrap;
+}

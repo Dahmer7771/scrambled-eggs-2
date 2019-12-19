@@ -46,9 +46,9 @@ class CreatedRecipe extends Component {
 
     onSubmit = (event) => {
         event.preventDefault();
-        const { postForm } = this.props;
+        const { postRecipe } = this.props;
 
-        postForm("#recipe-form")
+        postRecipe("#recipe-form")
             .then((data) => console.log(data))
             .then(this.createRecipeForm.current.reset());
     };
@@ -130,7 +130,7 @@ class CreatedRecipe extends Component {
 }
 
 const mapMethodsToProps = (RecipesAPI) => ({
-    postForm: RecipesAPI.postForm,
+    postRecipe: RecipesAPI.postRecipe,
 });
 
 export default withContext(mapMethodsToProps)(CreatedRecipe);
