@@ -93,13 +93,16 @@ class RecipesSection extends Component {
                     <div className="row">
                         {warning}
                         {searchedRecipes.map((item) => {
-                            const { _id, name, description } = item;
+                            const {
+                                _id, name, description, image,
+                            } = item;
                             return (
                                 <RecipeCard
                                     key={_id}
                                     id={_id}
                                     name={name}
                                     description={description}
+                                    image={image}
                                 />
                             );
                         })}

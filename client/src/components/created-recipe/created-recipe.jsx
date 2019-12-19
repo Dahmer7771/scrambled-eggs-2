@@ -119,7 +119,7 @@ class CreatedRecipe extends Component {
                     {ingredientsList}
                     <div className="form-group">
                         <label htmlFor="recipe-file">Фото</label>
-                        <input type="file" name="file" className="form-control-file" id="recipe-file" />
+                        <input type="file" name="image" className="form-control-file" id="recipe-file" />
                     </div>
                     <EditorConvertToHTML />
                     <input className="btn btn-primary" type="submit" value="Submit" />

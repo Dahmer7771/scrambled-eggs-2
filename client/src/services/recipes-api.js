@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-return-await
 export default class RecipesAPI {
-    _baseUrl = "http://192.168.0.101:3000/api";
+    _baseUrl = "http://192.168.137.84:3000/api";
 
     getResource = async (url) => {
         const res = await fetch(`${this._baseUrl}${url}`);
@@ -22,7 +22,7 @@ export default class RecipesAPI {
     );
 
     getSortedRecipes = async (field, order) => (
-        await this.getResource(`/recipes/articles?sortBy=${field}&order=${order}&limit=30`)
+        await this.getResource(`/recipes/articles?sortBy=${field}&order=${order}`)
     );
 
     getRecipesWithSkip = async (skip, limit) => (
