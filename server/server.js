@@ -1,3 +1,4 @@
+//Подключение зависимостей проекта
 const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser'); 
@@ -8,10 +9,10 @@ const multer = require('multer');
 const moment = require("moment");
 const fs = require('fs');
 const path = require('path');
-
-const app = express();
 const mongoose = require('mongoose');
 const async = require('async');
+
+const app = express();
 require('dotenv').config();
 
 mongoose.Promise = global.Promise;
@@ -30,7 +31,7 @@ app.use(function(req, res, next) {
 app.use(express.static('client/build'))
 const PORT = process.env.PORT || 3000;
 
-//Models
+//Модели данных
 const {Recipe} = require('./models/recipe');
 const {Ingredient} = require('./models/ingredient');
 
@@ -39,6 +40,8 @@ const {Ingredient} = require('./models/ingredient');
 //======================
 
 //POST RECIPE
+
+//Работа с картинками
 
 const storage = multer.diskStorage({
   destination: function(req, file, cb) {
@@ -65,6 +68,21 @@ const upload = multer({
   },
   fileFilter: fileFilter
 });
+
+/**
+ * @api {post} /api/recipe/create Создает новый рецепт
+ * @apiName CreateRecipe
+ * @apiGroup Recipe
+ *
+ * @apiParam {String} name Обязательное название рецепта.
+ * @apiParam {String} description Обязательное описание рецепта.
+ * @apiParam {String} steps Обязательнае инструкция приготовления рецепта.
+ * @apiParam {String} [category] Категория рецепта.
+ * @apiParam {Array} [ingredient] Ингредиенты рецепта.
+ * @apiParam {String} [mark] Тег рецепта.
+ * 
+ * @apiError Error Сообщение о типе ошибки
+ */
 
 app.post('/api/recipe/create', upload.single('image'), (req, res) => {
 
@@ -143,13 +161,34 @@ app.post('/api/recipe/create', upload.single('image'), (req, res) => {
 
 //GET NUMBER RECIPES
 
+/**
+ * @api {get} /api/recipes/articles_number Запрос на получение кол-ва рецептов в базе
+ * @apiName GetNumber
+ * @apiGroup Recipe
+ *
+ * @apiSuccess {Number} number Количество рецептов в базе
+ */
+
 app.get('/api/recipes/articles_number', (req, res) => {
   Recipe.countDocuments({}, (err, c) => {return res.json(c)});
 })
 
 
 //GET RECIPES
-// /articles?sortBy=created&order=desc&limit=100
+// /articles?sortBy=created&order=desc&limit=100&skip=4
+
+/**
+ * @api {get} /api/recipes/articles Запрос на получение рецептов
+ * @apiName GetRecipes
+ * @apiGroup Recipes
+ *
+ * @apiParam {String} sortBy Поле для сортировки.
+ * @apiParam {String} order Сортировка по убыванию или возрастанию.
+ * @apiParam {Number} limit Сколько нужно получить рецептов.
+ * @apiParam {Number} skip Сколько нужно пропустить рецептов от начала.
+ *
+ * @apiSuccess {json} articles Рецепты в формате json.
+ */
 
 app.get('/api/recipes/articles', (req, res) => {
 
@@ -170,8 +209,18 @@ app.get('/api/recipes/articles', (req, res) => {
 })
 
 //GET RECIPE 
+/// /api/product/article?id=3242423423
 
-/// /api/product/article?id=HSHSHSKSK,JSJSJSJS,SDSDHHSHDS,JSJJSDJ&type=single
+/**
+ * @api {get} /api/recipes/article_by_id Получить рецепт по id
+ * @apiName GetRecipe
+ * @apiGroup Recipe
+ *
+ * @apiParam {Number} id Users unique ID.
+ *
+ * @apiSuccess {json} recipe Рецепт в формате json.
+ */
+
 app.get('/api/recipes/article_by_id', (req,res) => {
 
   let id =  req.query.id;
@@ -186,6 +235,17 @@ app.get('/api/recipes/article_by_id', (req,res) => {
 });
 
 //GET RECIPE BY INGREDIENTS
+
+/**
+ * @api {get} /api/recipes/article_by_ingredients Получить рецепт по ингредиентам
+ * @apiName GetRecipeByIngredients
+ * @apiGroup Recipe
+ *
+ * @apiParam {Array} ingredients Массиф ингредиентов для поиска.
+ *
+ * @apiSuccess {json} recipe Рецепт в формате json.
+ */
+
 app.get('/api/recipes/article_by_ingredients', (req,res) => {
   
   let ingredients = req.body.ingredients;
@@ -197,6 +257,14 @@ app.get('/api/recipes/article_by_ingredients', (req,res) => {
       return res.status(200).send(articlesIngredients)
   })
 })
+
+/**
+ * @api {get} /api/recipes/ingredients Получить ингредиенты рецептов
+ * @apiName GetIngredients
+ * @apiGroup Recipe
+ *
+ * @apiSuccess {json} ingredients Ингредиенты в формате json.
+ */
 
 //GET INGREDIENTS
 app.get('/api/recipes/ingredients', (req, res) => {
@@ -212,7 +280,6 @@ app.get('/api/recipes/ingredients', (req, res) => {
 //========================
 //USERS
 //========================
-
 
 app.get('/', (req, res) => {
   res.status(200);
