@@ -246,7 +246,7 @@ app.get('/api/recipes/article_by_id', (req,res) => {
  * @apiSuccess {json} recipe Рецепт в формате json.
  */
 
-app.get('/api/recipes/article_by_ingredients', (req,res) => {
+app.post('/api/recipes/article_by_ingredients', (req,res) => {
   
   let ingredients = req.body.ingredients;
   Recipe.find({"ingredient": {$all: ingredients}}).exec((err, articlesIngredients) => {
