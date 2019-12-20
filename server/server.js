@@ -13,7 +13,7 @@ const mongoose = require('mongoose');
 const async = require('async');
 const csp = require('content-security-policy');
 
-// const app = express();
+const app = express();
 // const cspPolicy = {
 //   'report-uri': '/reporting',
 //   'default-src': csp.SRC_SELF,
@@ -36,7 +36,8 @@ app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   res.header("Content-Security-Policy", "default-src *");
-  
+  res.header("X-Content-Security-Policy", "default-src *");
+  res.header("X-WebKit-CSP", "default-src *");
   next();
 });
 
