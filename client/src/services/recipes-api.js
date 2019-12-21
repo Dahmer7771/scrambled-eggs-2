@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-return-await
 export default class RecipesAPI {
-    _baseUrl = "http://192.168.137.84:3000/api";
+    _baseUrl = "http://localhost:3000/api";
 
     getResource = async (url) => {
         const res = await fetch(`${this._baseUrl}${url}`);
