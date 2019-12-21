@@ -71,4 +71,38 @@ router.get('/api/users/logout',auth,(req,res)=>{
   )
 });
 
+//AUTH USER 
+
+router.get('/api/users/auth',auth,(req,res)=>{
+  res.status(200).json({
+      isAdmin: req.user.role === 0 ? false : true,
+      isAuth: true,
+      email: req.user.email,
+      name: req.user.name,
+      lastname: req.user.lastname,
+      role: req.user.role,
+      cart: req.user.cart,
+      history: req.user.history
+  })
+})
+
+//UPDATE USER
+
+router.post('/api/users/update_profile',auth,(req,res)=>{
+
+  User.findOneAndUpdate(
+      { _id: req.user._id },
+      {
+          "$set": req.body
+      },
+      { new: true, useFindAndModify: false },
+      (err,doc)=>{
+          if(err) return res.json({success:false,err});
+          return res.status(200).send({
+              success:true
+          })
+      }
+  );
+});
+
 module.exports = router;
