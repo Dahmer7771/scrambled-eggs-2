@@ -12,6 +12,7 @@ const path = require('path');
 const mongoose = require('mongoose');
 const async = require('async');
 const recipeRoutes = require('./routes/recipe');
+const userRoutes = require('./routes/user');
 
 const app = express();
 
@@ -37,6 +38,7 @@ app.use(express.static('client/build'))
 const PORT = process.env.PORT || 3000;
 
 app.use("", recipeRoutes);
+app.use("", userRoutes);
 
 
 //========================
