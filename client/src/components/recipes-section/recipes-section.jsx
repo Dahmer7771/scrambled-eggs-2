@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./recipes-section.css";
 import RecipeCard from "../recipe-card/recipe-card";
 import Spinner from "../spinner/spinner";
-import withContext from "../hoc-helpers/withContext";
+import withOntext from "../hoc-helpers/with-сontext";
 import RecipesFilter from "../recipes-filter/recipes-filter";
 import Warning from "../warning/warning";
 
@@ -123,4 +123,4 @@ const mapMethodsToProps = (RecipesAPI) => ({
     getRecipesWithSkip: RecipesAPI.getRecipesWithSkip,
 });
 
-export default withContext(mapMethodsToProps)(RecipesSection);
+export default withOntext(mapMethodsToProps)(RecipesSection);

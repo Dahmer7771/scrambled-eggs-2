@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Select from "react-dropdown-select";
-import withContext from "../hoc-helpers/withContext";
+import withOntext from "../hoc-helpers/with-сontext";
 
 class SearchInput extends Component {
     constructor(props) {
@@ -21,13 +21,12 @@ class SearchInput extends Component {
                 this.setState({
                     ingredients: data,
                 });
-                console.log(this.state.ingredients);
             });
     }
 
-    createSelectOption = (label) => ({
-        id: label,
-        name: label,
+    createSelectOption = (item) => ({
+        id: item.id,
+        name: item.name,
     });
 
     onSearchChange = (e) => {
@@ -57,6 +56,10 @@ class SearchInput extends Component {
             ingredients,
         } = this.state;
 
+        const {
+            onRecipeIngredientAdd,
+        } = this.props;
+
         const options = ingredients.map((item) => (
             this.createSelectOption(item)
         ));
@@ -77,9 +80,10 @@ class SearchInput extends Component {
                             multi
                             options={options}
                             valueField="id"
-                            onChange={(value) => console.log(value)}
+                            onChange={(value) => onRecipeIngredientAdd(value)}
                             searchable
                             labelField="name"
+                            searchBy="name"
                         />
                         <div className="input-group-append">
                             <button
@@ -101,4 +105,4 @@ const mapMethodsToProps = (recipesAPI) => ({
     getAllIngredients: recipesAPI.getAllIngredients,
 });
 
-export default withContext(mapMethodsToProps)(SearchInput);
+export default withOntext(mapMethodsToProps)(SearchInput);

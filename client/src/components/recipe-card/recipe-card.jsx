@@ -27,12 +27,6 @@ class RecipeCard extends Component {
         return (
             <div className="col-xl-3 col-lg-4 col-sm-6 col-12">
                 <div className="card recipe-card">
-                    {/* <div */}
-                    {/*    className="recipe-image" */}
-                    {/*    style={{ */}
-                    {/*        background: `url("../../${imageUrl}")`, */}
-                    {/*    }} */}
-                    {/* /> */}
                     <img src={Lol} alt="q" className="recipe-image" />
                     <div className="card-body">
                         <h5 className="card-title">{name}</h5>

@@ -17,3 +17,7 @@
 .search-input > div {
     flex-wrap: nowrap;
 }
+
+.react-dropdown-select {
+    min-height: 38px!important;
+}

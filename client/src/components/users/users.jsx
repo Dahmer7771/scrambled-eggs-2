@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./users.css";
-import withContext from "../hoc-helpers/withContext";
+import withOntext from "../hoc-helpers/with-сontext";
 
 class Users extends Component {
     render() {
@@ -35,4 +35,4 @@ const mapMethodsToProps = (recipesAPI) => ({
     getAll: recipesAPI.getAll,
 });
 
-export default withContext(mapMethodsToProps)(Users);
+export default withOntext(mapMethodsToProps)(Users);
