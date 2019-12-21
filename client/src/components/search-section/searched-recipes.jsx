@@ -7,7 +7,8 @@ class SearchedRecipes extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            recipes: null,
+            recipes: [],
+            loading: false,
         };
     }
 
@@ -26,16 +27,18 @@ class SearchedRecipes extends Component {
             getRecipesByIngredients,
             recipeIngredients,
         } = this.props;
-        console.log(recipeIngredients);
+
+        this.setState({
+            loading: true,
+        });
 
         const ingredientsArray = recipeIngredients.map((item) => item.name);
 
         getRecipesByIngredients(ingredientsArray)
             .then((recipes) => {
-                console.log(ingredientsArray);
-                console.log(recipes);
                 this.setState({
                     recipes,
+                    loading: false,
                 });
             });
     };
@@ -43,9 +46,10 @@ class SearchedRecipes extends Component {
     render() {
         const {
             recipes,
+            loading,
         } = this.state;
 
-        if (recipes === null) return <Spinner />;
+        if (loading) return <Spinner />;
         if (!recipes.length) return <h2 className="text-center">No recipes found</h2>;
 
         return (
