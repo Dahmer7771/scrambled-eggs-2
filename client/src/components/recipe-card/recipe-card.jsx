@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "./recipe-card.css";
 import { Link } from "react-router-dom";
-import Lol from "./lol.jpg";
 
 class RecipeCard extends Component {
     constructor(props) {
@@ -17,17 +16,16 @@ class RecipeCard extends Component {
             id,
         } = this.props;
 
-        let imageUrl = "";
+        let imageUrl = image;
 
         if (image) {
-            const [a, b] = image.split(`\\`);
-            imageUrl = [a, b].join(`/`);
+            imageUrl = image.replace(/(.*)(uploads)\\(.*)$/, "./$2/$3");
         }
 
         return (
             <div className="col-xl-3 col-lg-4 col-sm-6 col-12">
                 <div className="card recipe-card">
-                    <img src={Lol} alt="q" className="recipe-image" />
+                    <img src={imageUrl} alt="q" className="recipe-image" />
                     <div className="card-body">
                         <h5 className="card-title">{name}</h5>
                         <div className="module">
