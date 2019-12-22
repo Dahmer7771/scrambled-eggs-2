@@ -105,4 +105,45 @@ router.post('/api/users/update_profile',auth,(req,res)=>{
   );
 });
 
+//RESET USER PASSWORD
+
+router.post('/api/users/reset_user',(req,res)=>{
+  User.findOne(
+      {'email':req.body.email},
+      (err,user)=>{
+          user.generateResetToken((err,user)=>{
+              if(err) return res.json({success:false,err});
+              sendEmail(user.email,user.name,null,"reset_password",user)
+              return res.json({success:true})
+          })
+      }
+  )
+})
+
+
+router.post('/api/users/reset_password',(req,res)=>{
+
+  var today = moment().startOf('day').valueOf();
+
+  User.findOne({
+      resetToken: req.body.resetToken,
+      resetTokenExp:{
+          $gte: today
+      }
+  },(err,user)=>{
+      if(!user) return res.json({success:false,message:'Sorry, token bad, generate a new one.'})
+  
+      user.password = req.body.password;
+      user.resetToken = '';
+      user.resetTokenExp= '';
+
+      user.save((err,doc)=>{
+          if(err) return res.json({success:false,err});
+          return res.status(200).json({
+              success: true
+          })
+      })
+  })
+})
+
 module.exports = router;
