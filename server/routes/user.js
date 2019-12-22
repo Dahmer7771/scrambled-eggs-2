@@ -81,8 +81,6 @@ router.get('/api/users/auth',auth,(req,res)=>{
       name: req.user.name,
       lastname: req.user.lastname,
       role: req.user.role,
-      cart: req.user.cart,
-      history: req.user.history
   })
 })
 
