@@ -41,10 +41,6 @@ app.use("", recipeRoutes);
 app.use("", userRoutes);
 
 
-//========================
-//USERS
-//========================
-
 app.get('/', (req, res) => {
   res.status(200);
   res.send('<p>some html</p>');
