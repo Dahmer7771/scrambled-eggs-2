@@ -11,10 +11,11 @@ const simpleUser = [
         label: "Поиск по ингредиентам",
         url: "/search",
     },
-    // {
-    //     label: "Вход/Регистрация",
-    //     url: "/autorization",
-    // },
+    {
+        id: 3,
+        label: "Вход/Регистрация",
+        url: "/autorization",
+    },
 ];
 
 const admin = [

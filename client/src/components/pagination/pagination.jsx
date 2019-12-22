@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./pagination.css";
 import { Link } from "react-router-dom";
-import withContext from "../hoc-helpers/withContext";
+import withOntext from "../hoc-helpers/with-сontext";
 
 class Pagination extends Component {
     constructor(props) {
@@ -85,4 +85,4 @@ const mapMethodsToProps = (recipesAPI) => ({
     getRecipesCount: recipesAPI.getRecipesCount,
 });
 
-export default withContext(mapMethodsToProps)(Pagination);
+export default withOntext(mapMethodsToProps)(Pagination);

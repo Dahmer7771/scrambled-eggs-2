@@ -1,11 +1,12 @@
-import React, { Component } from "react";
+import React, { Component, createRef } from "react";
 import "./created-recipe.css";
 import EditorConvertToHTML from "../editor-convert-to-html/editor-convert-to-html";
-import withContext from "../hoc-helpers/withContext";
+import withOntext from "../hoc-helpers/with-сontext";
 
 class CreatedRecipe extends Component {
     constructor(props) {
         super(props);
+        this.createRecipeForm = createRef();
         this.state = {
             term: "",
             ingredients: "",
@@ -45,10 +46,11 @@ class CreatedRecipe extends Component {
 
     onSubmit = (event) => {
         event.preventDefault();
-        const { postForm } = this.props;
+        const { postRecipe } = this.props;
 
-        postForm("#recipe-form")
-            .then((data) => console.log(data));
+        postRecipe("#recipe-form")
+            .then((data) => console.log(data))
+            .then(this.createRecipeForm.current.reset());
     };
 
     render() {
@@ -61,23 +63,21 @@ class CreatedRecipe extends Component {
         if (ingredients) {
             ingredientsList = (
                 <ul className="recipe-list row">
-                    {
-                        ingredients.split(",").map((item) => (
-                            <li className="recipe-list-item" key={item}>
-                                {item}
-                                <button type="button" className="button-delete-ingredient material-icons md-18 btn btn-secondary btn-sm disabled">
+                    {ingredients.split(",").map((item) => (
+                        <li className="recipe-list-item" key={item}>
+                            {item}
+                            <button type="button" className="button-delete-ingredient material-icons md-18 btn btn-secondary btn-sm disabled">
                                     close
-                                </button>
-                            </li>
-                        ))
-                    }
+                            </button>
+                        </li>
+                    ))}
                 </ul>
             );
         }
 
         return (
             <div className="container">
-                <form method="POST" className="created_recipe" id="recipe-form" onSubmit={this.onSubmit}>
+                <form ref={this.createRecipeForm} method="POST" className="created_recipe" id="recipe-form" onSubmit={this.onSubmit}>
                     <div className="form-group">
                         <label htmlFor="recipe-name">Название рецепта:</label>
                         <input type="text" name="name" className="form-control" id="recipe-name" />
@@ -119,7 +119,7 @@ class CreatedRecipe extends Component {
                     {ingredientsList}
                     <div className="form-group">
                         <label htmlFor="recipe-file">Фото</label>
-                        <input type="file" name="file" className="form-control-file" id="recipe-file" />
+                        <input type="file" name="image" className="form-control-file" id="recipe-file" />
                     </div>
                     <EditorConvertToHTML />
                     <input className="btn btn-primary" type="submit" value="Submit" />
@@ -130,7 +130,7 @@ class CreatedRecipe extends Component {
 }
 
 const mapMethodsToProps = (RecipesAPI) => ({
-    postForm: RecipesAPI.postForm,
+    postRecipe: RecipesAPI.postRecipe,
 });
 
-export default withContext(mapMethodsToProps)(CreatedRecipe);
+export default withOntext(mapMethodsToProps)(CreatedRecipe);

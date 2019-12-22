@@ -52,7 +52,7 @@ class RecipesFilter extends Component {
                                         </span>
                                         <span
                                             className="dropdown-item filter-item"
-                                            onClick={() => onFilterChange("created", "asc")}
+                                            onClick={() => onFilterChange("created", "desc")}
                                         >
                                             Новые
                                         </span>

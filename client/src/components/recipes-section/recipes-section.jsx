@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./recipes-section.css";
 import RecipeCard from "../recipe-card/recipe-card";
 import Spinner from "../spinner/spinner";
-import withContext from "../hoc-helpers/withContext";
+import withOntext from "../hoc-helpers/with-сontext";
 import RecipesFilter from "../recipes-filter/recipes-filter";
 import Warning from "../warning/warning";
 
@@ -93,13 +93,16 @@ class RecipesSection extends Component {
                     <div className="row">
                         {warning}
                         {searchedRecipes.map((item) => {
-                            const { _id, name, description } = item;
+                            const {
+                                _id, name, description, image,
+                            } = item;
                             return (
                                 <RecipeCard
                                     key={_id}
                                     id={_id}
                                     name={name}
                                     description={description}
+                                    image={image}
                                 />
                             );
                         })}
@@ -120,4 +123,4 @@ const mapMethodsToProps = (RecipesAPI) => ({
     getRecipesWithSkip: RecipesAPI.getRecipesWithSkip,
 });
 
-export default withContext(mapMethodsToProps)(RecipesSection);
+export default withOntext(mapMethodsToProps)(RecipesSection);

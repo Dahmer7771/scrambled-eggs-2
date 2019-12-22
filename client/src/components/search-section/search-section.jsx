@@ -12,18 +12,9 @@ class SearchSection extends Component {
         };
     }
 
-    onRecipeIngredientAdd = (item) => {
-        const newItem = item;
-
-        this.setState(({ recipeIngredients }) => {
-            const newArray = [
-                ...recipeIngredients,
-                newItem,
-            ];
-
-            return {
-                recipeIngredients: newArray,
-            };
+    onRecipeIngredientAdd = (recipeIngredients) => {
+        this.setState({
+            recipeIngredients,
         });
     };
 
@@ -38,10 +29,7 @@ class SearchSection extends Component {
                     <SearchInput
                         onRecipeIngredientAdd={this.onRecipeIngredientAdd}
                     />
-                    <SelectedIngredientsList
-                        recipeIngredients={recipeIngredients}
-                    />
-                    <SearchedRecipes />
+                    <SearchedRecipes recipeIngredients={recipeIngredients} />
                 </div>
             </div>
         );

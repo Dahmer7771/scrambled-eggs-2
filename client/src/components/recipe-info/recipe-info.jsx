@@ -1,5 +1,4 @@
 import React, { Component, createRef } from "react";
-import toHtml from "string-to-html";
 import "./recipe-info.css";
 
 class RecipeInfo extends Component {
@@ -9,45 +8,54 @@ class RecipeInfo extends Component {
         this.stepsRef = createRef();
     }
 
-    render() {
+    componentDidMount() {
         const {
             recipe: {
-                _id,
-                name,
-                description,
                 steps,
-                category,
-                created,
             },
         } = this.props;
 
         if (this.stepsRef.current) {
             this.stepsRef.current.innerHTML = steps;
-            console.log(this.stepsRef.current);
+        }
+    }
+
+    render() {
+        const {
+            recipe: {
+                name,
+                description,
+                category,
+                created,
+                ingredient,
+                image,
+            },
+        } = this.props;
+
+        let imageUrl = image;
+
+        if (image) {
+            imageUrl = image.replace(/(.*)(uploads)\\(.*)$/, "../$2/$3");
         }
 
         const creationDateRegExp = /([0-9][0-9][0-9][0-9])-([0-1][0-9])-([0-3][0-9])/g;
         const creationDate = created.match(creationDateRegExp).toString();
+        const ingredients = ingredient.map((item) => (
+            <li key={item} className="list-group-item">
+                {item}
+            </li>
+        ));
 
         return (
             <div className="card recipes-item-section">
                 <div className="row no-gutters">
                     <div className="col-md-4 col-sm-12 col-12">
-                        {/* Здесь будет картинка */}
-                        <div className="recipe-image">
-                            <div className="image-text">
-                                {_id}
-                            </div>
-                        </div>
+                        <img src={imageUrl} alt="q" className="recipe-image" />
                         <h6 className="ingredients-title">
                             Ингредиенты:
                         </h6>
                         <ul className="list-group list-group-flush">
-                            <li className="list-group-item">Cras justo odio</li>
-                            <li className="list-group-item">Dapibus ac facilisis in</li>
-                            <li className="list-group-item">Morbi leo risus</li>
-                            <li className="list-group-item">Porta ac consectetur ac</li>
-                            <li className="list-group-item">Vestibulum at eros</li>
+                            {ingredients}
                         </ul>
                     </div>
 
