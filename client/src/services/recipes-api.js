@@ -2,8 +2,23 @@
 export default class RecipesAPI {
     _baseUrl = "http://localhost:3000/api";
 
-    getResource = async (url) => {
-        const res = await fetch(`${this._baseUrl}${url}`);
+    getResource = async (url, method, field, value) => {
+        let res;
+
+        if (typeof method === "undefined") {
+            res = await fetch(`${this._baseUrl}${url}`);
+        } else {
+            const bodyObj = {};
+            bodyObj[field] = value;
+
+            res = await fetch(`${this._baseUrl}${url}`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(bodyObj),
+            });
+        }
 
         if (!res.ok) {
             throw new Error(`Could not fetch ${url},`
@@ -35,8 +50,16 @@ export default class RecipesAPI {
 
     getAllIngredients = async () => {
         const res = await this.getResource(`/recipes/ingredients`);
-        return res.map((item) => item.name);
+        return res.map((item) => ({
+            // eslint-disable-next-line no-underscore-dangle
+            id: item._id,
+            name: item.name,
+        }));
     };
+
+    getRecipesByIngredients = async (value) => (
+        await this.getResource(`/recipes/article_by_ingredients`, "POST", "ingredients", value)
+    );
 
     postRecipe = async (formSelector) => {
         const formData = new FormData(document.querySelector(formSelector));

@@ -1,7 +1,7 @@
 import React, { Component, createRef } from "react";
 import "./created-recipe.css";
 import EditorConvertToHTML from "../editor-convert-to-html/editor-convert-to-html";
-import withContext from "../hoc-helpers/withContext";
+import withOntext from "../hoc-helpers/with-сontext";
 
 class CreatedRecipe extends Component {
     constructor(props) {
@@ -133,4 +133,4 @@ const mapMethodsToProps = (RecipesAPI) => ({
     postRecipe: RecipesAPI.postRecipe,
 });
 
-export default withContext(mapMethodsToProps)(CreatedRecipe);
+export default withOntext(mapMethodsToProps)(CreatedRecipe);

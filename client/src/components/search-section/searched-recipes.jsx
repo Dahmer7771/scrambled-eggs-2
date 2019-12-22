@@ -1,48 +1,82 @@
 import React, { Component } from "react";
+import withContext from "../hoc-helpers/with-сontext";
+import RecipeCard from "../recipe-card/recipe-card";
+import Spinner from "../spinner/spinner";
 
 class SearchedRecipes extends Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            recipes: [],
+            loading: false,
+        };
     }
 
+    componentDidUpdate(prevProps) {
+        const {
+            recipeIngredients,
+        } = this.props;
+
+        if (prevProps.recipeIngredients !== recipeIngredients) {
+            this.updateSearchedRecipes();
+        }
+    }
+
+    updateSearchedRecipes = () => {
+        const {
+            getRecipesByIngredients,
+            recipeIngredients,
+        } = this.props;
+
+        this.setState({
+            loading: true,
+        });
+
+        const ingredientsArray = recipeIngredients.map((item) => item.name);
+
+        getRecipesByIngredients(ingredientsArray)
+            .then((recipes) => {
+                this.setState({
+                    recipes,
+                    loading: false,
+                });
+            });
+    };
+
     render() {
+        const {
+            recipes,
+            loading,
+        } = this.state;
+
+        if (loading) return <Spinner />;
+        if (!recipes.length) return <h2 className="text-center">No recipes found</h2>;
+
         return (
             <div className="searched-recipes">
-                <div className="card recipe-card">
-                    <div className="row no-gutters">
-                        <div className="col-md-4 col-12">
-                            {/* Здесь будет картинка */}
-                            <div className="recipe-image">
-                                <div className="image-text">
-                                    image
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="col-md-8 col-12">
-                            <div className="card-body">
-                                <h4 className="card-title">
-                                    image
-                                </h4>
-                                <p className="card-text">
-                                    This is a wider card with supporting text
-                                    below as a natural
-                                    lead-in to additional content. This content is
-                                    a little bit longer.
-                                </p>
-                                <p className="card-text">
-                                    <small className="text-muted">
-                                        Recipe ID:
-                                    </small>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+                <div className="row">
+                    {recipes.map(({
+                        _id,
+                        name,
+                        description,
+                        image,
+                    }) => (
+                        <RecipeCard
+                            key={_id}
+                            id={_id}
+                            name={name}
+                            description={description}
+                            image={image}
+                        />
+                    ))}
                 </div>
             </div>
         );
     }
 }
 
-export default SearchedRecipes;
+const mapMethodsToProps = (RecipesAPI) => ({
+    getRecipesByIngredients: RecipesAPI.getRecipesByIngredients,
+});
+
+export default withContext(mapMethodsToProps)(SearchedRecipes);
