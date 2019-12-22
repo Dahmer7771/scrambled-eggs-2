@@ -24,7 +24,7 @@ class App extends Component {
             recipesAPI: new RecipesAPI(),
             currentPage: 1,
             searchText: "",
-            recipesPerPage: 4,
+            // recipesPerPage: 4,
         };
     }
 
@@ -47,7 +47,7 @@ class App extends Component {
             recipesAPI,
             currentPage,
             searchText,
-            recipesPerPage,
+            // recipesPerPage,
         } = this.state;
 
         return (
@@ -76,19 +76,6 @@ class App extends Component {
                                     currentPage={currentPage}
                                     onPageChange={this.onPageChange}
                                     searchText={searchText}
-                                />
-                            )}
-                        />
-                        <Route
-                            exact
-                            path="/recipes/page/:page"
-                            render={(props) => (
-                                <RecipesSection
-                                    {...props}
-                                    currentPage={currentPage}
-                                    onPageChange={this.onPageChange}
-                                    searchText={searchText}
-                                    recipesPerPage={recipesPerPage}
                                 />
                             )}
                         />

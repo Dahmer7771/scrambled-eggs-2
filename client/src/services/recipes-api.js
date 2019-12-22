@@ -2,21 +2,21 @@
 export default class RecipesAPI {
     _baseUrl = "http://localhost:3000/api";
 
-    getResource = async (url, method, field, value) => {
+    getResource = async (url, method, body) => {
         let res;
 
         if (typeof method === "undefined") {
             res = await fetch(`${this._baseUrl}${url}`);
         } else {
-            const bodyObj = {};
-            bodyObj[field] = value;
+            // const bodyObj = {};
+            // bodyObj[body.field] = body.value;
 
             res = await fetch(`${this._baseUrl}${url}`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify(bodyObj),
+                body: JSON.stringify(body),
             });
         }
 
@@ -58,18 +58,30 @@ export default class RecipesAPI {
     };
 
     getRecipesByIngredients = async (value) => (
-        await this.getResource(`/recipes/article_by_ingredients`, "POST", "ingredients", value)
+        await this.getResource(`/recipes/article_by_ingredients`, "POST", { ingredients: value })
     );
 
     postRecipe = async (formSelector) => {
         const formData = new FormData(document.querySelector(formSelector));
 
-        return await fetch(`${this._baseUrl}/recipe/create`,
-            {
-                method: "POST",
-                body: formData,
-            })
-            .then((response) => response.json())
-            .catch((error) => console.error(error));
+        // return await fetch(`${this._baseUrl}/recipe/create`,
+        //     {
+        //         method: "POST",
+        //         body: formData,
+        //     })
+        //     .then((response) => response.json())
+        //     .catch((error) => console.error(error));
+
+        return await this.getResource(`/recipe/create`, "POST", formData);
+    };
+
+    toRegister = async (formSelector) => {
+        const formData = new FormData(document.querySelector(formSelector));
+        return await this.getResource(`/users/register`, "POST", formData);
+    };
+
+    logIn = async (formSelector) => {
+        const formData = new FormData(document.querySelector(formSelector));
+        return await this.getResource(`/users/login`, "POST", formData);
     };
 }
