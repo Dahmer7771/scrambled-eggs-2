@@ -17,6 +17,11 @@ const router = express.Router();
 //Модели данных
 const {Recipe} = require('../models/recipe');
 const {Ingredient} = require('../models/ingredient');
+const {User} = require('../models/user');
+
+// Middlewares
+const { auth } = require('../middleware/auth');
+const { admin } = require('../middleware/admin');
 
 //======================
 //RECIPE API
@@ -67,7 +72,7 @@ const upload = multer({
  * @apiError Error Сообщение о типе ошибки
  */
 
-router.post('/api/recipe/create', upload.single('image'), (req, res) => {
+router.post('/api/recipe/create', upload.single('image'), auth, (req, res) => {
 
   console.log(req.body);
   Recipe.find({name: req.body.recipe}, function (err, docs) {
@@ -86,7 +91,7 @@ router.post('/api/recipe/create', upload.single('image'), (req, res) => {
     category: req.body.category,
     ingredient: ingredientReq,
     mark: req.body.mark,
-    createdBy: req.body.createdBy, 
+    createdBy: req.user._id, 
     image: req.file.path
   });}
   else {
@@ -97,7 +102,7 @@ router.post('/api/recipe/create', upload.single('image'), (req, res) => {
       category: req.body.category,
       ingredient: ingredientReq,
       mark: req.body.mark,
-      createdBy: req.body.createdBy, 
+      createdBy: req.name._id, 
     });
   }
 
@@ -140,6 +145,33 @@ router.post('/api/recipe/create', upload.single('image'), (req, res) => {
       error: err
     });
     }); 
+})
+
+// REMOVE RECIPE
+
+router.delete("/api/recipes/article_by_id", auth, (req, res) => {
+  
+  let id =  req.query.id;
+  let createdBy = req.user._id;
+  let canBeDeleted = false
+
+  Recipe.findById(id).exec((err, result) => {
+    if(err) return res.status(400).send(err);
+    if (createdBy.toString() == result.createdBy.toString() || req.user.role == 1) canBeDeleted = true;
+    if(canBeDeleted){
+      Recipe.deleteOne({ _id: `${id}`}, (err, deletedProduct) => {
+        if (err) {
+          return res.status(400).json({
+            error: errorHandler.getErrorMessage(err)
+          })
+        }
+        res.json(deletedProduct)
+      })
+    }
+    else{
+      return res.json(`It's not your reсipe`)
+    }
+  })
 })
 
 //GET NUMBER RECIPES
