@@ -237,8 +237,8 @@ class Autorization extends Component {
         logIn(data)
             .then((res) => {
                 // cookies.set("w_auth", res.w_auth, { path: "/" });
-                cookies.set("w_auth", res.w_auth, { path: "/" });
-                console.log(cookies.get("w_auth"));
+                // cookies.set("w_auth", res.w_auth, { path: "/" });
+                // console.log(cookies.get("w_auth"));
             })
             .catch((errorMessage) => console.log(errorMessage));
     };
