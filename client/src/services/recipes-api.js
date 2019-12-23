@@ -7,7 +7,10 @@ export default class RecipesAPI {
         let res;
 
         if (typeof method === "undefined") {
-            res = await fetch(`${this._baseUrl}${url}`);
+            res = await fetch(`${this._baseUrl}${url}`, {
+                method: "GET",
+                credentials: "include",
+            });
         } else {
             const headers = new Headers();
             headers.append("Content-Type", "application/json");
@@ -83,4 +86,10 @@ export default class RecipesAPI {
     logIn = async (data) => (
         await this.getResource(`/users/login`, "POST", data)
     );
+
+    isUserAuth = async () => {
+        const res = await this.getResource(`/users/auth`);
+        console.log(res.isAuth);
+        return res.isAuth;
+    };
 }
