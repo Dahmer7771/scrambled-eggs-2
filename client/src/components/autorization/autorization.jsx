@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./autorization.css";
 import Zoom from "react-reveal/Zoom";
+import { withCookies } from "react-cookie";
 import formValidation from "../../helpers/autorizationValidation";
 import withContext from "../hoc-helpers/with-сontext";
 
@@ -107,6 +108,10 @@ class Autorization extends Component {
             if (id === "passwordConfirmRegistration" && value !== inputValues.passwordRegistration) {
                 this.setState({
                     error: true,
+                    inputValues: {
+                        ...inputValues,
+                        [id]: value,
+                    },
                     errorMessage: {
                         ...errorMessage,
                         [id]: "passwords does not match",
@@ -124,7 +129,6 @@ class Autorization extends Component {
                         },
                     },
                 });
-                return;
             }
             this.setState({
                 error: false,
@@ -152,6 +156,10 @@ class Autorization extends Component {
         } else {
             this.setState({
                 error: true,
+                inputValues: {
+                    ...inputValues,
+                    [id]: value,
+                },
                 errorMessage: {
                     ...errorMessage,
                     [id]: isValid.error,
@@ -203,24 +211,42 @@ class Autorization extends Component {
     };
 
     onLoginSubmit = (e) => {
+        e.preventDefault();
         const {
             error,
+            inputValues,
         } = this.state;
 
         const {
             logIn,
+            cookies,
         } = this.props;
 
-        if (error) e.preventDefault();
+        if (error) return;
 
-        logIn()
-            .then((message) => console.log(message))
+        const email = inputValues.emailLogin.toLowerCase();
+        const password = inputValues.passwordLogin;
+
+        const data = {
+            email,
+            password,
+        };
+
+        // console.log(data);
+
+        logIn(data)
+            .then((res) => {
+                // cookies.set("w_auth", res.w_auth, { path: "/" });
+                cookies.set("w_auth", res.w_auth, { path: "/" });
+                console.log(cookies.get("w_auth"));
+            })
             .catch((errorMessage) => console.log(errorMessage));
     };
 
     onRegistrationSubmit = (e) => {
         const {
             error,
+            inputValues,
         } = this.state;
 
         const {
@@ -229,10 +255,26 @@ class Autorization extends Component {
 
         if (error) e.preventDefault();
 
-        toRegister()
+        const email = inputValues.emailRegistration.toLowerCase();
+        const password = inputValues.passwordRegistration;
+        const name = inputValues.firstnameRegistration;
+        const lastname = inputValues.lastnameRegistration;
+
+        const data = {
+            email,
+            password,
+            name,
+            lastname,
+        };
+
+        toRegister(data)
             .then((message) => console.log(message))
             .catch((errorMessage) => console.log(errorMessage));
     };
+
+    // onInputUpdate = (e) => {
+    //
+    // };
 
     render() {
         const {
@@ -295,7 +337,7 @@ class Autorization extends Component {
                                 <div className="form-group row">
                                     <label htmlFor="inputFirstnameRegistration" className="col-sm-2 col-md-3 col-lg-2 col-form-label">Имя</label>
                                     <div className="col-sm-12 col-md-9 col-lg-10 col-xl-10">
-                                        <input type="login" name="name" className="form-field form-control" id="inputFirstnameRegistration" onChange={this.handleFormInput} />
+                                        <input type="login" name="name" className="form-field form-control" id="firstnameRegistration" onChange={this.handleFormInput} />
                                     </div>
                                     <div className="col-sm-12 offset-lg-2 col-md-9 offset-md-3 col-lg-10 col-xl-10">
                                         <div className="error-message" style={errorVisibility.firstnameRegistration}>
@@ -308,7 +350,7 @@ class Autorization extends Component {
                                 <div className="form-group row">
                                     <label htmlFor="inputLastnameeRegistration" className="col-sm-2 col-md-3 col-lg-2 col-form-label">Фамилия</label>
                                     <div className="col-sm-12 col-md-9 col-lg-10 col-xl-10">
-                                        <input type="login" name="lastname" className="form-field form-control" id="firstnameRegistration" onChange={this.handleFormInput} />
+                                        <input type="login" name="lastname" className="form-field form-control" id="lastnameRegistration" onChange={this.handleFormInput} />
                                     </div>
                                     <div className="col-sm-12 offset-lg-2 col-md-9 offset-md-3 col-lg-10 col-xl-10">
                                         <div className="error-message" style={errorVisibility.lastnameRegistration}>
@@ -376,4 +418,4 @@ const mapMethodsToProps = (recipesAPI) => ({
     logIn: recipesAPI.logIn,
 });
 
-export default withContext(mapMethodsToProps)(Autorization);
+export default withCookies(withContext(mapMethodsToProps)(Autorization));

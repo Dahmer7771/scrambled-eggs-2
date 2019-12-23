@@ -1,6 +1,7 @@
 // eslint-disable-next-line no-return-await
 export default class RecipesAPI {
-    _baseUrl = "http://localhost:3000/api";
+    // _baseUrl = "http://localhost:3000/api";
+    _baseUrl = "http://192.168.1.3:3000/api";
 
     getResource = async (url, method, body) => {
         let res;
@@ -8,11 +9,9 @@ export default class RecipesAPI {
         if (typeof method === "undefined") {
             res = await fetch(`${this._baseUrl}${url}`);
         } else {
-            // const bodyObj = {};
-            // bodyObj[body.field] = body.value;
-
             res = await fetch(`${this._baseUrl}${url}`, {
                 method: "POST",
+                credentials: "same-origin",
                 headers: {
                     "Content-Type": "application/json",
                 },
@@ -64,24 +63,22 @@ export default class RecipesAPI {
     postRecipe = async (formSelector) => {
         const formData = new FormData(document.querySelector(formSelector));
 
-        // return await fetch(`${this._baseUrl}/recipe/create`,
-        //     {
-        //         method: "POST",
-        //         body: formData,
-        //     })
-        //     .then((response) => response.json())
-        //     .catch((error) => console.error(error));
+        return await fetch(`${this._baseUrl}/recipe/create`,
+            {
+                method: "POST",
+                body: formData,
+            })
+            .then((response) => response.json())
+            .catch((error) => console.error(error));
 
-        return await this.getResource(`/recipe/create`, "POST", formData);
+        // return await this.getResource(`/recipe/create`, "POST", formData);
     };
 
-    toRegister = async (formSelector) => {
-        const formData = new FormData(document.querySelector(formSelector));
-        return await this.getResource(`/users/register`, "POST", formData);
-    };
+    toRegister = async (data) => (
+        await this.getResource(`/users/register`, "POST", data)
+    );
 
-    logIn = async (formSelector) => {
-        const formData = new FormData(document.querySelector(formSelector));
-        return await this.getResource(`/users/login`, "POST", formData);
-    };
+    logIn = async (data) => (
+        await this.getResource(`/users/login`, "POST", data)
+    );
 }
