@@ -65,12 +65,26 @@ export default class RecipesAPI {
         await this.getResource(`/recipes/article_by_ingredients`, "POST", { ingredients: value })
     );
 
-    postRecipe = async (formSelector) => {
+    createRecipe = async (formSelector) => {
         const formData = new FormData(document.querySelector(formSelector));
 
         return await fetch(`${this._baseUrl}/recipe/create`,
             {
                 method: "POST",
+                body: formData,
+            })
+            .then((response) => response.json())
+            .catch((error) => console.error(error));
+
+        // return await this.getResource(`/recipe/create`, "POST", formData);
+    };
+
+    updateRecipe = async (formSelector, id) => {
+        const formData = new FormData(document.querySelector(formSelector));
+
+        return await fetch(`${this._baseUrl}/recipes/article_by_id?id=${id}`,
+            {
+                method: "PUT",
                 body: formData,
             })
             .then((response) => response.json())

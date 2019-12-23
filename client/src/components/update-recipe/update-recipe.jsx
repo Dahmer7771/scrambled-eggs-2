@@ -68,7 +68,6 @@ class UpdateRecipe extends Component {
                                     onChange={(value) => {
                                         // eslint-disable-next-line no-underscore-dangle
                                         const selectedItemId = value[0]._id;
-                                        console.log("item Id:", selectedItemId);
                                         this.onSelectRecipe(selectedItemId);
                                     }}
                                     searchable
@@ -88,7 +87,7 @@ class UpdateRecipe extends Component {
                         </form>
                     </div>
                 </div>
-                <CreatedRecipe selectedRecipe={selectedRecipe} />
+                <CreatedRecipe isUpdate selectedRecipe={selectedRecipe} />
             </>
         );
     }

@@ -19,8 +19,6 @@ class EditorConvertToHTML extends Component {
             steps,
         } = this.props;
 
-        console.log("mount");
-
         const html = steps || "<p>Опишите приготовление</p>";
         const contentBlock = htmlToDraft(html);
         if (contentBlock) {
@@ -36,9 +34,6 @@ class EditorConvertToHTML extends Component {
         const {
             steps,
         } = this.props;
-
-        console.log("update");
-        console.log(steps);
 
         if (prevProps.steps !== steps) {
             const html = steps || "<p>Опишите приготовление</p>";
@@ -59,8 +54,6 @@ class EditorConvertToHTML extends Component {
 
     render() {
         const { editorState } = this.state;
-
-        console.log(editorState);
 
         return (
             <>

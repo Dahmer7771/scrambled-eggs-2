@@ -11,11 +11,17 @@ class CreatedRecipe extends Component {
             term: "",
             ingredients: "",
             selectedRecipe: {
-                name: "Название",
-                description: "Описание",
-                stepe: "Шаги",
+                name: "",
+                description: "",
+                steps: "",
                 ingredient: [],
             },
+            // inputValues: {
+            //     name: "",
+            //     description: "",
+            //     steps: "",
+            //     ingredients: "",
+            // },
         };
     }
 
@@ -41,6 +47,21 @@ class CreatedRecipe extends Component {
             });
         }
     }
+
+    onInputChange = (e) => {
+        const {
+            selectedRecipe,
+        } = this.state;
+        const inputName = e.target.name;
+        const { value } = e.target;
+
+        this.setState({
+            selectedRecipe: {
+                ...selectedRecipe,
+                [inputName]: value,
+            },
+        });
+    };
 
     onIngredientAdd = () => {
         const {
@@ -75,11 +96,21 @@ class CreatedRecipe extends Component {
 
     onSubmit = (event) => {
         event.preventDefault();
-        const { postRecipe } = this.props;
+        const {
+            createRecipe,
+            updateRecipe,
+            isUpdate,
+        } = this.props;
 
-        postRecipe("#recipe-form")
-            .then((data) => console.log(data))
-            .then(this.createRecipeForm.current.reset());
+        if (isUpdate) {
+            updateRecipe()
+                .then((res) => console.log(res))
+                .catch((err) => console.log(err));
+        } else {
+            createRecipe("#recipe-form")
+                .then((data) => console.log(data))
+                .then(this.createRecipeForm.current.reset());
+        }
     };
 
     render() {
@@ -94,9 +125,9 @@ class CreatedRecipe extends Component {
 
         if (selectedRecipe == null) {
             selectedRecipe = {
-                name: "Название",
-                description: "Описание",
-                stepe: "Шаги",
+                name: "",
+                description: "",
+                steps: "",
                 ingredient: [],
             };
         }
@@ -122,11 +153,11 @@ class CreatedRecipe extends Component {
                 <form ref={this.createRecipeForm} method="POST" className="created_recipe" id="recipe-form" onSubmit={this.onSubmit}>
                     <div className="form-group">
                         <label htmlFor="recipe-name">Название рецепта:</label>
-                        <input value={selectedRecipe.name} type="text" name="name" className="form-control" id="recipe-name" />
+                        <input onChange={this.onInputChange} value={selectedRecipe.name} type="text" name="name" className="form-control" id="recipe-name" />
                     </div>
                     <div className="form-group">
                         <label htmlFor="recipe-description">Краткое описание:</label>
-                        <textarea value={selectedRecipe.description} className="form-control" name="description" id="recipe-description" />
+                        <textarea onChange={this.onInputChange} value={selectedRecipe.description} className="form-control" name="description" id="recipe-description" />
                     </div>
                     <div className="form-group">
                         <label htmlFor="recipe-category">Категория</label>
@@ -172,7 +203,8 @@ class CreatedRecipe extends Component {
 }
 
 const mapMethodsToProps = (RecipesAPI) => ({
-    postRecipe: RecipesAPI.postRecipe,
+    createRecipe: RecipesAPI.createRecipe,
+    updateRecipe: RecipesAPI.updateRecipe,
 });
 
 export default withOntext(mapMethodsToProps)(CreatedRecipe);
