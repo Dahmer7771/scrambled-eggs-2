@@ -9,7 +9,19 @@ import htmlToDraft from "html-to-draftjs";
 class EditorConvertToHTML extends Component {
     constructor(props) {
         super(props);
-        const html = "<p>Опишите приготовление</p>";
+        this.state = {
+            editorState: EditorState.createEmpty(),
+        };
+    }
+
+    componentDidMount() {
+        const {
+            steps,
+        } = this.props;
+
+        console.log("mount");
+
+        const html = steps || "<p>Опишите приготовление</p>";
         const contentBlock = htmlToDraft(html);
         if (contentBlock) {
             const contentState = ContentState.createFromBlockArray(contentBlock.contentBlocks);
@@ -17,6 +29,25 @@ class EditorConvertToHTML extends Component {
             this.state = {
                 editorState,
             };
+        }
+    }
+
+    componentDidUpdate(prevProps) {
+        const {
+            steps,
+        } = this.props;
+
+        console.log("update");
+        console.log(steps);
+
+        if (prevProps.steps !== steps) {
+            const html = steps || "<p>Опишите приготовление</p>";
+            const contentBlock = htmlToDraft(html);
+            if (contentBlock) {
+                const contentState = ContentState.createFromBlockArray(contentBlock.contentBlocks);
+                const editorState = EditorState.createWithContent(contentState);
+                this.onEditorStateChange(editorState);
+            }
         }
     }
 
@@ -28,6 +59,9 @@ class EditorConvertToHTML extends Component {
 
     render() {
         const { editorState } = this.state;
+
+        console.log(editorState);
+
         return (
             <>
                 <div className="editor-convert-to-html">

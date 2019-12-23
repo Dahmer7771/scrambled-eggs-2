@@ -10,7 +10,36 @@ class CreatedRecipe extends Component {
         this.state = {
             term: "",
             ingredients: "",
+            selectedRecipe: {
+                name: "Название",
+                description: "Описание",
+                stepe: "Шаги",
+                ingredient: [],
+            },
         };
+    }
+
+    componentDidMount() {
+        const {
+            selectedRecipe,
+        } = this.props;
+
+        this.setState({
+            selectedRecipe,
+        });
+    }
+
+    componentDidUpdate(prevProps) {
+        const {
+            selectedRecipe,
+        } = this.props;
+
+        if (prevProps.selectedRecipe !== selectedRecipe) {
+            // eslint-disable-next-line react/no-did-update-set-state
+            this.setState({
+                selectedRecipe,
+            });
+        }
     }
 
     onIngredientAdd = () => {
@@ -54,13 +83,26 @@ class CreatedRecipe extends Component {
     };
 
     render() {
+        let {
+            selectedRecipe,
+        } = this.state;
         const {
             ingredients,
         } = this.state;
 
-        let ingredientsList = null;
+        let ingredientsList;
 
-        if (ingredients) {
+        if (selectedRecipe == null) {
+            selectedRecipe = {
+                name: "Название",
+                description: "Описание",
+                stepe: "Шаги",
+                ingredient: [],
+            };
+        }
+        // eslint-disable-next-line eqeqeq
+        if (ingredients.length > 0) {
+            console.log(selectedRecipe);
             ingredientsList = (
                 <ul className="recipe-list row">
                     {ingredients.split(",").map((item) => (
@@ -80,11 +122,11 @@ class CreatedRecipe extends Component {
                 <form ref={this.createRecipeForm} method="POST" className="created_recipe" id="recipe-form" onSubmit={this.onSubmit}>
                     <div className="form-group">
                         <label htmlFor="recipe-name">Название рецепта:</label>
-                        <input type="text" name="name" className="form-control" id="recipe-name" />
+                        <input value={selectedRecipe.name} type="text" name="name" className="form-control" id="recipe-name" />
                     </div>
                     <div className="form-group">
                         <label htmlFor="recipe-description">Краткое описание:</label>
-                        <textarea className="form-control" name="description" id="recipe-description" />
+                        <textarea value={selectedRecipe.description} className="form-control" name="description" id="recipe-description" />
                     </div>
                     <div className="form-group">
                         <label htmlFor="recipe-category">Категория</label>
@@ -106,7 +148,7 @@ class CreatedRecipe extends Component {
                             </div>
                             <input
                                 onChange={this.onIngredientInputChange}
-                                id="recipe-ingredients"
+                                id="recipe-ingredient"
                                 type="text"
                                 className="form-control"
                                 placeholder=""
@@ -114,14 +156,14 @@ class CreatedRecipe extends Component {
                                 aria-describedby="button-addon1"
                             />
                         </div>
-                        <input readOnly style={{ display: "none" }} value={ingredients} type="text" name="ingredient" className="form-control" />
+                        <input readOnly style={{ display: "none" }} value={selectedRecipe.ingredient} type="text" name="ingredient" className="form-control" />
                     </div>
                     {ingredientsList}
                     <div className="form-group">
                         <label htmlFor="recipe-file">Фото</label>
                         <input type="file" name="image" className="form-control-file" id="recipe-file" />
                     </div>
-                    <EditorConvertToHTML />
+                    <EditorConvertToHTML steps={selectedRecipe.steps} />
                     <input className="btn btn-primary" type="submit" value="Submit" />
                 </form>
             </div>
