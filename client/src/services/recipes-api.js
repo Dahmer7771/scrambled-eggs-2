@@ -9,12 +9,14 @@ export default class RecipesAPI {
         if (typeof method === "undefined") {
             res = await fetch(`${this._baseUrl}${url}`);
         } else {
+            const headers = new Headers();
+            headers.append("Content-Type", "application/json");
+            headers.append("Accept", "application/json");
+
             res = await fetch(`${this._baseUrl}${url}`, {
                 method: "POST",
-                credentials: "same-origin",
-                headers: {
-                    "Content-Type": "application/json",
-                },
+                credentials: "include",
+                headers,
                 body: JSON.stringify(body),
             });
         }

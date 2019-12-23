@@ -219,7 +219,7 @@ class Autorization extends Component {
 
         const {
             logIn,
-            cookies,
+            // cookies,
         } = this.props;
 
         if (error) return;
@@ -236,14 +236,16 @@ class Autorization extends Component {
 
         logIn(data)
             .then((res) => {
+                console.log(res);
                 // cookies.set("w_auth", res.w_auth, { path: "/" });
-                cookies.set("w_auth", res.w_auth, { path: "/" });
-                console.log(cookies.get("w_auth"));
+                // cookies.set("w_auth", res.w_auth, { path: "/" });
+                // console.log(cookies.get("w_auth"));
             })
             .catch((errorMessage) => console.log(errorMessage));
     };
 
     onRegistrationSubmit = (e) => {
+        e.preventDefault();
         const {
             error,
             inputValues,
@@ -253,7 +255,7 @@ class Autorization extends Component {
             toRegister,
         } = this.props;
 
-        if (error) e.preventDefault();
+        if (error) return;
 
         const email = inputValues.emailRegistration.toLowerCase();
         const password = inputValues.passwordRegistration;
