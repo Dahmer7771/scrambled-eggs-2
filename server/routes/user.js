@@ -40,6 +40,7 @@ router.post('/api/users/register',(req,res)=>{
 
 //LOGIN USER
 router.post('/api/users/login',(req,res)=>{
+  console.log(req.body);
   User.findOne({'email':req.body.email},(err,user)=>{
       if(!user) return res.json({loginSuccess:false,message:'Auth failed, email not found'});
 
@@ -48,7 +49,7 @@ router.post('/api/users/login',(req,res)=>{
 
           user.generateToken((err,user)=>{
               if(err) return res.status(400).send(err);
-              res.cookie('w_auth',user.token).status(200).json({
+              res.cookie('w_auth',user.token, {httpOnly : false}).status(200).json({
                   loginSuccess: true
               })
           })

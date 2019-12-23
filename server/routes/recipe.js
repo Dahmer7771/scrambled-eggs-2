@@ -147,6 +147,78 @@ router.post('/api/recipe/create', upload.single('image'), auth, (req, res) => {
     }); 
 })
 
+//UPDATE RECIPE
+
+router.put("/api/recipes/article_by_id", upload.single('image'), auth, (req, res) => {
+  
+  let id =  req.query.id;
+  let recipe;
+  let ingredientReq = req.body.ingredient.split(',');
+  // console.log(ingredientReq);
+  if(req.file){
+    recipe = {
+    name: req.body.name,
+    description: req.body.description,
+    steps: req.body.steps,
+    category: req.body.category,
+    ingredient: ingredientReq,
+    mark: req.body.mark,
+    image: req.file.path,
+    updated: Date.now()
+  };}
+  else {
+    recipe = {
+      name: req.body.name,
+      description: req.body.description,
+      steps: req.body.steps,
+      category: req.body.category,
+      ingredient: ingredientReq,
+      mark: req.body.mark,
+      updated: Date.now(), 
+    };
+  }
+
+  Recipe.findByIdAndUpdate({ _id: id }, {"$set": recipe}, { useFindAndModify: false })
+  .then( () => {
+    let ingredients = ingredientReq;
+
+    for (let i = 0; i < ingredients.length; i++){
+      let ingredient = new Ingredient({name: ingredients[i], recipe: recipe._id})
+
+      Ingredient.find({name: ingredients[i]}, function (err, docs) {
+        if (docs.length){
+
+          Ingredient.findOneAndUpdate({
+            name: `${ingredients[i]}`}, 
+            {$push: {recipe: recipe._id}}, 
+            {new: true, useFindAndModify: false})
+          .populate('recipe')
+          .exec((err) => {
+            if (err) {
+              return res.status(400).json({
+                error: errorHandler.getErrorMessage(err)
+              })
+            }
+          })
+        }
+        else{
+          ingredient.save();
+        }
+      });
+    }
+  })
+  .then(result => {
+    res.status(201).json('updated');
+  })
+  .catch(err => {
+  console.log(err);
+  res.status(500).json({
+    error: err
+  });
+  }); 
+
+})
+
 // REMOVE RECIPE
 
 router.delete("/api/recipes/article_by_id", auth, (req, res) => {
@@ -173,6 +245,7 @@ router.delete("/api/recipes/article_by_id", auth, (req, res) => {
     }
   })
 })
+
 
 //GET NUMBER RECIPES
 
