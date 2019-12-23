@@ -4,6 +4,7 @@ import {
     Route,
     Switch,
 } from "react-router-dom";
+import { withCookies } from "react-cookie";
 import Header from "../header/header";
 import RecipesSection from "../recipes-section/recipes-section";
 import Footer from "../footer/footer";
@@ -20,15 +21,19 @@ import ChangeRecipeClient from "../change-recipe-client/change-recipe-client";
 class App extends Component {
     constructor(props) {
         super(props);
+        // const { cookies } = props;
         this.state = {
             recipesAPI: new RecipesAPI(),
             currentPage: 1,
             searchText: "",
-            recipesPerPage: 4,
+            // name: cookies.get("w_auth"),
+            // recipesPerPage: 4,
         };
     }
 
-    componentDidMount() {}
+    componentDidMount() {
+
+    }
 
     onPageChange = (page) => {
         this.setState({
@@ -47,7 +52,7 @@ class App extends Component {
             recipesAPI,
             currentPage,
             searchText,
-            recipesPerPage,
+            // recipesPerPage,
         } = this.state;
 
         return (
@@ -79,19 +84,6 @@ class App extends Component {
                                 />
                             )}
                         />
-                        <Route
-                            exact
-                            path="/recipes/page/:page"
-                            render={(props) => (
-                                <RecipesSection
-                                    {...props}
-                                    currentPage={currentPage}
-                                    onPageChange={this.onPageChange}
-                                    searchText={searchText}
-                                    recipesPerPage={recipesPerPage}
-                                />
-                            )}
-                        />
                         <Route exact path="/recipes/:id" component={RecipesItemSection} />
                         <Route path="/autorization" component={Autorization} />
                         <Route path="/search" component={SearchSection} />
@@ -107,4 +99,4 @@ class App extends Component {
     }
 }
 
-export default App;
+export default withCookies(App);

@@ -1,8 +1,16 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "./recipe-client.css";
+import withContext from "../hoc-helpers/with-сontext";
 
 class RecipeClient extends Component {
+    constructor() {
+        super();
+        this.state = {
+
+        };
+    }
+
     render() {
         return (
             <div className="container">
@@ -38,4 +46,8 @@ class RecipeClient extends Component {
     }
 }
 
-export default RecipeClient;
+const mapMethodsToProps = (recipesAPI) => ({
+    getAllRecipes: recipesAPI.getAllRecipes,
+});
+
+export default withContext(mapMethodsToProps)(RecipeClient);

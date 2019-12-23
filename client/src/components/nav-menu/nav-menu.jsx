@@ -12,7 +12,7 @@ class NavMenu extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            userRole: "admin",
+            userRole: "registeredUser",
             simpleUser: SIMPLE_USER,
             admin: ADMIN,
         };
@@ -28,7 +28,7 @@ class NavMenu extends Component {
         switch (userRole) {
         case "admin":
             return admin;
-        case "simpleUser":
+        case "registeredUser":
             return simpleUser;
         default:
             return simpleUser;

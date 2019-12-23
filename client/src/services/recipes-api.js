@@ -2,11 +2,23 @@
 export default class RecipesAPI {
     _baseUrl = "http://localhost:3000/api";
 
-    getResource = async (url, method, field, value) => {
+    getResource = async (url, method, body) => {
         let res;
 
-    getResource = async (url) => {
-        const res = await fetch(`${this._baseUrl}${url}`);
+        if (typeof method === "undefined") {
+            res = await fetch(`${this._baseUrl}${url}`);
+        } else {
+            const headers = new Headers();
+            headers.append("Content-Type", "application/json");
+            headers.append("Accept", "application/json");
+
+            res = await fetch(`${this._baseUrl}${url}`, {
+                method: "POST",
+                credentials: "include",
+                headers,
+                body: JSON.stringify(body),
+            });
+        }
 
         if (!res.ok) {
             throw new Error(`Could not fetch ${url},`
@@ -25,7 +37,7 @@ export default class RecipesAPI {
     );
 
     getSortedRecipes = async (field, order) => (
-        await this.getResource(`/recipes/articles?sortBy=${field}&order=${order}&limit=30`)
+        await this.getResource(`/recipes/articles?sortBy=${field}&order=${order}`)
     );
 
     getRecipesWithSkip = async (skip, limit) => (
@@ -36,7 +48,20 @@ export default class RecipesAPI {
         await this.getResource(`/recipes/articles_number`)
     );
 
-    postForm = async (formSelector) => {
+    getAllIngredients = async () => {
+        const res = await this.getResource(`/recipes/ingredients`);
+        return res.map((item) => ({
+            // eslint-disable-next-line no-underscore-dangle
+            id: item._id,
+            name: item.name,
+        }));
+    };
+
+    getRecipesByIngredients = async (value) => (
+        await this.getResource(`/recipes/article_by_ingredients`, "POST", { ingredients: value })
+    );
+
+    postRecipe = async (formSelector) => {
         const formData = new FormData(document.querySelector(formSelector));
 
         return await fetch(`${this._baseUrl}/recipe/create`,
@@ -46,5 +71,15 @@ export default class RecipesAPI {
             })
             .then((response) => response.json())
             .catch((error) => console.error(error));
+
+        // return await this.getResource(`/recipe/create`, "POST", formData);
     };
+
+    toRegister = async (data) => (
+        await this.getResource(`/users/register`, "POST", data)
+    );
+
+    logIn = async (data) => (
+        await this.getResource(`/users/login`, "POST", data)
+    );
 }

@@ -4,7 +4,7 @@ const simpleUser = [
     {
         id: 1,
         label: "Рецепты",
-        url: "/recipes/page/1",
+        url: "/recipes",
     },
     {
         id: 2,

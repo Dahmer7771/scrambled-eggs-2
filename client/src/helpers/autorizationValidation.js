@@ -1,7 +1,7 @@
 const regExp = {
     letters: /^(\d*([a-zA-Z]{1,})\d*)*$/,
     email: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-    password: /^[a-z0-9]+$/,
+    password: /^[A-Za-z0-9]+$/,
 };
 
 const MESSAGES = {
@@ -35,8 +35,9 @@ const error = (fieldName, value, errorMessage) => ({
 
 const formValidation = (fieldName, value) => {
     const field = {
-        USERNAME_LOGIN: "usernameLogin",
-        USERNAME_REGISTRATION: "usernameRegistration",
+        EMAIL_LOGIN: "emailLogin",
+        FIRSTNAME_REGISTRATION: "firstnameRegistration",
+        LASTNAME_REGISTRATION: "lastnameRegistration",
         PASSWORD_LOGIN: "passwordLogin",
         PASSWORD_REGISTRATION: "passwordRegistration",
         PASSWORD_CONFIRM_REGISTRATION: "passwordConfirmRegistration",
@@ -44,16 +45,11 @@ const formValidation = (fieldName, value) => {
     };
 
     switch (fieldName) {
-    case field.USERNAME_LOGIN:
-        if (regExp.letters.test(value)) {
-            if (value.length <= 20 && value.length > 3) {
-                return success(fieldName, value);
-            } if (value.length > 20) {
-                return error(fieldName, value, MESSAGES.USERNAME_MESSAGE.tooLongUsername);
-            }
-            return error(fieldName, value, MESSAGES.USERNAME_MESSAGE.tooShortUsername);
+    case field.EMAIL_LOGIN:
+        if (regExp.email.test(value)) {
+            return success(fieldName, value);
         }
-        return error(fieldName, value, MESSAGES.USERNAME_MESSAGE.invalidCharacters);
+        return error(fieldName, value, MESSAGES.EMAIL_MESSAGE.invalidEmail);
     case field.USERNAME_REGISTRATION:
         if (regExp.letters.test(value)) {
             if (value.length <= 20 && value.length > 3) {
