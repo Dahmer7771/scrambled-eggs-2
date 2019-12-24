@@ -17,29 +17,32 @@ import Users from "../users/users";
 import CreatedRecipe from "../created-recipe/created-recipe";
 import RecipeClient from "../recipe-client/recipe-client";
 import ChangeRecipeClient from "../change-recipe-client/change-recipe-client";
+import UpdateRecipe from "../update-recipe/update-recipe";
 
 class App extends Component {
     constructor(props) {
         super(props);
-        // const { cookies } = props;
         this.state = {
             recipesAPI: new RecipesAPI(),
             currentPage: 1,
             searchText: "",
-            // name: cookies.get("w_auth"),
-            // recipesPerPage: 4,
+            isAuth: false,
         };
     }
 
     componentDidMount() {
+        const {
+            recipesAPI,
+        } = this.state;
 
+        recipesAPI.isUserAuth()
+            .then((res) => {
+                this.setState({
+                    isAuth: res,
+                });
+            })
+            .catch((err) => console.log(err));
     }
-
-    onPageChange = (page) => {
-        this.setState({
-            currentPage: page,
-        });
-    };
 
     onSearchInputChange = (searchText) => {
         this.setState({
@@ -52,7 +55,7 @@ class App extends Component {
             recipesAPI,
             currentPage,
             searchText,
-            // recipesPerPage,
+            isAuth,
         } = this.state;
 
         return (
@@ -67,7 +70,6 @@ class App extends Component {
                                 <RecipesSection
                                     {...props}
                                     currentPage={currentPage}
-                                    onPageChange={this.onPageChange}
                                     searchText={searchText}
                                 />
                             )}
@@ -79,7 +81,6 @@ class App extends Component {
                                 <RecipesSection
                                     {...props}
                                     currentPage={currentPage}
-                                    onPageChange={this.onPageChange}
                                     searchText={searchText}
                                 />
                             )}
@@ -88,8 +89,16 @@ class App extends Component {
                         <Route path="/autorization" component={Autorization} />
                         <Route path="/search" component={SearchSection} />
                         <Route path="/users" component={Users} />
-                        <Route path="/created" component={CreatedRecipe} />
-                        <Route path="/recipe_client" component={RecipeClient} />
+                        <Route path="/createRecipe" component={CreatedRecipe} />
+                        <Route
+                            path="/updateRecipe"
+                            render={(props) => (
+                                <UpdateRecipe
+                                    {...props}
+                                />
+                            )}
+                        />
+                        <Route path="/recipeClient" component={RecipeClient} />
                         <Route path="/change" component={ChangeRecipeClient} />
                     </Switch>
                     <Footer />

@@ -10,8 +10,58 @@ class CreatedRecipe extends Component {
         this.state = {
             term: "",
             ingredients: "",
+            selectedRecipe: {
+                name: "",
+                description: "",
+                steps: "",
+                ingredient: [],
+            },
+            // inputValues: {
+            //     name: "",
+            //     description: "",
+            //     steps: "",
+            //     ingredients: "",
+            // },
         };
     }
+
+    componentDidMount() {
+        const {
+            selectedRecipe,
+        } = this.props;
+
+        this.setState({
+            selectedRecipe,
+        });
+    }
+
+    componentDidUpdate(prevProps) {
+        const {
+            selectedRecipe,
+        } = this.props;
+
+        if (prevProps.selectedRecipe !== selectedRecipe) {
+            // eslint-disable-next-line react/no-did-update-set-state
+            this.setState({
+                selectedRecipe,
+            });
+        }
+    }
+
+    onInputChange = (e) => {
+        const {
+            selectedRecipe,
+        } = this.state;
+        const inputName = e.target.name;
+        const { value } = e.target;
+
+        this.setState({
+            selectedRecipe: {
+                ...selectedRecipe,
+                [inputName]: value,
+            },
+        });
+    };
 
     onIngredientAdd = () => {
         const {
@@ -46,21 +96,44 @@ class CreatedRecipe extends Component {
 
     onSubmit = (event) => {
         event.preventDefault();
-        const { postRecipe } = this.props;
+        const {
+            createRecipe,
+            updateRecipe,
+            isUpdate,
+        } = this.props;
 
-        postRecipe("#recipe-form")
-            .then((data) => console.log(data))
-            .then(this.createRecipeForm.current.reset());
+        if (isUpdate) {
+            updateRecipe()
+                .then((res) => console.log(res))
+                .catch((err) => console.log(err));
+        } else {
+            createRecipe("#recipe-form")
+                .then((data) => console.log(data))
+                .then(this.createRecipeForm.current.reset());
+        }
     };
 
     render() {
+        let {
+            selectedRecipe,
+        } = this.state;
         const {
             ingredients,
         } = this.state;
 
-        let ingredientsList = null;
+        let ingredientsList;
 
-        if (ingredients) {
+        if (selectedRecipe == null) {
+            selectedRecipe = {
+                name: "",
+                description: "",
+                steps: "",
+                ingredient: [],
+            };
+        }
+        // eslint-disable-next-line eqeqeq
+        if (ingredients.length > 0) {
+            console.log(selectedRecipe);
             ingredientsList = (
                 <ul className="recipe-list row">
                     {ingredients.split(",").map((item) => (
@@ -80,11 +153,11 @@ class CreatedRecipe extends Component {
                 <form ref={this.createRecipeForm} method="POST" className="created_recipe" id="recipe-form" onSubmit={this.onSubmit}>
                     <div className="form-group">
                         <label htmlFor="recipe-name">Название рецепта:</label>
-                        <input type="text" name="name" className="form-control" id="recipe-name" />
+                        <input onChange={this.onInputChange} value={selectedRecipe.name} type="text" name="name" className="form-control" id="recipe-name" />
                     </div>
                     <div className="form-group">
                         <label htmlFor="recipe-description">Краткое описание:</label>
-                        <textarea className="form-control" name="description" id="recipe-description" />
+                        <textarea onChange={this.onInputChange} value={selectedRecipe.description} className="form-control" name="description" id="recipe-description" />
                     </div>
                     <div className="form-group">
                         <label htmlFor="recipe-category">Категория</label>
@@ -106,7 +179,7 @@ class CreatedRecipe extends Component {
                             </div>
                             <input
                                 onChange={this.onIngredientInputChange}
-                                id="recipe-ingredients"
+                                id="recipe-ingredient"
                                 type="text"
                                 className="form-control"
                                 placeholder=""
@@ -114,14 +187,14 @@ class CreatedRecipe extends Component {
                                 aria-describedby="button-addon1"
                             />
                         </div>
-                        <input readOnly style={{ display: "none" }} value={ingredients} type="text" name="ingredient" className="form-control" />
+                        <input readOnly style={{ display: "none" }} value={selectedRecipe.ingredient} type="text" name="ingredient" className="form-control" />
                     </div>
                     {ingredientsList}
                     <div className="form-group">
                         <label htmlFor="recipe-file">Фото</label>
                         <input type="file" name="image" className="form-control-file" id="recipe-file" />
                     </div>
-                    <EditorConvertToHTML />
+                    <EditorConvertToHTML steps={selectedRecipe.steps} />
                     <input className="btn btn-primary" type="submit" value="Submit" />
                 </form>
             </div>
@@ -130,7 +203,8 @@ class CreatedRecipe extends Component {
 }
 
 const mapMethodsToProps = (RecipesAPI) => ({
-    postRecipe: RecipesAPI.postRecipe,
+    createRecipe: RecipesAPI.createRecipe,
+    updateRecipe: RecipesAPI.updateRecipe,
 });
 
 export default withOntext(mapMethodsToProps)(CreatedRecipe);

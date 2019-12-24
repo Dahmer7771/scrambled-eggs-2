@@ -6,7 +6,10 @@ export default class RecipesAPI {
         let res;
 
         if (typeof method === "undefined") {
-            res = await fetch(`${this._baseUrl}${url}`);
+            res = await fetch(`${this._baseUrl}${url}`, {
+                method: "GET",
+                credentials: "include",
+            });
         } else {
             const headers = new Headers();
             headers.append("Content-Type", "application/json");
@@ -61,12 +64,26 @@ export default class RecipesAPI {
         await this.getResource(`/recipes/article_by_ingredients`, "POST", { ingredients: value })
     );
 
-    postRecipe = async (formSelector) => {
+    createRecipe = async (formSelector) => {
         const formData = new FormData(document.querySelector(formSelector));
 
         return await fetch(`${this._baseUrl}/recipe/create`,
             {
                 method: "POST",
+                body: formData,
+            })
+            .then((response) => response.json())
+            .catch((error) => console.error(error));
+
+        // return await this.getResource(`/recipe/create`, "POST", formData);
+    };
+
+    updateRecipe = async (formSelector, id) => {
+        const formData = new FormData(document.querySelector(formSelector));
+
+        return await fetch(`${this._baseUrl}/recipes/article_by_id?id=${id}`,
+            {
+                method: "PUT",
                 body: formData,
             })
             .then((response) => response.json())
@@ -82,4 +99,10 @@ export default class RecipesAPI {
     logIn = async (data) => (
         await this.getResource(`/users/login`, "POST", data)
     );
+
+    isUserAuth = async () => {
+        const res = await this.getResource(`/users/auth`);
+        console.log(res.isAuth);
+        return res.isAuth;
+    };
 }
