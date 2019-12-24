@@ -27,6 +27,7 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 app.use(cookieParser());
 
+
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", req.headers.origin);
   res.header("Access-Control-Allow-Methods", "GET, PUT, PATCH, POST, DELETE");
@@ -39,7 +40,8 @@ app.use(function(req, res, next) {
 });
 
 app.use(express.static('client/build'))
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 80;
+const DNS = "g5.sumdu-tss.site";
 
 app.use("", recipeRoutes);
 app.use("", userRoutes);
@@ -50,6 +52,6 @@ app.get('/', (req, res) => {
   res.send('<p>some html</p>');
 })
 
-app.listen(PORT, () => {
+app.listen(PORT, DNS, () => {
   console.log(`Server is running on port ${PORT}`);
 })
