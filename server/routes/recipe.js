@@ -72,7 +72,7 @@ const upload = multer({
  * @apiError Error Сообщение о типе ошибки
  */
 
-router.post('/api/recipe/create', upload.single('image'), auth, (req, res) => {
+router.post('/api/recipe/create', upload.single('image'), /*auth,*/ (req, res) => {
 
   console.log(req.body);
   Recipe.find({name: req.body.recipe}, function (err, docs) {
@@ -91,7 +91,7 @@ router.post('/api/recipe/create', upload.single('image'), auth, (req, res) => {
     category: req.body.category,
     ingredient: ingredientReq,
     mark: req.body.mark,
-    createdBy: req.user._id, 
+    // createdBy: req.user._id, 
     image: req.file.path
   });}
   else {
@@ -102,7 +102,7 @@ router.post('/api/recipe/create', upload.single('image'), auth, (req, res) => {
       category: req.body.category,
       ingredient: ingredientReq,
       mark: req.body.mark,
-      createdBy: req.name._id, 
+      // createdBy: req.name._id, 
     });
   }
 
@@ -149,7 +149,7 @@ router.post('/api/recipe/create', upload.single('image'), auth, (req, res) => {
 
 //UPDATE RECIPE
 
-router.put("/api/recipes/article_by_id", upload.single('image'), auth, (req, res) => {
+router.put("/api/recipes/article_by_id", upload.single('image'), /*auth,*/ (req, res) => {
   
   let id =  req.query.id;
   let recipe;
@@ -221,15 +221,16 @@ router.put("/api/recipes/article_by_id", upload.single('image'), auth, (req, res
 
 // REMOVE RECIPE
 
-router.delete("/api/recipes/article_by_id", auth, (req, res) => {
+router.delete("/api/recipes/article_by_id", /*auth,*/ (req, res) => {
   
   let id =  req.query.id;
-  let createdBy = req.user._id;
-  let canBeDeleted = false
+  // let createdBy = req.user._id;
+  // let canBeDeleted = false;
+  let canBeDeleted = true;
 
   Recipe.findById(id).exec((err, result) => {
     if(err) return res.status(400).send(err);
-    if (createdBy.toString() == result.createdBy.toString() || req.user.role == 1) canBeDeleted = true;
+    // if (createdBy.toString() == result.createdBy.toString() || req.user.role == 1) canBeDeleted = true;
     if(canBeDeleted){
       Recipe.deleteOne({ _id: `${id}`}, (err, deletedProduct) => {
         if (err) {
