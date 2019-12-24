@@ -2,6 +2,10 @@
     font-size: 12px;
 }
 
+textarea[name="description"] {
+    height: 110px;
+}
+
 .created_recipe {
     margin-top: 20px;
     margin-bottom: 20px;

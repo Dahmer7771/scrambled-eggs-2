@@ -47,7 +47,7 @@ class DeleteRecipe extends Component {
                 const creationDateRegExp = /([0-9][0-9][0-9][0-9])-([0-1][0-9])-([0-3][0-9])/g;
                 const creationDate = item.created.match(creationDateRegExp).toString();
                 return (
-                    <tr key={item._id}>
+                    <tr className="deleteRecipeTr" key={item._id}>
                         <th scope="row">{index + 1}</th>
                         <td>{item.name}</td>
                         <td>{creationDate}</td>

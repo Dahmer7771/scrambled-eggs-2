@@ -85,6 +85,17 @@ class CreateRecipe extends Component {
                 ingredients: ingredientsItem,
             });
         }
+        //
+        // ingredients.push({
+        //     id: ingredients.length,
+        //     value: term,
+        // });
+        //
+        // this.setState({
+        //     ingredients: [
+        //
+        //     ]
+        // })
     };
 
     onIngredientInputChange = (e) => {
@@ -97,6 +108,7 @@ class CreateRecipe extends Component {
 
     onSubmit = (event) => {
         event.preventDefault();
+
         const {
             createRecipe,
             updateRecipe,
@@ -138,7 +150,6 @@ class CreateRecipe extends Component {
         }
         // eslint-disable-next-line eqeqeq
         if (ingredients.length > 0) {
-            console.log(selectedRecipe);
             ingredientsList = (
                 <ul className="recipe-list row">
                     {ingredients.split(",").map((item) => (
@@ -155,6 +166,11 @@ class CreateRecipe extends Component {
 
         return (
             <div className="container">
+                <h4 className="my-3">
+                    <label htmlFor="searchInput">
+                        Создание рецепта
+                    </label>
+                </h4>
                 <form ref={this.createRecipeForm} method="POST" className="created_recipe" id="recipe-form" onSubmit={this.onSubmit}>
                     <div className="form-group">
                         <label htmlFor="recipe-name">Название рецепта:</label>
