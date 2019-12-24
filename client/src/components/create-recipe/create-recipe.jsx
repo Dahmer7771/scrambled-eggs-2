@@ -3,7 +3,7 @@ import "./created-recipe.css";
 import EditorConvertToHTML from "../editor-convert-to-html/editor-convert-to-html";
 import withOntext from "../hoc-helpers/with-сontext";
 
-class CreatedRecipe extends Component {
+class CreateRecipe extends Component {
     constructor(props) {
         super(props);
         this.createRecipeForm = createRef();
@@ -11,6 +11,7 @@ class CreatedRecipe extends Component {
             term: "",
             ingredients: "",
             selectedRecipe: {
+                id: "",
                 name: "",
                 description: "",
                 steps: "",
@@ -100,14 +101,17 @@ class CreatedRecipe extends Component {
             createRecipe,
             updateRecipe,
             isUpdate,
+            selectedRecipe,
         } = this.props;
 
+        const formSelector = "#recipe-form";
+
         if (isUpdate) {
-            updateRecipe()
+            updateRecipe(formSelector, selectedRecipe._id)
                 .then((res) => console.log(res))
                 .catch((err) => console.log(err));
         } else {
-            createRecipe("#recipe-form")
+            createRecipe(formSelector)
                 .then((data) => console.log(data))
                 .then(this.createRecipeForm.current.reset());
         }
@@ -125,6 +129,7 @@ class CreatedRecipe extends Component {
 
         if (selectedRecipe == null) {
             selectedRecipe = {
+                id: "",
                 name: "",
                 description: "",
                 steps: "",
@@ -187,7 +192,7 @@ class CreatedRecipe extends Component {
                                 aria-describedby="button-addon1"
                             />
                         </div>
-                        <input readOnly style={{ display: "none" }} value={selectedRecipe.ingredient} type="text" name="ingredient" className="form-control" />
+                        <input readOnly style={{ display: "none" }} value={ingredients} type="text" name="ingredient" className="form-control" />
                     </div>
                     {ingredientsList}
                     <div className="form-group">
@@ -207,4 +212,4 @@ const mapMethodsToProps = (RecipesAPI) => ({
     updateRecipe: RecipesAPI.updateRecipe,
 });
 
-export default withOntext(mapMethodsToProps)(CreatedRecipe);
+export default withOntext(mapMethodsToProps)(CreateRecipe);
