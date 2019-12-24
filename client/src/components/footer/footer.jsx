@@ -60,7 +60,7 @@ class Footer extends Component {
 
                         </div>
 
-                        <div className="social col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                        <div className="social col-md-3 col-lg-3 col-xl-2 mx-auto mb-4">
 
                             <h6 className="text-uppercase font-weight-bold">
                                 Дети солнца
