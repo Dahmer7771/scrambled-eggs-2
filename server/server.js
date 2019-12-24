@@ -39,7 +39,9 @@ app.use(function(req, res, next) {
   // res.header("X-WebKit-CSP", "script-src 'self' https://apis.google.com");
 });
 
-app.use(express.static('client/build'))
+app.use(express.static(path.join(__dirname, '../client/build')));
+app.use(express.static(path.join(__dirname, '../uploads')));
+
 const PORT = process.env.PORT || 80;
 const DNS = "g5.sumdu-tss.site";
 
@@ -47,10 +49,9 @@ app.use("", recipeRoutes);
 app.use("", userRoutes);
 
 
-app.get('/', (req, res) => {
-  res.status(200);
-  res.send('<p>Манюсенькие проблемы с клиентской частью, скоро всё будет</p>');
-})
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
+});
 
 app.listen(PORT, DNS, () => {
   console.log(`Server is running on port ${PORT}`);

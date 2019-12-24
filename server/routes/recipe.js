@@ -33,7 +33,7 @@ const { admin } = require('../middleware/admin');
 
 const storage = multer.diskStorage({
   destination: function(req, file, cb) {
-    cb(null, './client/public/uploads');
+    cb(null, './uploads');
   },
   filename: function(req, file, cb) {
     cb(null, new Date().toISOString().replace(/:/g, '-') + file.originalname);
