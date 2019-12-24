@@ -65,13 +65,13 @@ class Footer extends Component {
                             <h6 className="text-uppercase font-weight-bold">
                                 Дети солнца
                                 {"  "}
-                                <i
-                                    style={{
-                                        fontSize: "18px",
-                                        fontWeight: "400",
-                                    }}
-                                    className="fab fa-accessible-icon"
-                                />
+                                {/* <i */}
+                                {/*    style={{ */}
+                                {/*        fontSize: "18px", */}
+                                {/*        fontWeight: "400", */}
+                                {/*    }} */}
+                                {/*    className="fab fa-accessible-icon" */}
+                                {/* /> */}
                             </h6>
                             <hr className="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style={{ width: "60px" }} />
                             <p>
@@ -97,18 +97,23 @@ class Footer extends Component {
                             <p>
                                 <i className="fas fa-envelope mr-3" />
                                 {" "}
-                                room806@gmail.com
+                                <span style={{
+                                    fontSize: "10px",
+                                }}
+                                >
+                                    gХ@tss2019.repositoryhosting.com
+                                </span>
                             </p>
-                            <p>
-                                <i className="fas fa-phone mr-3" />
-                                {" "}
-                                + 01 234 567 88
-                            </p>
-                            <p>
-                                <i className="fas fa-print mr-3" />
-                                {" "}
-                                + 01 234 567 89
-                            </p>
+                            {/* <p> */}
+                            {/*    <i className="fas fa-phone mr-3" /> */}
+                            {/*    {" "} */}
+                            {/*    + 01 234 567 88 */}
+                            {/* </p> */}
+                            {/* <p> */}
+                            {/*    <i className="fas fa-print mr-3" /> */}
+                            {/*    {" "} */}
+                            {/*    + 01 234 567 89 */}
+                            {/* </p> */}
 
                         </div>
 
@@ -116,10 +121,10 @@ class Footer extends Component {
 
                 </div>
 
-                <div className="footer-copyright text-center py-3">
-                    © 2018 Copyright:
-                    <a href="https://mdbootstrap.com/education/bootstrap/"> MDBootstrap.com</a>
-                </div>
+                {/* <div className="footer-copyright text-center py-3"> */}
+                {/*    © 2018 Copyright: */}
+                {/*    <a href="https://mdbootstrap.com/education/bootstrap/"> MDBootstrap.com</a> */}
+                {/* </div> */}
 
             </footer>
         );
