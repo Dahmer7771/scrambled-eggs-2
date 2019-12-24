@@ -242,7 +242,7 @@ router.delete("/api/recipes/article_by_id", /*auth,*/ (req, res) => {
       })
     }
     else{
-      return res.json(`It's not your reсipe`)
+      return res.json(`It's not your reсipe`);
     }
   })
 })
