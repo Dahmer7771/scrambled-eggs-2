@@ -101,7 +101,7 @@ class Footer extends Component {
                                     fontSize: "10px",
                                 }}
                                 >
-                                    gХ@tss2019.repositoryhosting.com
+                                    g5@tss2019.repositoryhosting.com
                                 </span>
                             </p>
                             {/* <p> */}
