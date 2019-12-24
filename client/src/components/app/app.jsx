@@ -14,10 +14,11 @@ import SearchSection from "../search-section/search-section";
 import { RecipesProvider } from "../recipes-context/recipes-context";
 import RecipesAPI from "../../services/recipes-api";
 import Users from "../users/users";
-import CreatedRecipe from "../created-recipe/created-recipe";
+import CreatedRecipe from "../create-recipe/create-recipe";
 import RecipeClient from "../recipe-client/recipe-client";
 import ChangeRecipeClient from "../change-recipe-client/change-recipe-client";
 import UpdateRecipe from "../update-recipe/update-recipe";
+import DeleteRecipe from "../delete-recipe/delete-recipe";
 
 class App extends Component {
     constructor(props) {
@@ -90,14 +91,8 @@ class App extends Component {
                         <Route path="/search" component={SearchSection} />
                         <Route path="/users" component={Users} />
                         <Route path="/createRecipe" component={CreatedRecipe} />
-                        <Route
-                            path="/updateRecipe"
-                            render={(props) => (
-                                <UpdateRecipe
-                                    {...props}
-                                />
-                            )}
-                        />
+                        <Route path="/updateRecipe" component={UpdateRecipe} />
+                        <Route path="/deleteRecipe" component={DeleteRecipe} />
                         <Route path="/recipeClient" component={RecipeClient} />
                         <Route path="/change" component={ChangeRecipeClient} />
                     </Switch>

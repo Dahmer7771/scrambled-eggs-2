@@ -74,8 +74,6 @@ export default class RecipesAPI {
             })
             .then((response) => response.json())
             .catch((error) => console.error(error));
-
-        // return await this.getResource(`/recipe/create`, "POST", formData);
     };
 
     updateRecipe = async (formSelector, id) => {
@@ -88,9 +86,14 @@ export default class RecipesAPI {
             })
             .then((response) => response.json())
             .catch((error) => console.error(error));
-
-        // return await this.getResource(`/recipe/create`, "POST", formData);
     };
+
+    deleteRecipe = async (id) => await fetch(`${this._baseUrl}/recipes/article_by_id?id=${id}`,
+        {
+            method: "DELETE",
+        })
+        .then((response) => response.json())
+        .catch((error) => console.error(error));
 
     toRegister = async (data) => (
         await this.getResource(`/users/register`, "POST", data)

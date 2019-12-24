@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Select from "react-dropdown-select";
-import CreatedRecipe from "../created-recipe/created-recipe";
+import CreatedRecipe from "../create-recipe/create-recipe";
 import withContext from "../hoc-helpers/with-сontext";
 
 class UpdateRecipe extends Component {
@@ -87,7 +87,11 @@ class UpdateRecipe extends Component {
                         </form>
                     </div>
                 </div>
-                <CreatedRecipe isUpdate selectedRecipe={selectedRecipe} />
+                <CreatedRecipe
+                    isUpdate
+                    // currentRecipeId={selectedRecipe._id}
+                    selectedRecipe={selectedRecipe}
+                />
             </>
         );
     }
