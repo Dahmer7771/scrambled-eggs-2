@@ -1,0 +1,32 @@
+.material-icons.md-18 {
+    font-size: 12px;
+}
+
+.created_recipe {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.recipe-list {
+    list-style-type: none;
+}
+
+.recipe-list-item {
+    margin-right: 5px;
+    margin-bottom: 5px;
+    padding: 8px;
+    border-radius: 4px;
+    background-color: #3a97fb;
+    color: white;
+    font-size: 16px;
+
+}
+
+.button-delete-ingredient {
+    margin-left: 5px;
+}
+
+.form-control {
+    width: 100%;
+}
+

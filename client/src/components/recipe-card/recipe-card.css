@@ -1,0 +1,56 @@
+.recipe-image {
+    width: 100%;
+    height: 100%;
+    background: #777;
+}
+
+.card.recipe-card {
+    margin: 20px auto;
+    overflow: hidden;
+    height: 410px;
+    display: flex;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.recipe-card button a {
+    color: white;
+    text-decoration: none;
+}
+
+.recipe-card a {
+    align-self: flex-start;
+}
+
+.module {
+    width: 100%;
+    margin: 0 0 1em 0;
+    overflow: hidden;
+    flex-grow: 1;
+}
+.module p {
+    margin: 0;
+}
+
+.line-clamp {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    align-self: stretch;
+}
+
+.card-btn {
+    align-self: stretch;
+}
+
+.card-title {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}

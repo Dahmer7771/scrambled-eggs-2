@@ -1,0 +1,23 @@
+.header {
+    color: white;
+}
+
+.header .navbar-nav .nav-link {
+    padding-right: 0rem;
+    padding-left: 0.6rem;
+}
+
+.header .navbar {
+    padding-left: 0!important;
+    padding-right: 0!important;
+}
+
+@media all and (max-width: 991px) {
+    .navbar-brand {
+        flex-grow: 1;
+    }
+
+    .navbar {
+        justify-content: flex-start;
+    }
+}

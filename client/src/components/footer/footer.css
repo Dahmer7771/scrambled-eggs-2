@@ -1,0 +1,8 @@
+.social-network a{
+    color: #000;
+    margin-right: 10px;
+}
+
+.social-network a:hover{
+    color: #fbfbfb;
+}
