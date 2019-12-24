@@ -49,7 +49,7 @@ app.use("", userRoutes);
 
 app.get('/', (req, res) => {
   res.status(200);
-  res.send('<p>some html</p>');
+  res.send('<p>Манюсенькие проблемы с клиентской частью, скоро всё будет</p>');
 })
 
 app.listen(PORT, DNS, () => {
