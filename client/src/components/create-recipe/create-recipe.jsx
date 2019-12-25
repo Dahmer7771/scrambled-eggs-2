@@ -1,7 +1,7 @@
 import React, { Component, createRef } from "react";
-import "./created-recipe.css";
+import "./create-recipe.css";
 import EditorConvertToHTML from "../editor-convert-to-html/editor-convert-to-html";
-import withOntext from "../hoc-helpers/with-сontext";
+import withContext from "../hoc-helpers/with-сontext";
 
 class CreateRecipe extends Component {
     constructor(props) {
@@ -17,12 +17,7 @@ class CreateRecipe extends Component {
                 steps: "",
                 ingredient: [],
             },
-            // inputValues: {
-            //     name: "",
-            //     description: "",
-            //     steps: "",
-            //     ingredients: "",
-            // },
+            selectedIngredients: [],
         };
     }
 
@@ -43,8 +38,16 @@ class CreateRecipe extends Component {
 
         if (prevProps.selectedRecipe !== selectedRecipe) {
             // eslint-disable-next-line react/no-did-update-set-state
+            console.log(selectedRecipe.ingredient);
+
+            const ingredientsArray = selectedRecipe.ingredient.map((item, index) => ({
+                id: index,
+                name: item,
+            }));
+
             this.setState({
                 selectedRecipe,
+                selectedIngredients: ingredientsArray,
             });
         }
     }
@@ -68,34 +71,70 @@ class CreateRecipe extends Component {
         const {
             term,
             ingredients,
+            selectedIngredients,
         } = this.state;
 
         if (!term) return;
 
+        let ingredientsToString;
+
         if (!ingredients) {
-            const ingredientsItem = `${term}`;
-
-            this.setState({
-                ingredients: ingredientsItem,
-            });
+            ingredientsToString = `${term}`;
         } else {
-            const ingredientsItem = `${ingredients},${term}`;
-
-            this.setState({
-                ingredients: ingredientsItem,
-            });
+            ingredientsToString = `${ingredients},${term}`;
         }
-        //
-        // ingredients.push({
-        //     id: ingredients.length,
-        //     value: term,
-        // });
-        //
-        // this.setState({
-        //     ingredients: [
-        //
-        //     ]
-        // })
+
+        this.setState({
+            ingredients: ingredientsToString,
+            selectedIngredients: this.addIngredient(selectedIngredients, term),
+        });
+    };
+
+    onIngredientRemove = (id) => {
+        const {
+            selectedIngredients,
+        } = this.state;
+
+        const newIngredientsList = this.removeIngredient(selectedIngredients, id);
+        const newIngredientsString = newIngredientsList.map((item) => item.name);
+
+        this.setState({
+            ingredients: newIngredientsString.join(","),
+            selectedIngredients: this.removeIngredient(selectedIngredients, id),
+        });
+    };
+
+    removeIngredient = (array, id) => {
+        const arrayCopy = [...array];
+        const itemIndex = arrayCopy
+            .indexOf(arrayCopy.find((item) => item.id === id));
+        arrayCopy.splice(itemIndex, 1);
+
+        return [
+            ...arrayCopy,
+        ];
+    };
+
+    addIngredient = (array, name) => {
+        const arrayCopy = [...array];
+        let newId;
+
+        if (arrayCopy.length > 0) {
+            newId = arrayCopy[arrayCopy.length - 1].id + 1;
+        } else {
+            newId = 1;
+        }
+
+        const newIngredient = {
+            id: newId,
+            name,
+        };
+
+        arrayCopy.push(newIngredient);
+
+        return [
+            ...arrayCopy,
+        ];
     };
 
     onIngredientInputChange = (e) => {
@@ -135,6 +174,7 @@ class CreateRecipe extends Component {
         } = this.state;
         const {
             ingredients,
+            selectedIngredients,
         } = this.state;
 
         let ingredientsList;
@@ -149,13 +189,13 @@ class CreateRecipe extends Component {
             };
         }
         // eslint-disable-next-line eqeqeq
-        if (ingredients.length > 0) {
+        if (selectedIngredients.length > 0) {
             ingredientsList = (
                 <ul className="recipe-list row">
-                    {ingredients.split(",").map((item) => (
-                        <li className="recipe-list-item" key={item}>
-                            {item}
-                            <button type="button" className="button-delete-ingredient material-icons md-18 btn btn-secondary btn-sm disabled">
+                    {selectedIngredients.map((item) => (
+                        <li className="recipe-list-item" key={item.id}>
+                            {item.name}
+                            <button onClick={() => this.onIngredientRemove(item.id)} type="button" className="button-delete-ingredient material-icons md-18 btn btn-light btn btn-sm disabled">
                                     close
                             </button>
                         </li>
@@ -228,4 +268,4 @@ const mapMethodsToProps = (RecipesAPI) => ({
     updateRecipe: RecipesAPI.updateRecipe,
 });
 
-export default withOntext(mapMethodsToProps)(CreateRecipe);
+export default withContext(mapMethodsToProps)(CreateRecipe);
