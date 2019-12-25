@@ -16,7 +16,7 @@ class Header extends Component {
         } = this.props;
 
         return (
-            <header className="header bg-primary">
+            <header className="header bg-primary sticky-top">
                 <div className="container">
                     <nav className="navbar navbar-expand-lg navbar-dark">
                         <Link

@@ -2,6 +2,7 @@ import React, { Component, createRef } from "react";
 import "./create-recipe.css";
 import EditorConvertToHTML from "../editor-convert-to-html/editor-convert-to-html";
 import withContext from "../hoc-helpers/with-сontext";
+import ModalWindow from "../modal-window/modal-window";
 
 class CreateRecipe extends Component {
     constructor(props) {
@@ -18,6 +19,9 @@ class CreateRecipe extends Component {
                 ingredient: [],
             },
             selectedIngredients: [],
+            modalVisibility: true,
+            modalHeader: "",
+            modalMessage: "",
         };
     }
 
@@ -37,15 +41,22 @@ class CreateRecipe extends Component {
         } = this.props;
 
         if (prevProps.selectedRecipe !== selectedRecipe) {
+            let ingredientsArray;
+            let ingredients;
+
+            if (selectedRecipe.ingredient[0] === "") {
+                ingredientsArray = [];
+            } else {
+                ingredientsArray = selectedRecipe.ingredient.map((item, index) => ({
+                    id: index,
+                    name: item,
+                }));
+                ingredients = selectedRecipe.ingredient.join(",");
+            }
+
             // eslint-disable-next-line react/no-did-update-set-state
-            console.log(selectedRecipe.ingredient);
-
-            const ingredientsArray = selectedRecipe.ingredient.map((item, index) => ({
-                id: index,
-                name: item,
-            }));
-
             this.setState({
+                ingredients,
                 selectedRecipe,
                 selectedIngredients: ingredientsArray,
             });
@@ -159,12 +170,54 @@ class CreateRecipe extends Component {
 
         if (isUpdate) {
             updateRecipe(formSelector, selectedRecipe._id)
-                .then((res) => console.log(res))
+                .then((data) => {
+                    if (data.error) {
+                        console.log("error");
+                        this.setState({
+                            modalHeader: "Ошибка ввода",
+                            modalMessage: data.error.message,
+                        });
+                    } else {
+                        this.setState({
+                            modalHeader: "Рецепт обновлен",
+                            modalMessage: "Вы успешно обновили рецепт",
+                            selectedRecipe: {
+                                id: "",
+                                name: "",
+                                description: "",
+                                steps: "",
+                                ingredient: [],
+                            },
+                        });
+                    }
+                })
+                .then(this.createRecipeForm.current.reset())
                 .catch((err) => console.log(err));
         } else {
             createRecipe(formSelector)
-                .then((data) => console.log(data))
-                .then(this.createRecipeForm.current.reset());
+                .then((data) => {
+                    if (data.error) {
+                        console.log("error");
+                        this.setState({
+                            modalHeader: "Ошибка ввода",
+                            modalMessage: data.error.message,
+                        });
+                    } else {
+                        this.setState({
+                            modalHeader: "Рецепт добавлен",
+                            modalMessage: "Вы успешно добавили рецепт",
+                            selectedRecipe: {
+                                id: "",
+                                name: "",
+                                description: "",
+                                steps: "",
+                                ingredient: [],
+                            },
+                        });
+                    }
+                })
+                .then(this.createRecipeForm.current.reset())
+                .catch((err) => console.log(err));
         }
     };
 
@@ -175,6 +228,9 @@ class CreateRecipe extends Component {
         const {
             ingredients,
             selectedIngredients,
+            modalHeader,
+            modalMessage,
+            modalVisibility,
         } = this.state;
 
         let ingredientsList;
@@ -256,8 +312,19 @@ class CreateRecipe extends Component {
                         <input type="file" name="image" className="form-control-file" id="recipe-file" />
                     </div>
                     <EditorConvertToHTML steps={selectedRecipe.steps} />
-                    <input className="btn btn-primary" type="submit" value="Submit" />
+                    <input
+                        data-toggle="modal"
+                        data-target="#exampleModal"
+                        className="btn btn-primary"
+                        type="submit"
+                        value="Подтвердить"
+                    />
                 </form>
+                <ModalWindow
+                    visibility={modalVisibility}
+                    header={modalHeader}
+                    message={modalMessage}
+                />
             </div>
         );
     }
