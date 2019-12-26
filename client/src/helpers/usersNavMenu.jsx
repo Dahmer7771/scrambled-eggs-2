@@ -92,16 +92,16 @@ const Settings = (props) => {
                     </div>
                 </Link>
                 <div className="dropdown-divider" />
-                <div className="dropdown-item">
-                    <Link to="/autorization">
+                <Link to="/autorization">
+                    <div className="dropdown-item">
                         <span
                             style={{ cursor: "pointer" }}
                             onClick={onLogout}
                         >
                             Выйти
                         </span>
-                    </Link>
-                </div>
+                    </div>
+                </Link>
             </div>
         </li>
     );
