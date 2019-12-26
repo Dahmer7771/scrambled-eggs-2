@@ -19,6 +19,7 @@ import RecipeClient from "../recipe-client/recipe-client";
 import ChangeRecipeClient from "../change-recipe-client/change-recipe-client";
 import UpdateRecipe from "../update-recipe/update-recipe";
 import DeleteRecipe from "../delete-recipe/delete-recipe";
+import PrivateRoute from "../../helpers/privateRoute";
 
 class App extends Component {
     constructor(props) {
@@ -109,11 +110,11 @@ class App extends Component {
                         />
                         <Route path="/search" component={SearchSection} />
                         <Route path="/users" component={Users} />
-                        <Route path="/createRecipe" component={CreatedRecipe} />
-                        <Route path="/updateRecipe" component={UpdateRecipe} />
-                        <Route path="/deleteRecipe" component={DeleteRecipe} />
-                        <Route path="/recipeClient" component={RecipeClient} />
-                        <Route path="/change" component={ChangeRecipeClient} />
+                        <PrivateRoute isAuthorized={isAuthorized} path="/createRecipe" component={CreatedRecipe} />
+                        <PrivateRoute isAuthorized={isAuthorized} path="/updateRecipe" component={UpdateRecipe} />
+                        <PrivateRoute isAuthorized={isAuthorized} path="/deleteRecipe" component={DeleteRecipe} />
+                        <PrivateRoute isAuthorized={isAuthorized} path="/recipeClient" component={RecipeClient} />
+                        <PrivateRoute isAuthorized={isAuthorized} path="/change" component={ChangeRecipeClient} />
                     </Switch>
                     <Footer />
                 </div>

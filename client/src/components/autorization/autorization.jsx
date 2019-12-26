@@ -296,10 +296,10 @@ class Autorization extends Component {
             isAuthorized,
         } = this.props;
 
+        if (isAuthorized) return <Redirect to="/" />;
+
         const loginToggle = isLoginActive ? "btn-primary" : "btn-light";
         const registrationToggle = isRegistrationActive ? "btn-primary" : "btn-light";
-
-        if (isAuthorized) return <Redirect to="/" />;
 
         return (
             <div className="container">

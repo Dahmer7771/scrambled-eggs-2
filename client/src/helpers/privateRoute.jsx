@@ -1,13 +1,12 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
 
-const PrivateRoute = ({ component: Component, isAuth, ...rest }) => {
-    console.log(typeof isAuth);
+const PrivateRoute = ({ component: Component, isAuthorized, ...rest }) => {
     return (
         <Route
             {...rest}
             render={(props) => (
-                isAuth ? (
+                isAuthorized ? (
                     <Component {...props} />
                 ) : (
                     <Redirect to="/" />
