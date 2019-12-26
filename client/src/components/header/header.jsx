@@ -13,6 +13,8 @@ class Header extends Component {
     render() {
         const {
             onSearchInputChange,
+            isAuthorized,
+            onAuthorizationSwitch,
         } = this.props;
 
         return (
@@ -31,7 +33,9 @@ class Header extends Component {
                             onSearchInputChange={(searchText) => onSearchInputChange(searchText)}
                         />
                         <NavMenu
+                            isAuthorized={isAuthorized}
                             onSearchInputChange={(searchText) => onSearchInputChange(searchText)}
+                            onAuthorizationSwitch={(isAuth) => onAuthorizationSwitch(isAuth)}
                         />
                     </nav>
                 </div>

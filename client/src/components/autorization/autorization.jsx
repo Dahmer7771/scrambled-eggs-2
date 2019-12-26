@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./autorization.css";
 import Zoom from "react-reveal/Zoom";
 import { withCookies } from "react-cookie";
+import { Redirect } from "react-router-dom";
 import formValidation from "../../helpers/autorizationValidation";
 import withContext from "../hoc-helpers/with-сontext";
 
@@ -219,6 +220,7 @@ class Autorization extends Component {
 
         const {
             logIn,
+            onAuthorizationSwitch,
             // cookies,
         } = this.props;
 
@@ -236,10 +238,9 @@ class Autorization extends Component {
 
         logIn(data)
             .then((res) => {
-                console.log(res);
-                // cookies.set("w_auth", res.w_auth, { path: "/" });
-                // cookies.set("w_auth", res.w_auth, { path: "/" });
-                // console.log(cookies.get("w_auth"));
+                if (res.loginSuccess) {
+                    onAuthorizationSwitch(true);
+                } else onAuthorizationSwitch(false);
             })
             .catch((errorMessage) => console.log(errorMessage));
     };
@@ -270,7 +271,10 @@ class Autorization extends Component {
         };
 
         toRegister(data)
-            .then((message) => console.log(message))
+            .then((message) => {
+                if (message.success) console.log("success");
+                else console.log("failure");
+            })
             .catch((errorMessage) => console.log(errorMessage));
     };
 
@@ -288,8 +292,14 @@ class Autorization extends Component {
             isRegistrationActive,
         } = this.state;
 
+        const {
+            isAuthorized,
+        } = this.props;
+
         const loginToggle = isLoginActive ? "btn-primary" : "btn-light";
         const registrationToggle = isRegistrationActive ? "btn-primary" : "btn-light";
+
+        if (isAuthorized) return <Redirect to="/" />;
 
         return (
             <div className="container">

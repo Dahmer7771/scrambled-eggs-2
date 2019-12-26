@@ -103,9 +103,11 @@ export default class RecipesAPI {
         await this.getResource(`/users/login`, "POST", data)
     );
 
-    isUserAuth = async () => {
-        const res = await this.getResource(`/users/auth`);
-        console.log(res.isAuth);
-        return res.isAuth;
-    };
+    logout = async () => (
+        await this.getResource(`/users/logout`)
+    );
+
+    isUserAuth = async () => (
+        await this.getResource(`/users/auth`)
+    );
 }

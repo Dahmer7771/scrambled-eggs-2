@@ -27,7 +27,7 @@ class App extends Component {
             recipesAPI: new RecipesAPI(),
             currentPage: 1,
             searchText: "",
-            isAuth: false,
+            isAuthorized: false,
         };
     }
 
@@ -39,11 +39,17 @@ class App extends Component {
         recipesAPI.isUserAuth()
             .then((res) => {
                 this.setState({
-                    isAuth: res,
+                    isAuthorized: res.isAuth,
                 });
             })
             .catch((err) => console.log(err));
     }
+
+    onAuthorizationSwitch = (isAuthorized) => {
+        this.setState({
+            isAuthorized,
+        });
+    };
 
     onSearchInputChange = (searchText) => {
         this.setState({
@@ -56,13 +62,17 @@ class App extends Component {
             recipesAPI,
             currentPage,
             searchText,
-            isAuth,
+            isAuthorized,
         } = this.state;
 
         return (
             <RecipesProvider value={recipesAPI}>
                 <div>
-                    <Header onSearchInputChange={this.onSearchInputChange} />
+                    <Header
+                        isAuthorized={isAuthorized}
+                        onAuthorizationSwitch={this.onAuthorizationSwitch}
+                        onSearchInputChange={this.onSearchInputChange}
+                    />
                     <Switch>
                         <Route
                             exact
@@ -87,7 +97,16 @@ class App extends Component {
                             )}
                         />
                         <Route exact path="/recipes/:id" component={RecipesItemSection} />
-                        <Route path="/autorization" component={Autorization} />
+                        <Route
+                            path="/autorization"
+                            render={(props) => (
+                                <Autorization
+                                    {...props}
+                                    isAuthorized={isAuthorized}
+                                    onAuthorizationSwitch={this.onAuthorizationSwitch}
+                                />
+                            )}
+                        />
                         <Route path="/search" component={SearchSection} />
                         <Route path="/users" component={Users} />
                         <Route path="/createRecipe" component={CreatedRecipe} />
