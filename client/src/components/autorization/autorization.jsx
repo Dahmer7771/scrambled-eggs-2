@@ -5,6 +5,9 @@ import { withCookies } from "react-cookie";
 import { Redirect } from "react-router-dom";
 import formValidation from "../../helpers/autorizationValidation";
 import withContext from "../hoc-helpers/with-сontext";
+import {
+    RegistrationModalWindow,
+} from "../modal-window/modal-window";
 
 class Autorization extends Component {
     constructor(props) {
@@ -15,6 +18,10 @@ class Autorization extends Component {
 
             isLoginActive: true,
             isRegistrationActive: false,
+
+            modal: false,
+            modalHeader: "",
+            modalMessage: "",
 
             error: false,
 
@@ -238,9 +245,16 @@ class Autorization extends Component {
 
         logIn(data)
             .then((res) => {
-                if (res.loginSuccess) {
-                    onAuthorizationSwitch(true);
-                } else onAuthorizationSwitch(false);
+                if (res.loginSuccess) onAuthorizationSwitch(true);
+                else {
+                    console.log(res);
+                    onAuthorizationSwitch(false);
+                    this.setState({
+                        modalHeader: "Ошибка входа",
+                        modalMessage: res.message,
+                    });
+                    this.modalToggle();
+                }
             })
             .catch((errorMessage) => console.log(errorMessage));
     };
@@ -271,16 +285,23 @@ class Autorization extends Component {
         };
 
         toRegister(data)
-            .then((message) => {
-                if (message.success) console.log("success");
-                else console.log("failure");
+            .then((res) => {
+                if (res.success) return <Redirect to="/congratulations" />;
+                console.log(res);
+                this.setState({
+                    modalHeader: res.err._message,
+                    modalMessage: res.err.message,
+                });
+                this.modalToggle();
             })
             .catch((errorMessage) => console.log(errorMessage));
     };
 
-    // onInputUpdate = (e) => {
-    //
-    // };
+    modalToggle = () => {
+        this.setState((prevState) => ({
+            modal: !prevState.modal,
+        }));
+    };
 
     render() {
         const {
@@ -290,6 +311,9 @@ class Autorization extends Component {
             errorVisibility,
             isLoginActive,
             isRegistrationActive,
+            modal,
+            modalHeader,
+            modalMessage,
         } = this.state;
 
         const {
@@ -303,6 +327,12 @@ class Autorization extends Component {
 
         return (
             <div className="container">
+                <RegistrationModalWindow
+                    header={modalHeader}
+                    message={modalMessage}
+                    toggle={this.modalToggle}
+                    modal={modal}
+                />
                 <div className="autorization-container row">
                     <div className="col-sm-12 col-md-12 col-lg-12 col-xl-12">
                         <div className="btn-group autorization-buttons" role="group" aria-label="Basic example">

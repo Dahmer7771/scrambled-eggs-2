@@ -1,4 +1,12 @@
-import React from "react";
+import React, { Component } from "react";
+import {
+    Button,
+    Modal,
+    ModalHeader,
+    ModalBody,
+    ModalFooter,
+} from "reactstrap";
+
 
 const ModalWindow = (props) => {
     const {
@@ -37,5 +45,37 @@ const ModalWindow = (props) => {
         </div>
     );
 };
+
+export class RegistrationModalWindow extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+
+        };
+    }
+
+    render() {
+        const {
+            header,
+            message,
+            toggle,
+            modal,
+        } = this.props;
+
+        return (
+            <div>
+                <Modal isOpen={modal} toggle={toggle}>
+                    <ModalHeader toggle={toggle}>{header}</ModalHeader>
+                    <ModalBody>
+                        {message}
+                    </ModalBody>
+                    <ModalFooter>
+                        <Button color="primary" onClick={toggle}>Ok</Button>
+                    </ModalFooter>
+                </Modal>
+            </div>
+        );
+    }
+}
 
 export default ModalWindow;

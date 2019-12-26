@@ -115,6 +115,18 @@ class App extends Component {
                         <PrivateRoute isAuthorized={isAuthorized} path="/deleteRecipe" component={DeleteRecipe} />
                         <PrivateRoute isAuthorized={isAuthorized} path="/recipeClient" component={RecipeClient} />
                         <PrivateRoute isAuthorized={isAuthorized} path="/change" component={ChangeRecipeClient} />
+                        <Route
+                            path="/users"
+                            render={() => (
+                                <div>
+                                    <h2>Поздравляем, вы успешно зарегестрировались!</h2>
+                                    <h4>
+                                        Приветственное письмо было отправдено
+                                        на указанную вами почту
+                                    </h4>
+                                </div>
+                            )}
+                        />
                     </Switch>
                     <Footer />
                 </div>
