@@ -42,8 +42,8 @@ app.use(function(req, res, next) {
 app.use(express.static(path.join(__dirname, '../client/build')));
 app.use(express.static(path.join(__dirname, '../uploads')));
 
-const PORT = process.env.PORT || 3000;
-const DNS = process.env.DNS || "localhost";
+const PORT = 80;
+const DNS = "g5.sumdu-tss.site";
 
 app.use("", recipeRoutes);
 app.use("", userRoutes);
