@@ -8,3 +8,7 @@
 .filter-item {
     cursor: pointer;
 }
+
+.recipes-filter .navbar-brand {
+    flex-grow: 0;
+}
