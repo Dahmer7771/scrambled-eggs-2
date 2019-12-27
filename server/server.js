@@ -40,10 +40,12 @@ app.use(function(req, res, next) {
 });
 
 app.use(express.static(path.join(__dirname, '../client/build')));
-app.use(express.static(path.join(__dirname, '../uploads')));
+app.use(express.static(path.join(__dirname, '../public')));
 
-const PORT = 80;
-const DNS = "g5.sumdu-tss.site";
+
+
+const PORT = process.env.PORT || 80;
+const DNS = process.env.DNS || "localhost";
 
 app.use("", recipeRoutes);
 app.use("", userRoutes);
