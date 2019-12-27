@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./account.css";
+// import { TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, Row, Col } from 'reactstrap';
 
 class Account extends Component {
     constructor(props) {
@@ -11,7 +12,7 @@ class Account extends Component {
 
     render() {
         return (
-            <div>
+            <div className="container">
                 Personal Account
             </div>
         );
