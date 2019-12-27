@@ -27,6 +27,7 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 app.use(cookieParser());
 
+
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", req.headers.origin);
   res.header("Access-Control-Allow-Methods", "GET, PUT, PATCH, POST, DELETE");
@@ -38,18 +39,21 @@ app.use(function(req, res, next) {
   // res.header("X-WebKit-CSP", "script-src 'self' https://apis.google.com");
 });
 
-app.use(express.static('client/build'))
-const PORT = process.env.PORT || 3000;
+app.use(express.static(path.join(__dirname, '../client/build')));
+app.use(express.static(path.join(__dirname, '../public')));
+
+
+
+const PORT = process.env.PORT || 80;
+const DNS = process.env.DNS || "localhost";
 
 app.use("", recipeRoutes);
 app.use("", userRoutes);
 
-
 app.get('/', (req, res) => {
-  res.status(200);
-  res.send('<p>some html</p>');
-})
+  res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
+});
 
-app.listen(PORT, () => {
+app.listen(PORT, DNS, () => {
   console.log(`Server is running on port ${PORT}`);
 })
