@@ -18,16 +18,10 @@ class RecipeCard extends Component {
 
         let imageUrl = image;
 
-<<<<<<< HEAD
-        console.log(image);
-        if (image) {
-            imageUrl = image.replace(/(.*)(uploads)\/(.*)$/, "./$2/$3");
-=======
         if (image) {
             imageUrl = image.replace(/(.*)(uploads)\/(.*)$/, "./$2/$3");
         } else {
             imageUrl = "./uploads/notaviable.jpg";
->>>>>>> 6576b20a5890e6965a72cfcd3295245c0506a665
         }
 
         return (
