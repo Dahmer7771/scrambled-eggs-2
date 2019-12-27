@@ -17,49 +17,35 @@ class RecipesFilter extends Component {
                 <div className="container">
                     <nav className="navbar navbar-expand-lg navbar-light bg-body">
                         <h4 className="navbar-brand">Фильтр</h4>
-                        <button
-                            className="navbar-toggler"
-                            type="button"
-                            data-toggle="collapse"
-                            data-target="#navbarFilter"
-                            aria-controls="navbarFilter"
-                            aria-expanded="false"
-                            aria-label="Toggle navigation"
-                        >
-                            <span className="navbar-toggler-icon" />
-                        </button>
-
-                        <div className="collapse navbar-collapse" id="navbarFilter">
-                            <ul className="navbar-nav mr-auto">
-                                <li className="nav-item dropdown">
-                                    <a
-                                        className="nav-link dropdown-toggle"
-                                        href="qwe"
-                                        id="navbarDropdown"
-                                        role="button"
-                                        data-toggle="dropdown"
-                                        aria-haspopup="true"
-                                        aria-expanded="false"
-                                    >
+                        <ul className="navbar-nav mr-auto filter-dropdown">
+                            <li className="nav-item dropdown">
+                                <a
+                                    className="nav-link dropdown-toggle"
+                                    href="qwe"
+                                    id="navbarDropdown"
+                                    role="button"
+                                    data-toggle="dropdown"
+                                    aria-haspopup="true"
+                                    aria-expanded="false"
+                                >
                                         Сортировка
-                                    </a>
-                                    <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <span
-                                            className="dropdown-item filter-item"
-                                            onClick={() => onFilterChange("like", "desc")}
-                                        >
+                                </a>
+                                <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <span
+                                        className="dropdown-item filter-item"
+                                        onClick={() => onFilterChange("like", "desc")}
+                                    >
                                             Популярные
-                                        </span>
-                                        <span
-                                            className="dropdown-item filter-item"
-                                            onClick={() => onFilterChange("created", "desc")}
-                                        >
+                                    </span>
+                                    <span
+                                        className="dropdown-item filter-item"
+                                        onClick={() => onFilterChange("created", "desc")}
+                                    >
                                             Новые
-                                        </span>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
+                                    </span>
+                                </div>
+                            </li>
+                        </ul>
                     </nav>
                 </div>
             </div>
