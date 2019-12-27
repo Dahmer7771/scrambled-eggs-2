@@ -16,7 +16,7 @@ class RecipesFilter extends Component {
             <div className="recipes-filter">
                 <div className="container">
                     <nav className="navbar navbar-expand-lg navbar-light bg-body">
-                        <a className="navbar-brand" href="c">Фильтр</a>
+                        <h4 className="navbar-brand">Фильтр</h4>
                         <button
                             className="navbar-toggler"
                             type="button"

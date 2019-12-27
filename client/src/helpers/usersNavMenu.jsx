@@ -1,4 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import "./dropdown-list.css";
+import RecipesAPI from "../services/recipes-api";
 
 const simpleUser = [
     {
@@ -29,39 +32,83 @@ const admin = [
         label: "Поиск по ингредиентам",
         url: "/search",
     },
-
 ];
 
-const settings = () => (
-    <li key={500} className="nav-item dropdown">
-        <a
-            className="nav-link dropdown-toggle"
-            href="settings"
-            id="navbarDropdown"
-            role="button"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
-            style={{
-                color: "white",
-            }}
-        >
-            Настройки
-        </a>
-        <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-            {/* <a className="dropdown-item" href="/recipeClient">Рецепты</a> */}
-            <a className="dropdown-item" href="/createRecipe">Добавить рецепт</a>
-            <a className="dropdown-item" href="/updateRecipe">Редактировать рецепт</a>
-            <a className="dropdown-item" href="/deleteRecipe">Удалить рецепт</a>
-            {/* <a className="dropdown-item" href="/users">Пользователи</a> */}
-            {/* <div className="dropdown-divider" /> */}
-            {/* <a className="dropdown-item" href="exit">Выйти</a> */}
-        </div>
-    </li>
-);
+const Settings = (props) => {
+    const {
+        onAuthorizationSwitch,
+    } = props;
+
+
+    const onLogout = () => {
+        const recipesAPI = new RecipesAPI();
+        recipesAPI.logout()
+            .then((res) => {
+                if (res.success) {
+                    onAuthorizationSwitch(false);
+                }
+                if (res.error) {
+                    onAuthorizationSwitch(false);
+                }
+            })
+            .catch((err) => console.log(err));
+    };
+
+    return (
+        <li key={500} className="nav-item dropdown">
+            <div
+                className="nav-link dropdown-toggle"
+                id="navbarDropdown"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+                style={{
+                    color: "white",
+                    cursor: "pointer",
+                }}
+            >
+                Настройки
+            </div>
+            <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                <Link to="/createRecipe">
+                    <div className="dropdown-item">
+                    Добавить рецепт
+                    </div>
+                </Link>
+                <Link to="/updateRecipe">
+                    <div className="dropdown-item">
+                    Редактировать рецепт
+                    </div>
+                </Link>
+                <Link to="/deleteRecipe">
+                    <div className="dropdown-item">
+                    Удалить рецепт
+                    </div>
+                </Link>
+                <Link to="/users">
+                    <div className="dropdown-item">
+                        Пользователи
+                    </div>
+                </Link>
+                <div className="dropdown-divider" />
+                <Link to="/autorization">
+                    <div className="dropdown-item">
+                        <span
+                            style={{ cursor: "pointer" }}
+                            onClick={onLogout}
+                        >
+                            Выйти
+                        </span>
+                    </div>
+                </Link>
+            </div>
+        </li>
+    );
+};
 
 export {
     admin,
     simpleUser,
-    settings,
+    Settings,
 };

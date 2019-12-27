@@ -1,6 +1,10 @@
 // eslint-disable-next-line no-return-await
 export default class RecipesAPI {
+<<<<<<< HEAD
     _baseUrl = "http://g5.sumdu-tss.site/api";
+=======
+    _baseUrl = "http://localhost:3000/api";
+>>>>>>> adb89511c00123e0102e40775465d50a709798c9
 
     getResource = async (url, method, body) => {
         let res;
@@ -103,9 +107,11 @@ export default class RecipesAPI {
         await this.getResource(`/users/login`, "POST", data)
     );
 
-    isUserAuth = async () => {
-        const res = await this.getResource(`/users/auth`);
-        console.log(res.isAuth);
-        return res.isAuth;
-    };
+    logout = async () => (
+        await this.getResource(`/users/logout`)
+    );
+
+    isUserAuth = async () => (
+        await this.getResource(`/users/auth`)
+    );
 }

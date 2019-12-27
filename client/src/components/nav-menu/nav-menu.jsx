@@ -5,30 +5,64 @@ import Search from "../search/search";
 import {
     admin as ADMIN,
     simpleUser as SIMPLE_USER,
-    settings,
+    Settings,
 } from "../../helpers/usersNavMenu";
 
 class NavMenu extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            userRole: "admin",
+            // userRole: "admin",
             simpleUser: SIMPLE_USER,
             admin: ADMIN,
+            isAuthorized: false,
         };
     }
 
+    componentDidMount() {
+        this.setNavPanel();
+    }
+
+    componentDidUpdate(prevProps) {
+        const {
+            isAuthorized,
+        } = this.props;
+
+        if (prevProps.isAuthorized !== isAuthorized) {
+            this.setNavPanel();
+        }
+    }
+
+    setNavPanel = () => {
+        const {
+            isAuthorized,
+        } = this.props;
+
+        this.setState({
+            isAuthorized,
+        });
+    };
+
     renderNavItems = () => {
         const {
-            userRole,
             admin,
             simpleUser,
+            isAuthorized,
         } = this.state;
 
-        switch (userRole) {
-        case "admin":
+        // switch (userRole) {
+        // case "admin":
+        //     return admin;
+        // case "registeredUser":
+        //     return simpleUser;
+        // default:
+        //     return simpleUser;
+        // }
+
+        switch (isAuthorized) {
+        case true:
             return admin;
-        case "registeredUser":
+        case false:
             return simpleUser;
         default:
             return simpleUser;
@@ -37,11 +71,12 @@ class NavMenu extends Component {
 
     render() {
         const {
-            userRole,
+            isAuthorized,
         } = this.state;
 
         const {
             onSearchInputChange,
+            onAuthorizationSwitch,
         } = this.props;
         const navItems = this.renderNavItems();
 
@@ -53,8 +88,13 @@ class NavMenu extends Component {
             </li>
         ));
 
-        if (userRole === "admin") {
-            const settingsNavItem = settings();
+        if (isAuthorized) {
+            const settingsNavItem = (
+                <Settings
+                    key={500}
+                    onAuthorizationSwitch={onAuthorizationSwitch}
+                />
+            );
 
             renderNavItems = [
                 ...renderNavItems,

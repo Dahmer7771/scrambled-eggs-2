@@ -1,0 +1,8 @@
+.header .dropdown-menu a {
+    text-decoration: none;
+    color: black;
+}
+
+.header .dropdown-menu .dropdown-item:hover {
+    background: rgba(0, 125, 255, 0.51);
+}
