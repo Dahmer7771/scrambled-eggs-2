@@ -18,6 +18,7 @@ const router = express.Router();
 const {Recipe} = require('../models/recipe');
 const {Ingredient} = require('../models/ingredient');
 const {User} = require('../models/user');
+const {Category} = require('../models/categories');
 
 // Middlewares
 const { auth } = require('../middleware/auth');
@@ -57,6 +58,16 @@ const upload = multer({
   fileFilter: fileFilter
 });
 
+//CREATE CATEGORY
+
+// router.post('/api/category/create', (req, res) => {
+//   let category = new Category(req.body);
+//   category.save((err, doc) => {
+//     if(err) return res.json(err);
+//     return res.status(200).json("created");
+//   });
+// })
+
 /**
  * @api {post} /api/recipe/create Создает новый рецепт
  * @apiName CreateRecipe
@@ -81,6 +92,17 @@ router.post('/api/recipe/create', upload.single('image'), auth, (req, res) => {
   });
   
   let recipe;
+
+  let category = req.body.category;
+
+  Category.find({name: category}, (err, docs) => {
+    if (docs.length == 0){
+      return res.status(400).json({
+        error: "No category with this name"
+      });
+    }
+  })
+
   let ingredientReq = req.body.ingredient.split(',');
   // console.log(ingredientReq);
   if(req.file){
@@ -91,7 +113,7 @@ router.post('/api/recipe/create', upload.single('image'), auth, (req, res) => {
     category: req.body.category,
     ingredient: ingredientReq,
     mark: req.body.mark,
-    // createdBy: req.user._id, 
+    createdBy: req.user._id, 
     image: req.file.path
   });}
   else {
@@ -102,7 +124,7 @@ router.post('/api/recipe/create', upload.single('image'), auth, (req, res) => {
       category: req.body.category,
       ingredient: ingredientReq,
       mark: req.body.mark,
-      // createdBy: req.name._id, 
+      createdBy: req.name._id, 
     });
   }
 
@@ -178,6 +200,16 @@ router.put("/api/recipes/article_by_id", upload.single('image'), auth, (req, res
     };
   }
 
+  let category = req.body.category;
+
+  Category.find({name: category}, (err, docs) => {
+    if (docs.length == 0){
+      return res.status(400).json({
+        error: "No category with this name"
+      });
+    }
+  })
+
   Recipe.findByIdAndUpdate({ _id: id }, {"$set": recipe}, { useFindAndModify: false })
   .then( () => {
     let ingredients = ingredientReq;
@@ -224,13 +256,13 @@ router.put("/api/recipes/article_by_id", upload.single('image'), auth, (req, res
 router.delete("/api/recipes/article_by_id", auth, (req, res) => {
   
   let id =  req.query.id;
-  // let createdBy = req.user._id;
-  // let canBeDeleted = false;
-  let canBeDeleted = true;
+  let createdBy = req.user._id;
+  let canBeDeleted = false;
+  // let canBeDeleted = true;
 
   Recipe.findById(id).exec((err, result) => {
     if(err) return res.status(400).send(err);
-    // if (createdBy.toString() == result.createdBy.toString() || req.user.role == 1) canBeDeleted = true;
+    if (createdBy.toString() == result.createdBy.toString() || req.user.role == 1) canBeDeleted = true;
     if(canBeDeleted){
       Recipe.deleteOne({ _id: `${id}`}, (err, deletedProduct) => {
         if (err) {
@@ -246,7 +278,6 @@ router.delete("/api/recipes/article_by_id", auth, (req, res) => {
     }
   })
 })
-
 
 //GET NUMBER RECIPES
 
@@ -363,6 +394,59 @@ router.get('/api/recipes/ingredients', (req, res) => {
   exec((err,ingr)=>{
     if(err) return res.status(400).send(err);
     res.send(ingr);
+  })
+})
+
+//GET CATRORIES
+
+router.get('/api/recipes/categories', (req, res) => {
+  Category.
+  find().
+  exec((err, cat) => {
+    if(err) return res.status(400).send(err);
+    res.send(cat);
+  })
+})
+
+//GET RECIPES BY CATEGORY
+
+router.post('/api/recipes/articles_by_category', (req, res) => {
+  let category = req.body.category;
+  Recipe.find({"category": {$all: category}}).exec((err, articlesCategory) => {
+    if (err)
+      return res.status('400').json({
+        error: "Recipes not found"
+      });
+      return res.status(200).send(articlesCategory);
+  })
+
+})
+
+//LIKE RECIPE
+
+router.put('/api/recipes/like', auth, (req, res) => {
+  Recipe.findByIdAndUpdate(req.body.id, {$push: {like: req.user._id}}, {new: true})
+  .exec((err, result) => {
+    if (err) {
+      return res.status(400).json({
+        error: errorHandler.getErrorMessage(err)
+      })
+    }
+    res.json(result)
+  })
+})
+
+//UNLIKE RECIPE
+
+router.put('/api/recipes/unlike', auth, (req, res) => {
+  Recipe.findByIdAndUpdate(req.body.id, {$pull: {like: req.user._id}}, {new: true})
+  .exec((err, result) => {
+    if (err) {
+      return res.status(400).json({
+        error: errorHandler.getErrorMessage(err)
+      })
+    }
+    res.json(result)
   })
 })
 
