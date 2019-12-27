@@ -17,9 +17,11 @@ class RecipeCard extends Component {
         } = this.props;
 
         let imageUrl = image;
-        
+
         if (image) {
-            imageUrl = image.replace(/(.*)(uploads)\\(.*)$/, "./$2/$3");
+            imageUrl = image.replace(/(.*)(uploads)\/(.*)$/, "./$2/$3");
+        } else {
+            imageUrl = "./uploads/notaviable.jpg";
         }
 
         return (
