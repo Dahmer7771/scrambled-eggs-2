@@ -53,7 +53,7 @@ class RecipesFilter extends Component {
             <div className="recipes-filter">
                 <div className="container">
                     <nav className="navbar navbar-expand-lg navbar-light bg-body">
-                        <h4 className="navbar-brand">Фильтр</h4>
+                        {/*<h4 className="navbar-brand">Фильтр</h4>*/}
                         <ul className="navbar-nav mr-auto filter-dropdown">
                             <li className="nav-item dropdown">
                                 <span

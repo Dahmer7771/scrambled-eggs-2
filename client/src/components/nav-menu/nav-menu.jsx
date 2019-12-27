@@ -6,7 +6,7 @@ import {
     admin as ADMIN,
     simpleUser as SIMPLE_USER,
     Settings,
-} from "../../helpers/usersNavMenu";
+} from "../../helpers/users-nav-menu";
 
 class NavMenu extends Component {
     constructor(props) {
