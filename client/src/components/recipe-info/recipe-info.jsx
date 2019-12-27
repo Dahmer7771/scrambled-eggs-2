@@ -35,7 +35,9 @@ class RecipeInfo extends Component {
         let imageUrl = image;
 
         if (image) {
-            imageUrl = image.replace(/(.*)(uploads)\\(.*)$/, "../$2/$3");
+            imageUrl = image.replace(/(.*)(uploads)\/(.*)$/, "./$2/$3");
+        } else {
+            imageUrl = "./uploads/notaviable.jpg";
         }
 
         const creationDateRegExp = /([0-9][0-9][0-9][0-9])-([0-1][0-9])-([0-3][0-9])/g;

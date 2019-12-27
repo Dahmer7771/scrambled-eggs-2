@@ -1,4 +1,3 @@
-.deleteRecipeTr th,
 .deleteRecipeTr td {
     text-align: left;
 }
@@ -6,5 +5,9 @@
 .table-delete-recipe thead tr:last-child,
 .deleteRecipeTr td:nth-last-child(2),
 .deleteRecipeTr td:last-child {
+    text-align: center;
+}
+
+.deleteRecipeTr th {
     text-align: center;
 }

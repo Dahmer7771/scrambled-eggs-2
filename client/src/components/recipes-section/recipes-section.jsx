@@ -16,7 +16,7 @@ class RecipesSection extends Component {
     }
 
     componentDidMount() {
-        this.renderRecipes();
+        this.showAllRecipes();
     }
 
     componentDidUpdate(prevProps) {
@@ -25,7 +25,7 @@ class RecipesSection extends Component {
         } = this.props;
 
         if (currentPage !== prevProps.currentPage) {
-            this.renderRecipes();
+            this.showAllRecipes();
         }
     }
 
@@ -33,7 +33,7 @@ class RecipesSection extends Component {
         this.isMount = false;
     }
 
-    renderRecipes = () => {
+    showAllRecipes = () => {
         const {
             getAllRecipes,
             // match
@@ -63,6 +63,21 @@ class RecipesSection extends Component {
             });
     };
 
+    onCategoryChange = (category) => {
+        const {
+            getRecipesByCategory,
+        } = this.props;
+
+        const data = {
+            category,
+        };
+        getRecipesByCategory(data)
+            .then((recipes) => this.setState({
+                recipes,
+            }))
+            .catch((err) => console.log(err));
+    };
+
     search = (recipesList, term = "") => {
         if (term.length < 1) return recipesList;
 
@@ -87,7 +102,11 @@ class RecipesSection extends Component {
 
         return (
             <div className="recipes-section">
-                <RecipesFilter onFilterChange={this.onFilterChange} />
+                <RecipesFilter
+                    onFilterChange={this.onFilterChange}
+                    onCategoryChange={this.onCategoryChange}
+                    showAllRecipes={this.showAllRecipes}
+                />
                 <div className="container">
                     <h2 className="recipes-section__title">Рецепты</h2>
                     <div className="row">
@@ -121,6 +140,7 @@ const mapMethodsToProps = (RecipesAPI) => ({
     getAllRecipes: RecipesAPI.getAllRecipes,
     getSortedRecipes: RecipesAPI.getSortedRecipes,
     getRecipesWithSkip: RecipesAPI.getRecipesWithSkip,
+    getRecipesByCategory: RecipesAPI.getRecipesByCategory,
 });
 
 export default withOntext(mapMethodsToProps)(RecipesSection);
