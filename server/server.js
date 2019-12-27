@@ -50,7 +50,7 @@ const DNS = process.env.DNS || "localhost";
 app.use("", recipeRoutes);
 app.use("", userRoutes);
 
-app.get('/', (req, res) => {
+app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
 });
 

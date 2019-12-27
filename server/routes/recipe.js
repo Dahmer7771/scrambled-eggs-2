@@ -72,7 +72,7 @@ const upload = multer({
  * @apiError Error Сообщение о типе ошибки
  */
 
-router.post('/api/recipe/create', upload.single('image'), /*auth,*/ (req, res) => {
+router.post('/api/recipe/create', upload.single('image'), auth, (req, res) => {
 
   console.log(req.body);
   Recipe.find({name: req.body.recipe}, function (err, docs) {
@@ -149,7 +149,7 @@ router.post('/api/recipe/create', upload.single('image'), /*auth,*/ (req, res) =
 
 //UPDATE RECIPE
 
-router.put("/api/recipes/article_by_id", upload.single('image'), /*auth,*/ (req, res) => {
+router.put("/api/recipes/article_by_id", upload.single('image'), auth, (req, res) => {
   
   let id =  req.query.id;
   let recipe;
@@ -221,7 +221,7 @@ router.put("/api/recipes/article_by_id", upload.single('image'), /*auth,*/ (req,
 
 // REMOVE RECIPE
 
-router.delete("/api/recipes/article_by_id", /*auth,*/ (req, res) => {
+router.delete("/api/recipes/article_by_id", auth, (req, res) => {
   
   let id =  req.query.id;
   // let createdBy = req.user._id;
