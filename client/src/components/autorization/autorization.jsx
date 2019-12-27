@@ -288,9 +288,10 @@ class Autorization extends Component {
             .then((res) => {
                 if (res.success) return <Redirect to="/congratulations" />;
                 console.log(res);
+                const message = "Что то пошло не так, скорее всего данные введены неправильно";
                 this.setState({
-                    modalHeader: res.err._message,
-                    modalMessage: res.err.message,
+                    modalHeader: res.err.name,
+                    modalMessage: message,
                 });
                 this.modalToggle();
             })

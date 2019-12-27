@@ -12,3 +12,11 @@
 .recipes-filter .navbar-brand {
     flex-grow: 0;
 }
+
+.dropdown-toggle {
+    cursor: pointer;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
