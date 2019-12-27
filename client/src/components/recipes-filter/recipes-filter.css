@@ -12,3 +12,35 @@
 .recipes-filter .navbar-brand {
     flex-grow: 0;
 }
+
+.dropdown-toggle {
+    cursor: pointer;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.filter-dropdown {
+    flex-direction: row;
+}
+
+.filter-dropdown li + li {
+    margin-left: 10px;
+}
+
+@media all and (min-width: 320px) {
+    .dropdown-menu {
+        position: absolute!important;
+    }
+}
+
+@media all and (max-width: 440px) {
+    .filter-dropdown {
+        flex-direction: column;
+    }
+
+    .filter-dropdown li + li {
+        margin-left: 0px;
+    }
+}

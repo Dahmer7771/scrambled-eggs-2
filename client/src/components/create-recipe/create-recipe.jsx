@@ -11,6 +11,7 @@ class CreateRecipe extends Component {
         this.state = {
             term: "",
             ingredients: "",
+            categories: null,
             selectedRecipe: {
                 id: "",
                 name: "",
@@ -28,11 +29,17 @@ class CreateRecipe extends Component {
     componentDidMount() {
         const {
             selectedRecipe,
+            getAllCategories,
         } = this.props;
 
-        this.setState({
-            selectedRecipe,
-        });
+        getAllCategories()
+            .then((res) => {
+                this.setState({
+                    selectedRecipe,
+                    categories: res,
+                });
+            })
+            .catch((err) => console.log(err));
     }
 
     componentDidUpdate(prevProps) {
@@ -225,8 +232,10 @@ class CreateRecipe extends Component {
         let {
             selectedRecipe,
         } = this.state;
+
         const {
             ingredients,
+            categories,
             selectedIngredients,
             modalHeader,
             modalMessage,
@@ -260,6 +269,16 @@ class CreateRecipe extends Component {
             );
         }
 
+        let categoriesList;
+
+        if (categories) {
+            categoriesList = categories.map(({ _id, name }) => (
+                <option key={_id}>
+                    {name}
+                </option>
+            ));
+        }
+
         return (
             <div className="container">
                 <h4 className="my-3">
@@ -279,11 +298,7 @@ class CreateRecipe extends Component {
                     <div className="form-group">
                         <label htmlFor="recipe-category">Категория</label>
                         <select className="form-control" id="recipe-category" name="category">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
+                            {categoriesList}
                         </select>
                     </div>
                     <label htmlFor="recipe-ingredients">Ингредиенты:</label>
@@ -333,6 +348,7 @@ class CreateRecipe extends Component {
 const mapMethodsToProps = (RecipesAPI) => ({
     createRecipe: RecipesAPI.createRecipe,
     updateRecipe: RecipesAPI.updateRecipe,
+    getAllCategories: RecipesAPI.getAllCategories,
 });
 
 export default withContext(mapMethodsToProps)(CreateRecipe);

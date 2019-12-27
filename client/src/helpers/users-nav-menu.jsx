@@ -91,6 +91,11 @@ const Settings = (props) => {
                         Пользователи
                     </div>
                 </Link>
+                <Link to="/account">
+                    <div className="dropdown-item">
+                        Личный профиль
+                    </div>
+                </Link>
                 <div className="dropdown-divider" />
                 <Link to="/autorization">
                     <div className="dropdown-item">

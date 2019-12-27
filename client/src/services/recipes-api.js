@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-return-await
 export default class RecipesAPI {
-    _baseUrl = "http://g5.sumdu-tss.site/api";
+    _baseUrl = "http://192.168.1.3:3000/api";
 
     getResource = async (url, method, body) => {
         let res;
@@ -109,5 +109,13 @@ export default class RecipesAPI {
 
     isUserAuth = async () => (
         await this.getResource(`/users/auth`)
+    );
+
+    getRecipesByCategory = async (data) => (
+        await this.getResource(`/recipes/articles_by_category`, "POST", data)
+    );
+
+    getAllCategories = async () => (
+        await this.getResource(`/recipes/categories`)
     );
 }
