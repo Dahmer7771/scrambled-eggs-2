@@ -26,9 +26,7 @@ const recipeSchema = mongoose.Schema({
     type: Schema.Types.ObjectId,
     ref: 'Mark'
   }],
-  like: {
-    type: Number
-  },
+  like: [{type: mongoose.Schema.ObjectId, ref: 'User', unique: 1}],
   createdBy: {
     type: Schema.Types.ObjectId,
     ref: 'User'

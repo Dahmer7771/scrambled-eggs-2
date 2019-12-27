@@ -44,7 +44,7 @@ app.use(express.static(path.join(__dirname, '../public')));
 
 
 
-const PORT = process.env.PORT || 80;
+const PORT = process.env.PORT || 3000;
 const DNS = process.env.DNS || "localhost";
 
 app.use("", recipeRoutes);
@@ -54,6 +54,6 @@ app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
 });
 
-app.listen(PORT, DNS, () => {
+app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 })
