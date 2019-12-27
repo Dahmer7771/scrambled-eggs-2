@@ -1,6 +1,9 @@
 .recipe-image {
-    width: 100%;
+    margin: 0 auto;
     background: #777;
+    width: 100%;
+    height: 100%;
+    object-fit: cover
 }
 
 .card.recipe-card {
@@ -54,17 +57,21 @@
     overflow: hidden;
 }
 
-
-@media all and (max-width: 574px){
-    .card.recipe-card {
-        width: 80%;
-        height: 510px;
-    }
+.aa {
+    overflow: hidden;
 }
 
-@media all and (max-width: 444px){
-    .card.recipe-card {
-        width: 100%;
-        height: 510px;
-    }
-}
+
+/*@media all and (max-width: 574px){*/
+/*    .card.recipe-card {*/
+/*        width: 80%;*/
+/*        height: 510px;*/
+/*    }*/
+/*}*/
+
+/*@media all and (max-width: 444px){*/
+/*    .card.recipe-card {*/
+/*        width: 100%;*/
+/*        height: 510px;*/
+/*    }*/
+/*}*/

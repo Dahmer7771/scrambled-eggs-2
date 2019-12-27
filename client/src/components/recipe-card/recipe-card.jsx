@@ -27,8 +27,8 @@ class RecipeCard extends Component {
         return (
             <div className="col-xl-3 col-lg-4 col-sm-6 col-12">
                 <div className="card recipe-card">
-                    <div className="embed-responsive embed-responsive-4by3">
-                        <img src={imageUrl} alt="q" className="recipe-image embed-responsive-item" />
+                    <div className="carg-image">
+                        <img src={imageUrl} alt="q" className="recipe-image" />
                     </div>
                     <div className="card-body">
                         <h5 className="card-title">{name}</h5>
