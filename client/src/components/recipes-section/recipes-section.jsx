@@ -98,7 +98,7 @@ class RecipesSection extends Component {
 
         const searchedRecipes = this.search(recipes, searchText);
 
-        const warning = searchedRecipes.length ? null : <Warning label="No recipes found" />;
+        const warning = searchedRecipes.length ? null : <Warning label="Рецепты не найдены" />;
 
         return (
             <div className="recipes-section">
