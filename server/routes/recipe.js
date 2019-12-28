@@ -113,7 +113,7 @@ router.post('/api/recipe/create', upload.single('image'), (req, res) => {
     category: req.body.category,
     ingredient: ingredientReq,
     mark: req.body.mark,
-    createdBy: req.user._id, 
+    // createdBy: req.user._id, 
     image: req.file.path
   });}
   else {
@@ -124,7 +124,7 @@ router.post('/api/recipe/create', upload.single('image'), (req, res) => {
       category: req.body.category,
       ingredient: ingredientReq,
       mark: req.body.mark,
-      createdBy: req.name._id, 
+      // createdBy: req.name._id, 
     });
   }
 
