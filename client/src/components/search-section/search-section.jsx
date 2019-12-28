@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./search-section.css";
 import SearchInput from "./search-input";
+import SelectedIngredientsList from "./selected-ingredients-list";
 import SearchedRecipes from "./searched-recipes";
 
 class SearchSection extends Component {

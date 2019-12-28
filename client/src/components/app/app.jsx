@@ -40,6 +40,7 @@ class App extends Component {
 
         recipesAPI.isUserAuth()
             .then((res) => {
+                console.log(res);
                 this.setState({
                     isAuthorized: res.isAuth,
                 });
@@ -66,6 +67,8 @@ class App extends Component {
             searchText,
             isAuthorized,
         } = this.state;
+
+        console.log(isAuthorized);
 
         return (
             <RecipesProvider value={recipesAPI}>
