@@ -19,9 +19,9 @@ class RecipeCard extends Component {
         let imageUrl = image;
 
         if (image) {
-            imageUrl = image.replace(/(.*)(uploads)\/(.*)$/, "http://192.168.1.3:3000/$2/$3");
+            imageUrl = image.replace(/(.*)(uploads)\/(.*)$/, "./$2/$3");
         } else {
-            imageUrl = "http://192.168.1.3:3000/uploads/notaviable.jpg";
+            imageUrl = "./uploads/notaviable.jpg";
         }
 
         return (
