@@ -256,7 +256,7 @@ router.put("/api/recipes/article_by_id", upload.single('image'), (req, res) => {
 router.delete("/api/recipes/article_by_id",  (req, res) => {
   
   let id =  req.query.id;
-  let createdBy = req.user._id;
+  // let createdBy = req.user._id;
   // let canBeDeleted = false;
   let canBeDeleted = true;
 
