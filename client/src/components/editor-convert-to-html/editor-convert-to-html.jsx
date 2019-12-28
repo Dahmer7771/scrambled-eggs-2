@@ -24,9 +24,9 @@ class EditorConvertToHTML extends Component {
         if (contentBlock) {
             const contentState = ContentState.createFromBlockArray(contentBlock.contentBlocks);
             const editorState = EditorState.createWithContent(contentState);
-            this.state = {
+            this.setState({
                 editorState,
-            };
+            });
         }
     }
 
