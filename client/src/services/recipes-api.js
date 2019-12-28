@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-return-await
 export default class RecipesAPI {
-    _baseUrl = "http://g5.sumdu-tss.site//api";
+    _baseUrl = "http://g5.sumdu-tss.site/api";
 
     getResource = async (url, method, body) => {
         let res;
