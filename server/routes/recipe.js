@@ -262,7 +262,7 @@ router.delete("/api/recipes/article_by_id",  (req, res) => {
 
   Recipe.findById(id).exec((err, result) => {
     if(err) return res.status(400).send(err);
-    if (createdBy.toString() == result.createdBy.toString() || req.user.role == 1) canBeDeleted = true;
+    // if (createdBy.toString() == result.createdBy.toString() || req.user.role == 1) canBeDeleted = true;
     if(canBeDeleted){
       Recipe.deleteOne({ _id: `${id}`}, (err, deletedProduct) => {
         if (err) {
