@@ -4,6 +4,7 @@ import {
     Route,
     Switch,
 } from "react-router-dom";
+import { withCookies } from "react-cookie";
 import Header from "../header/header";
 import RecipesSection from "../recipes-section/recipes-section";
 import Footer from "../footer/footer";
@@ -136,4 +137,4 @@ class App extends Component {
     }
 }
 
-export default App;
+export default withCookies(App);
