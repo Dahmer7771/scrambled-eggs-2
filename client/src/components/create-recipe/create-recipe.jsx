@@ -32,10 +32,13 @@ class CreateRecipe extends Component {
             getAllCategories,
         } = this.props;
 
+        this.setState({
+            selectedRecipe,
+        });
+
         getAllCategories()
             .then((res) => {
                 this.setState({
-                    selectedRecipe,
                     categories: res,
                 });
             })
@@ -179,7 +182,7 @@ class CreateRecipe extends Component {
             updateRecipe(formSelector, selectedRecipe._id)
                 .then((data) => {
                     if (data.error) {
-                        console.log("error");
+                        console.log(data);
                         this.setState({
                             modalHeader: "Ошибка ввода",
                             modalMessage: data.error.message,
@@ -204,7 +207,6 @@ class CreateRecipe extends Component {
             createRecipe(formSelector)
                 .then((data) => {
                     if (data.error) {
-                        console.log("error");
                         this.setState({
                             modalHeader: "Ошибка ввода",
                             modalMessage: data.error.message,
