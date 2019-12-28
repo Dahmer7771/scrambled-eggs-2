@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "./autorization.css";
 import Zoom from "react-reveal/Zoom";
-import { withCookies } from "react-cookie";
 import { Redirect } from "react-router-dom";
 import formValidation from "../../helpers/autorizationValidation";
 import withContext from "../hoc-helpers/with-сontext";
@@ -461,4 +460,4 @@ const mapMethodsToProps = (recipesAPI) => ({
     logIn: recipesAPI.logIn,
 });
 
-export default withCookies(withContext(mapMethodsToProps)(Autorization));
+export default withContext(mapMethodsToProps)(Autorization);
