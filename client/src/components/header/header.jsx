@@ -25,6 +25,7 @@ class Header extends Component {
                             to="/"
                             className="navbar-brand"
                         >
+                            <img src="logo.png" alt="logo" className="header-logo" />
                             <span className="navbar-brand">
                                 Scrambled Eggs
                             </span>
